@@ -68,19 +68,19 @@ public final class SetupCompleteFragment extends OnboardingFragmentInterface {
   public void onButtonClick(View paramView) {
     Intrinsics.checkParameterIsNotNull(paramView, "view");
     CentralLog.Companion.d(this.TAG, "OnButtonClick 2");
-    Preference preference = Preference.INSTANCE;
-    Context context2 = paramView.getContext();
-    Intrinsics.checkExpressionValueIsNotNull(context2, "view.context");
-    preference.putCheckpoint(context2, 0);
-    preference = Preference.INSTANCE;
+    Preference preference1 = Preference.INSTANCE;
+    Context context3 = paramView.getContext();
+    Intrinsics.checkExpressionValueIsNotNull(context3, "view.context");
+    preference1.putCheckpoint(context3, 0);
+    Preference preference2 = Preference.INSTANCE;
     Context context1 = paramView.getContext();
     Intrinsics.checkExpressionValueIsNotNull(context1, "view.context");
-    preference.putIsOnBoarded(context1, true);
+    preference2.putIsOnBoarded(context1, true);
     Intent intent = new Intent(getContext(), MainActivity.class);
     intent.setFlags(268468224);
-    context1 = getContext();
-    if (context1 != null)
-      context1.startActivity(intent); 
+    Context context2 = getContext();
+    if (context2 != null)
+      context2.startActivity(intent); 
     OnboardingActivity onboardingActivity = (OnboardingActivity)getContext();
     if (onboardingActivity != null)
       onboardingActivity.finish(); 

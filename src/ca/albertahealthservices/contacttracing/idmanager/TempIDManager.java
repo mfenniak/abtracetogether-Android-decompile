@@ -38,30 +38,30 @@ public final class TempIDManager implements CoroutineScope {
   private static final String TAG = "TempIDManager";
   
   private final Queue<TemporaryID> convertToQueue(TemporaryID[] paramArrayOfTemporaryID) {
-    CentralLog.Companion companion = CentralLog.Companion;
+    CentralLog.Companion companion2 = CentralLog.Companion;
     StringBuilder stringBuilder2 = new StringBuilder();
     stringBuilder2.append("[TempID] Before Sort: ");
     byte b = 0;
     stringBuilder2.append(paramArrayOfTemporaryID[0]);
-    companion.d("TempIDManager", stringBuilder2.toString());
+    companion2.d("TempIDManager", stringBuilder2.toString());
     if (paramArrayOfTemporaryID.length > 1)
       ArraysKt.sortWith((Object[])paramArrayOfTemporaryID, new TempIDManager$convertToQueue$$inlined$sortBy$1()); 
-    companion = CentralLog.Companion;
+    companion2 = CentralLog.Companion;
     stringBuilder2 = new StringBuilder();
     stringBuilder2.append("[TempID] After Sort: ");
     stringBuilder2.append(paramArrayOfTemporaryID[0]);
-    companion.d("TempIDManager", stringBuilder2.toString());
+    companion2.d("TempIDManager", stringBuilder2.toString());
     LinkedList<TemporaryID> linkedList = new LinkedList();
     int i = paramArrayOfTemporaryID.length;
     while (b < i) {
       linkedList.offer(paramArrayOfTemporaryID[b]);
       b++;
     } 
-    companion = CentralLog.Companion;
+    CentralLog.Companion companion1 = CentralLog.Companion;
     StringBuilder stringBuilder1 = new StringBuilder();
     stringBuilder1.append("[TempID] Retrieving from Queue: ");
     stringBuilder1.append(linkedList.peek());
-    companion.d("TempIDManager", stringBuilder1.toString());
+    companion1.d("TempIDManager", stringBuilder1.toString());
     return linkedList;
   }
   
@@ -97,28 +97,28 @@ public final class TempIDManager implements CoroutineScope {
     long l2 = temporaryID.getStartTime();
     long l3 = 1000L;
     long l4 = temporaryID.getExpiryTime() * l3;
+    CentralLog.Companion companion5 = CentralLog.Companion;
+    StringBuilder stringBuilder5 = new StringBuilder();
+    stringBuilder5.append("[TempID Total number of items in queue: ");
+    stringBuilder5.append(paramQueue.size());
+    companion5.d("TempIDManager", stringBuilder5.toString());
     CentralLog.Companion companion2 = CentralLog.Companion;
+    StringBuilder stringBuilder4 = new StringBuilder();
+    stringBuilder4.append("[TempID Number of items popped from queue: ");
+    stringBuilder4.append(b);
+    companion2.d("TempIDManager", stringBuilder4.toString());
+    CentralLog.Companion companion4 = CentralLog.Companion;
     StringBuilder stringBuilder2 = new StringBuilder();
-    stringBuilder2.append("[TempID Total number of items in queue: ");
-    stringBuilder2.append(paramQueue.size());
-    companion2.d("TempIDManager", stringBuilder2.toString());
-    CentralLog.Companion companion1 = CentralLog.Companion;
-    stringBuilder2 = new StringBuilder();
-    stringBuilder2.append("[TempID Number of items popped from queue: ");
-    stringBuilder2.append(b);
-    companion1.d("TempIDManager", stringBuilder2.toString());
-    companion1 = CentralLog.Companion;
-    stringBuilder2 = new StringBuilder();
     stringBuilder2.append("[TempID] Current time: ");
     stringBuilder2.append(l1);
-    companion1.d("TempIDManager", stringBuilder2.toString());
+    companion4.d("TempIDManager", stringBuilder2.toString());
+    CentralLog.Companion companion1 = CentralLog.Companion;
+    StringBuilder stringBuilder3 = new StringBuilder();
+    stringBuilder3.append("[TempID] Start time: ");
+    stringBuilder3.append(l2 * l3);
+    companion1.d("TempIDManager", stringBuilder3.toString());
     CentralLog.Companion companion3 = CentralLog.Companion;
     StringBuilder stringBuilder1 = new StringBuilder();
-    stringBuilder1.append("[TempID] Start time: ");
-    stringBuilder1.append(l2 * l3);
-    companion3.d("TempIDManager", stringBuilder1.toString());
-    companion3 = CentralLog.Companion;
-    stringBuilder1 = new StringBuilder();
     stringBuilder1.append("[TempID] Expiry time: ");
     stringBuilder1.append(l4);
     companion3.d("TempIDManager", stringBuilder1.toString());
@@ -196,7 +196,7 @@ public final class TempIDManager implements CoroutineScope {
   public final TemporaryID retrieveTemporaryID(Context paramContext) {
     Intrinsics.checkParameterIsNotNull(paramContext, "context");
     File file = new File(paramContext.getFilesDir(), "tempIDs");
-    if (file.exists()) {
+    if (file.getAbsoluteFile().exists()) {
       String str = FilesKt.readText$default(file, null, 1, null);
       CentralLog.Companion companion = CentralLog.Companion;
       StringBuilder stringBuilder = new StringBuilder();
@@ -270,14 +270,14 @@ public final class TempIDManager implements CoroutineScope {
         } 
       } else {
         ResultKt.throwOnFailure(exception);
-        CoroutineScope coroutineScope = this.p$;
+        Object object1 = this.p$;
         String str = Preference.INSTANCE.getUUID(this.$context);
         if ((Intrinsics.areEqual(str, "") ^ true) != 0) {
           HashMap<Object, Object> hashMap = new HashMap<>();
           this();
           hashMap.put("userId", str);
           Request request = Request.INSTANCE;
-          this.L$0 = coroutineScope;
+          this.L$0 = object1;
           this.L$1 = str;
           this.L$2 = hashMap;
           this.label = 1;
@@ -290,7 +290,7 @@ public final class TempIDManager implements CoroutineScope {
           Utils.INSTANCE.restartApp(this.$context, 1, "[TempID] Error getting Temporary IDs, no userId");
           return Unit.INSTANCE;
         } 
-        Object object1 = object1;
+        object1 = object1;
         CentralLog.Companion.d("TempIDManager", object1.toString());
       } 
       return Unit.INSTANCE;

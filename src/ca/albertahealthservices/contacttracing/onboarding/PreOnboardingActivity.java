@@ -74,7 +74,7 @@ public final class PreOnboardingActivity extends FragmentActivity implements Cor
     if (appCompatTextView != null) {
       StringBuilder stringBuilder = new StringBuilder();
       stringBuilder.append(getString(2131820582));
-      stringBuilder.append("1.4.0");
+      stringBuilder.append("1.5.0");
       stringBuilder.append(str);
       appCompatTextView.setText(stringBuilder.toString());
     } 

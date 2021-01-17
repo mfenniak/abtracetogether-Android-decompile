@@ -108,30 +108,30 @@ public final class Request implements CoroutineScope {
       //   48: invokevirtual toString : ()Ljava/lang/String;
       //   51: invokevirtual d : (Ljava/lang/String;Ljava/lang/String;)V
       //   54: getstatic ca/albertahealthservices/contacttracing/logging/WFLog.Companion : Lca/albertahealthservices/contacttracing/logging/WFLog$Companion;
-      //   57: astore_3
+      //   57: astore_2
       //   58: new java/lang/StringBuilder
       //   61: dup
       //   62: invokespecial <init> : ()V
-      //   65: astore_2
-      //   66: aload_2
+      //   65: astore_3
+      //   66: aload_3
       //   67: ldc 'Request.onFailure request='
       //   69: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
       //   72: pop
-      //   73: aload_2
+      //   73: aload_3
       //   74: aload_0
       //   75: getfield $request : Lcom/worklight/wlclient/api/WLResourceRequest;
       //   78: invokevirtual append : (Ljava/lang/Object;)Ljava/lang/StringBuilder;
       //   81: pop
-      //   82: aload_2
+      //   82: aload_3
       //   83: ldc ' -  response='
       //   85: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
       //   88: pop
-      //   89: aload_2
+      //   89: aload_3
       //   90: aload_1
       //   91: invokevirtual append : (Ljava/lang/Object;)Ljava/lang/StringBuilder;
       //   94: pop
-      //   95: aload_3
-      //   96: aload_2
+      //   95: aload_2
+      //   96: aload_3
       //   97: invokevirtual toString : ()Ljava/lang/String;
       //   100: invokevirtual logError : (Ljava/lang/String;)V
       //   103: aload_1
@@ -174,18 +174,18 @@ public final class Request implements CoroutineScope {
       //   174: aload_1
       //   175: invokevirtual getStatus : ()I
       //   178: invokestatic valueOf : (I)Ljava/lang/Integer;
-      //   181: astore_2
+      //   181: astore_3
       //   182: goto -> 187
       //   185: aconst_null
-      //   186: astore_2
+      //   186: astore_3
       //   187: aload_1
       //   188: ifnull -> 199
       //   191: aload_1
       //   192: invokevirtual getResponseText : ()Ljava/lang/String;
-      //   195: astore_3
+      //   195: astore_2
       //   196: goto -> 201
       //   199: aconst_null
-      //   200: astore_3
+      //   200: astore_2
       //   201: aload_1
       //   202: ifnull -> 211
       //   205: aload_1
@@ -212,7 +212,7 @@ public final class Request implements CoroutineScope {
       //   252: aload #7
       //   254: aload #9
       //   256: invokevirtual getStringForErrorCode : (Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;
-      //   259: astore #7
+      //   259: astore #6
       //   261: aload #8
       //   263: astore #9
       //   265: aload_1
@@ -228,17 +228,17 @@ public final class Request implements CoroutineScope {
       //   283: astore #9
       //   285: new ca/albertahealthservices/contacttracing/api/Response
       //   288: dup
-      //   289: aload_2
-      //   290: aload_3
+      //   289: aload_3
+      //   290: aload_2
       //   291: aload #5
-      //   293: aload #7
+      //   293: aload #6
       //   295: aload #9
       //   297: invokespecial <init> : (Ljava/lang/Integer;Ljava/lang/String;Lorg/json/JSONObject;Ljava/lang/String;Ljava/lang/String;)V
-      //   300: astore_1
+      //   300: astore_3
       //   301: getstatic kotlin/Result.Companion : Lkotlin/Result$Companion;
-      //   304: astore_2
+      //   304: astore_1
       //   305: aload #4
-      //   307: aload_1
+      //   307: aload_3
       //   308: invokestatic constructor-impl : (Ljava/lang/Object;)Ljava/lang/Object;
       //   311: invokeinterface resumeWith : (Ljava/lang/Object;)V
       //   316: return
@@ -246,7 +246,7 @@ public final class Request implements CoroutineScope {
     
     public void onSuccess(WLResponse param1WLResponse) {
       Integer integer;
-      CentralLog.Companion companion = CentralLog.Companion;
+      CentralLog.Companion companion1 = CentralLog.Companion;
       StringBuilder stringBuilder = new StringBuilder();
       stringBuilder.append("Request.onSuccess url=");
       stringBuilder.append(this.$request.getUrl());
@@ -258,7 +258,7 @@ public final class Request implements CoroutineScope {
         integer = null;
       } 
       stringBuilder.append(integer);
-      companion.d("Request", stringBuilder.toString());
+      companion1.d("Request", stringBuilder.toString());
       Continuation continuation = this.$cont;
       if (param1WLResponse != null) {
         integer = Integer.valueOf(param1WLResponse.getStatus());
@@ -268,12 +268,12 @@ public final class Request implements CoroutineScope {
       if (param1WLResponse != null) {
         String str = param1WLResponse.getResponseText();
       } else {
-        stringBuilder = null;
+        companion1 = null;
       } 
       if (param1WLResponse != null)
         jSONObject = param1WLResponse.getResponseJSON(); 
-      Response response = new Response(integer, (String)stringBuilder, jSONObject, null, null, 24, null);
-      Result.Companion companion1 = Result.Companion;
+      Response response = new Response(integer, (String)companion1, jSONObject, null, null, 24, null);
+      Result.Companion companion = Result.Companion;
       continuation.resumeWith(Result.constructor-impl(response));
     }
   }

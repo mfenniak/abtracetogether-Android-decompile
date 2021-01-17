@@ -299,47 +299,47 @@ public final class OTPFragment extends OnboardingFragmentInterface {
     EditText editText6 = (EditText)_$_findCachedViewById(R.id.otp_et3);
     Intrinsics.checkExpressionValueIsNotNull(editText6, "otp_et3");
     list2.add(editText6);
+    list2 = this.otpInputs;
+    editText6 = (EditText)_$_findCachedViewById(R.id.otp_et4);
+    Intrinsics.checkExpressionValueIsNotNull(editText6, "otp_et4");
+    list2.add(editText6);
     List<EditText> list3 = this.otpInputs;
-    EditText editText3 = (EditText)_$_findCachedViewById(R.id.otp_et4);
-    Intrinsics.checkExpressionValueIsNotNull(editText3, "otp_et4");
+    EditText editText3 = (EditText)_$_findCachedViewById(R.id.otp_et5);
+    Intrinsics.checkExpressionValueIsNotNull(editText3, "otp_et5");
     list3.add(editText3);
     List<EditText> list1 = this.otpInputs;
-    EditText editText5 = (EditText)_$_findCachedViewById(R.id.otp_et5);
-    Intrinsics.checkExpressionValueIsNotNull(editText5, "otp_et5");
-    list1.add(editText5);
-    list1 = this.otpInputs;
-    editText5 = (EditText)_$_findCachedViewById(R.id.otp_et6);
+    EditText editText5 = (EditText)_$_findCachedViewById(R.id.otp_et6);
     Intrinsics.checkExpressionValueIsNotNull(editText5, "otp_et6");
     list1.add(editText5);
-    editText5 = (EditText)_$_findCachedViewById(R.id.otp_et1);
-    if (editText5 != null) {
-      EditText editText = (EditText)_$_findCachedViewById(R.id.otp_et1);
-      Intrinsics.checkExpressionValueIsNotNull(editText, "otp_et1");
-      editText5.addTextChangedListener(new OTPTextWatcher((View)editText, this.otpInputs));
-    } 
-    EditText editText2 = (EditText)_$_findCachedViewById(R.id.otp_et2);
+    EditText editText2 = (EditText)_$_findCachedViewById(R.id.otp_et1);
     if (editText2 != null) {
-      editText5 = (EditText)_$_findCachedViewById(R.id.otp_et2);
-      Intrinsics.checkExpressionValueIsNotNull(editText5, "otp_et2");
+      editText5 = (EditText)_$_findCachedViewById(R.id.otp_et1);
+      Intrinsics.checkExpressionValueIsNotNull(editText5, "otp_et1");
       editText2.addTextChangedListener(new OTPTextWatcher((View)editText5, this.otpInputs));
     } 
-    editText5 = (EditText)_$_findCachedViewById(R.id.otp_et3);
+    editText5 = (EditText)_$_findCachedViewById(R.id.otp_et2);
     if (editText5 != null) {
-      editText2 = (EditText)_$_findCachedViewById(R.id.otp_et3);
-      Intrinsics.checkExpressionValueIsNotNull(editText2, "otp_et3");
+      editText2 = (EditText)_$_findCachedViewById(R.id.otp_et2);
+      Intrinsics.checkExpressionValueIsNotNull(editText2, "otp_et2");
       editText5.addTextChangedListener(new OTPTextWatcher((View)editText2, this.otpInputs));
     } 
-    editText2 = (EditText)_$_findCachedViewById(R.id.otp_et4);
+    editText2 = (EditText)_$_findCachedViewById(R.id.otp_et3);
     if (editText2 != null) {
-      editText5 = (EditText)_$_findCachedViewById(R.id.otp_et4);
-      Intrinsics.checkExpressionValueIsNotNull(editText5, "otp_et4");
+      editText5 = (EditText)_$_findCachedViewById(R.id.otp_et3);
+      Intrinsics.checkExpressionValueIsNotNull(editText5, "otp_et3");
       editText2.addTextChangedListener(new OTPTextWatcher((View)editText5, this.otpInputs));
     } 
-    editText2 = (EditText)_$_findCachedViewById(R.id.otp_et5);
-    if (editText2 != null) {
-      editText5 = (EditText)_$_findCachedViewById(R.id.otp_et5);
-      Intrinsics.checkExpressionValueIsNotNull(editText5, "otp_et5");
-      editText2.addTextChangedListener(new OTPTextWatcher((View)editText5, this.otpInputs));
+    editText5 = (EditText)_$_findCachedViewById(R.id.otp_et4);
+    if (editText5 != null) {
+      editText2 = (EditText)_$_findCachedViewById(R.id.otp_et4);
+      Intrinsics.checkExpressionValueIsNotNull(editText2, "otp_et4");
+      editText5.addTextChangedListener(new OTPTextWatcher((View)editText2, this.otpInputs));
+    } 
+    editText5 = (EditText)_$_findCachedViewById(R.id.otp_et5);
+    if (editText5 != null) {
+      editText2 = (EditText)_$_findCachedViewById(R.id.otp_et5);
+      Intrinsics.checkExpressionValueIsNotNull(editText2, "otp_et5");
+      editText5.addTextChangedListener(new OTPTextWatcher((View)editText2, this.otpInputs));
     } 
     editText2 = (EditText)_$_findCachedViewById(R.id.otp_et6);
     if (editText2 != null) {

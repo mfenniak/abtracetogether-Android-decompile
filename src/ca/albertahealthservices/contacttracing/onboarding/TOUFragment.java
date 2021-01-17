@@ -165,36 +165,36 @@ public final class TOUFragment extends OnboardingFragmentInterface {
     disableButton();
     TOUFragment$onViewCreated$privacyClickableSpan$1 tOUFragment$onViewCreated$privacyClickableSpan$1 = new TOUFragment$onViewCreated$privacyClickableSpan$1();
     TOUFragment$onViewCreated$faqClickableSpan$1 tOUFragment$onViewCreated$faqClickableSpan$1 = new TOUFragment$onViewCreated$faqClickableSpan$1();
-    AppCompatTextView appCompatTextView3 = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc6);
-    if (appCompatTextView3 != null) {
+    AppCompatTextView appCompatTextView2 = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc6);
+    if (appCompatTextView2 != null) {
       AppCompatTextView appCompatTextView = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc6);
       Intrinsics.checkExpressionValueIsNotNull(appCompatTextView, "privacy_desc6");
-      String str2 = appCompatTextView.getText().toString();
-      String str1 = getString(2131820727);
-      Intrinsics.checkExpressionValueIsNotNull(str1, "getString(R.string.privacy_statement_label)");
-      appCompatTextView3.setText((CharSequence)createSpannableString(str2, str1, tOUFragment$onViewCreated$privacyClickableSpan$1));
+      String str1 = appCompatTextView.getText().toString();
+      String str2 = getString(2131820727);
+      Intrinsics.checkExpressionValueIsNotNull(str2, "getString(R.string.privacy_statement_label)");
+      appCompatTextView2.setText((CharSequence)createSpannableString(str1, str2, tOUFragment$onViewCreated$privacyClickableSpan$1));
     } 
-    AppCompatTextView appCompatTextView2 = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc9);
+    appCompatTextView2 = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc9);
     if (appCompatTextView2 != null) {
-      appCompatTextView3 = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc9);
-      Intrinsics.checkExpressionValueIsNotNull(appCompatTextView3, "privacy_desc9");
-      String str2 = appCompatTextView3.getText().toString();
-      String str1 = getString(2131820618);
-      Intrinsics.checkExpressionValueIsNotNull(str1, "getString(R.string.faq_statement_label)");
-      appCompatTextView2.setText((CharSequence)createSpannableString(str2, str1, tOUFragment$onViewCreated$faqClickableSpan$1));
+      AppCompatTextView appCompatTextView = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc9);
+      Intrinsics.checkExpressionValueIsNotNull(appCompatTextView, "privacy_desc9");
+      String str1 = appCompatTextView.getText().toString();
+      String str2 = getString(2131820618);
+      Intrinsics.checkExpressionValueIsNotNull(str2, "getString(R.string.faq_statement_label)");
+      appCompatTextView2.setText((CharSequence)createSpannableString(str1, str2, tOUFragment$onViewCreated$faqClickableSpan$1));
     } 
     TOUFragment$onViewCreated$emailClickableSpan$1 tOUFragment$onViewCreated$emailClickableSpan$1 = new TOUFragment$onViewCreated$emailClickableSpan$1();
-    appCompatTextView3 = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc10);
-    if (appCompatTextView3 != null) {
-      appCompatTextView2 = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc10);
-      Intrinsics.checkExpressionValueIsNotNull(appCompatTextView2, "privacy_desc10");
-      appCompatTextView3.setText((CharSequence)createSpannableString(appCompatTextView2.getText().toString(), this.helpEmail, tOUFragment$onViewCreated$emailClickableSpan$1));
+    appCompatTextView2 = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc10);
+    if (appCompatTextView2 != null) {
+      AppCompatTextView appCompatTextView = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc10);
+      Intrinsics.checkExpressionValueIsNotNull(appCompatTextView, "privacy_desc10");
+      appCompatTextView2.setText((CharSequence)createSpannableString(appCompatTextView.getText().toString(), this.helpEmail, tOUFragment$onViewCreated$emailClickableSpan$1));
     } 
     appCompatTextView2 = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc12);
     if (appCompatTextView2 != null) {
-      appCompatTextView3 = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc12);
-      Intrinsics.checkExpressionValueIsNotNull(appCompatTextView3, "privacy_desc12");
-      appCompatTextView2.setText((CharSequence)createSpannableString(appCompatTextView3.getText().toString(), this.helpEmail, tOUFragment$onViewCreated$emailClickableSpan$1));
+      AppCompatTextView appCompatTextView = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc12);
+      Intrinsics.checkExpressionValueIsNotNull(appCompatTextView, "privacy_desc12");
+      appCompatTextView2.setText((CharSequence)createSpannableString(appCompatTextView.getText().toString(), this.helpEmail, tOUFragment$onViewCreated$emailClickableSpan$1));
     } 
     Switch switch_ = (Switch)_$_findCachedViewById(R.id.checkbox_agreement);
     if (switch_ != null)

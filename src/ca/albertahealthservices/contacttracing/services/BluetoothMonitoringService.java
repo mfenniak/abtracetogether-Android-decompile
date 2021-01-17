@@ -228,12 +228,12 @@ public final class BluetoothMonitoringService extends Service implements Corouti
     Intrinsics.checkExpressionValueIsNotNull(context, "this.applicationContext");
     if (tempIDManager.needToUpdate(context) || broadcastMessage == null) {
       CentralLog.Companion.i(TAG, "[TempID] Need to update TemporaryID in actionScan");
+      tempIDManager = TempIDManager.INSTANCE;
+      context = getApplicationContext();
+      Intrinsics.checkExpressionValueIsNotNull(context, "this.applicationContext");
+      tempIDManager.getTemporaryIDs(context);
       TempIDManager tempIDManager1 = TempIDManager.INSTANCE;
       Context context1 = getApplicationContext();
-      Intrinsics.checkExpressionValueIsNotNull(context1, "this.applicationContext");
-      tempIDManager1.getTemporaryIDs(context1);
-      tempIDManager1 = TempIDManager.INSTANCE;
-      context1 = getApplicationContext();
       Intrinsics.checkExpressionValueIsNotNull(context1, "this.applicationContext");
       TemporaryID temporaryID = tempIDManager1.retrieveTemporaryID(context1);
       if (temporaryID != null) {
@@ -392,9 +392,9 @@ public final class BluetoothMonitoringService extends Service implements Corouti
       if (preference.isOnBoarded(context)) {
         CentralLog.Companion.d(TAG, "User is not logged in but has completed onboarding");
         Utils utils = Utils.INSTANCE;
-        context = getApplicationContext();
-        Intrinsics.checkExpressionValueIsNotNull(context, "applicationContext");
-        utils.restartApp(context, 1, "User is not logged in but has completed onboarding");
+        Context context1 = getApplicationContext();
+        Intrinsics.checkExpressionValueIsNotNull(context1, "applicationContext");
+        utils.restartApp(context1, 1, "User is not logged in but has completed onboarding");
       } 
     } 
   }
@@ -453,10 +453,10 @@ public final class BluetoothMonitoringService extends Service implements Corouti
       Intrinsics.checkExpressionValueIsNotNull(object, "this.applicationContext");
       this.statusRecordStorage = new StatusRecordStorage((Context)object);
       setupNotifications();
-      object = TempIDManager.INSTANCE;
-      Context context = getApplicationContext();
-      Intrinsics.checkExpressionValueIsNotNull(context, "this.applicationContext");
-      broadcastMessage = object.retrieveTemporaryID(context);
+      TempIDManager tempIDManager = TempIDManager.INSTANCE;
+      object = getApplicationContext();
+      Intrinsics.checkExpressionValueIsNotNull(object, "this.applicationContext");
+      broadcastMessage = tempIDManager.retrieveTemporaryID((Context)object);
       return;
     } 
     throw new TypeCastException("null cannot be cast to non-null type android.os.PowerManager");
@@ -596,10 +596,10 @@ public final class BluetoothMonitoringService extends Service implements Corouti
     if (tempIDManager.needToUpdate(context) || broadcastMessage == null) {
       CentralLog.Companion.i(TAG, "[TempID] Need to update TemporaryID in actionUpdateBM");
       TempIDManager.INSTANCE.getTemporaryIDs((Context)this);
-      TempIDManager tempIDManager1 = TempIDManager.INSTANCE;
-      Context context1 = getApplicationContext();
-      Intrinsics.checkExpressionValueIsNotNull(context1, "this.applicationContext");
-      TemporaryID temporaryID = tempIDManager1.retrieveTemporaryID(context1);
+      tempIDManager = TempIDManager.INSTANCE;
+      context = getApplicationContext();
+      Intrinsics.checkExpressionValueIsNotNull(context, "this.applicationContext");
+      TemporaryID temporaryID = tempIDManager.retrieveTemporaryID(context);
       if (temporaryID != null) {
         CentralLog.Companion.i(TAG, "[TempID] Updated Temp ID");
         broadcastMessage = temporaryID;
@@ -642,11 +642,11 @@ public final class BluetoothMonitoringService extends Service implements Corouti
   }
   
   public int onStartCommand(Intent paramIntent, int paramInt1, int paramInt2) {
-    String str;
+    CentralLog.Companion companion;
     CentralLog.Companion.i(TAG, "Service onStartCommand");
     if (!hasLocationPermissions() || !isBluetoothEnabled()) {
-      CentralLog.Companion companion = CentralLog.Companion;
-      str = TAG;
+      companion = CentralLog.Companion;
+      String str = TAG;
       StringBuilder stringBuilder = new StringBuilder();
       stringBuilder.append("location permission: ");
       stringBuilder.append(hasLocationPermissions());
@@ -656,8 +656,8 @@ public final class BluetoothMonitoringService extends Service implements Corouti
       notifyLackingThings$default(this, false, 1, (Object)null);
       return 1;
     } 
-    if (str != null) {
-      paramInt1 = str.getIntExtra(COMMAND_KEY, Command.INVALID.getIndex());
+    if (companion != null) {
+      paramInt1 = companion.getIntExtra(COMMAND_KEY, Command.INVALID.getIndex());
       runService(Command.Companion.findByValue(paramInt1));
       return 1;
     } 
@@ -670,46 +670,49 @@ public final class BluetoothMonitoringService extends Service implements Corouti
   }
   
   public final void runService(Command paramCommand) {
-    StringBuilder stringBuilder1;
+    String str1;
     Utils utils;
-    String str3;
     CentralLog.Companion companion1 = CentralLog.Companion;
     String str2 = TAG;
-    StringBuilder stringBuilder3 = new StringBuilder();
-    stringBuilder3.append("Command is:");
+    StringBuilder stringBuilder2 = new StringBuilder();
+    stringBuilder2.append("Command is:");
     if (paramCommand != null) {
       str3 = paramCommand.getString();
     } else {
       str3 = null;
     } 
-    stringBuilder3.append(str3);
-    companion1.i(str2, stringBuilder3.toString());
+    stringBuilder2.append(str3);
+    companion1.i(str2, stringBuilder2.toString());
     if (!hasLocationPermissions() || !isBluetoothEnabled()) {
-      CentralLog.Companion companion = CentralLog.Companion;
-      str2 = TAG;
-      stringBuilder1 = new StringBuilder();
-      stringBuilder1.append("location permission: ");
-      stringBuilder1.append(hasLocationPermissions());
-      stringBuilder1.append(" bluetooth: ");
-      stringBuilder1.append(isBluetoothEnabled());
-      companion.i(str2, stringBuilder1.toString());
+      companion1 = CentralLog.Companion;
+      str1 = TAG;
+      StringBuilder stringBuilder = new StringBuilder();
+      stringBuilder.append("location permission: ");
+      stringBuilder.append(hasLocationPermissions());
+      stringBuilder.append(" bluetooth: ");
+      stringBuilder.append(isBluetoothEnabled());
+      companion1.i(str1, stringBuilder.toString());
       notifyLackingThings$default(this, false, 1, (Object)null);
       return;
     } 
     notifyRunning$default(this, false, 1, (Object)null);
-    if (stringBuilder1 != null) {
-      Context context1;
-      Utils utils1;
+    if (str1 != null) {
       Context context2;
-      switch (BluetoothMonitoringService$WhenMappings.$EnumSwitchMapping$0[stringBuilder1.ordinal()]) {
+      Utils utils1;
+      Context context1;
+      Utils utils3;
+      Context context4;
+      Utils utils2;
+      Context context3;
+      switch (BluetoothMonitoringService$WhenMappings.$EnumSwitchMapping$0[str1.ordinal()]) {
         case 7:
           actionPurge();
           return;
         case 6:
-          utils1 = Utils.INSTANCE;
-          context1 = getApplicationContext();
-          Intrinsics.checkExpressionValueIsNotNull(context1, "this.applicationContext");
-          utils1.scheduleNextHealthCheck(context1, healthCheckInterval);
+          utils3 = Utils.INSTANCE;
+          context2 = getApplicationContext();
+          Intrinsics.checkExpressionValueIsNotNull(context2, "this.applicationContext");
+          utils3.scheduleNextHealthCheck(context2, healthCheckInterval);
           actionHealthCheck();
           return;
         case 5:
@@ -717,9 +720,9 @@ public final class BluetoothMonitoringService extends Service implements Corouti
           return;
         case 4:
           utils1 = Utils.INSTANCE;
-          context1 = getApplicationContext();
-          Intrinsics.checkExpressionValueIsNotNull(context1, "this.applicationContext");
-          utils1.scheduleBMUpdateCheck(context1, bmCheckInterval);
+          context4 = getApplicationContext();
+          Intrinsics.checkExpressionValueIsNotNull(context4, "this.applicationContext");
+          utils1.scheduleBMUpdateCheck(context4, bmCheckInterval);
           actionUpdateBm();
           return;
         case 3:
@@ -732,29 +735,29 @@ public final class BluetoothMonitoringService extends Service implements Corouti
           return;
         case 1:
           setupService();
+          utils1 = Utils.INSTANCE;
+          context4 = getApplicationContext();
+          Intrinsics.checkExpressionValueIsNotNull(context4, "this.applicationContext");
+          utils1.scheduleNextHealthCheck(context4, healthCheckInterval);
+          utils2 = Utils.INSTANCE;
+          context1 = getApplicationContext();
+          Intrinsics.checkExpressionValueIsNotNull(context1, "this.applicationContext");
+          utils2.scheduleRepeatingPurge(context1, purgeInterval);
           utils = Utils.INSTANCE;
-          context2 = getApplicationContext();
-          Intrinsics.checkExpressionValueIsNotNull(context2, "this.applicationContext");
-          utils.scheduleNextHealthCheck(context2, healthCheckInterval);
-          utils = Utils.INSTANCE;
-          context2 = getApplicationContext();
-          Intrinsics.checkExpressionValueIsNotNull(context2, "this.applicationContext");
-          utils.scheduleRepeatingPurge(context2, purgeInterval);
-          utils = Utils.INSTANCE;
-          context2 = getApplicationContext();
-          Intrinsics.checkExpressionValueIsNotNull(context2, "this.applicationContext");
-          utils.scheduleBMUpdateCheck(context2, bmCheckInterval);
+          context3 = getApplicationContext();
+          Intrinsics.checkExpressionValueIsNotNull(context3, "this.applicationContext");
+          utils.scheduleBMUpdateCheck(context3, bmCheckInterval);
           actionStart();
           return;
       } 
     } 
     CentralLog.Companion companion2 = CentralLog.Companion;
-    String str1 = TAG;
-    StringBuilder stringBuilder2 = new StringBuilder();
-    stringBuilder2.append("Invalid / ignored command: ");
-    stringBuilder2.append(utils);
-    stringBuilder2.append(". Nothing to do");
-    companion2.i(str1, stringBuilder2.toString());
+    String str3 = TAG;
+    StringBuilder stringBuilder1 = new StringBuilder();
+    stringBuilder1.append("Invalid / ignored command: ");
+    stringBuilder1.append(utils);
+    stringBuilder1.append(". Nothing to do");
+    companion2.i(str3, stringBuilder1.toString());
   }
   
   public final void setWorker(StreetPassWorker paramStreetPassWorker) {
@@ -793,7 +796,6 @@ public final class BluetoothMonitoringService extends Service implements Corouti
     public void onReceive(Context param1Context, Intent param1Intent) {
       if (param1Intent != null && Intrinsics.areEqual(param1Intent.getAction(), "android.bluetooth.adapter.action.STATE_CHANGED")) {
         Utils utils;
-        Context context;
         switch (param1Intent.getIntExtra("android.bluetooth.adapter.extra.STATE", -1)) {
           default:
             return;
@@ -804,9 +806,9 @@ public final class BluetoothMonitoringService extends Service implements Corouti
           case 12:
             CentralLog.Companion.d(BluetoothMonitoringService.TAG, "BluetoothAdapter.STATE_ON");
             utils = Utils.INSTANCE;
-            context = BluetoothMonitoringService.this.getApplicationContext();
-            Intrinsics.checkExpressionValueIsNotNull(context, "this@BluetoothMonitoringService.applicationContext");
-            utils.startBluetoothMonitoringService(context);
+            param1Context = BluetoothMonitoringService.this.getApplicationContext();
+            Intrinsics.checkExpressionValueIsNotNull(param1Context, "this@BluetoothMonitoringService.applicationContext");
+            utils.startBluetoothMonitoringService(param1Context);
           case 11:
             CentralLog.Companion.d(BluetoothMonitoringService.TAG, "BluetoothAdapter.STATE_TURNING_ON");
           case 10:
@@ -853,8 +855,8 @@ public final class BluetoothMonitoringService extends Service implements Corouti
       LinkedHashMap<Object, Object> linkedHashMap = new LinkedHashMap<>(RangesKt.coerceAtLeast(MapsKt.mapCapacity(arrayOfCommand.length), 16));
       int i = arrayOfCommand.length;
       while (b < i) {
-        command3 = arrayOfCommand[b];
-        Pair pair = TuplesKt.to(Integer.valueOf(command3.index), command3);
+        command5 = arrayOfCommand[b];
+        Pair pair = TuplesKt.to(Integer.valueOf(command5.index), command5);
         linkedHashMap.put(pair.getFirst(), pair.getSecond());
         b++;
       } 
@@ -1041,7 +1043,7 @@ public final class BluetoothMonitoringService extends Service implements Corouti
         stringBuilder.append("Status received: ");
         stringBuilder.append(status.getMsg());
         companion.d(str, stringBuilder.toString());
-        if (status.getMsg().length() > 0) {
+        if (((CharSequence)status.getMsg()).length() > 0) {
           bool = true;
         } else {
           bool = false;
@@ -1168,7 +1170,7 @@ public final class BluetoothMonitoringService extends Service implements Corouti
         stringBuilder.append("StreetPass received: ");
         stringBuilder.append(connectionRecord);
         companion.d(str, stringBuilder.toString());
-        if (connectionRecord.getMsg().length() > 0) {
+        if (((CharSequence)connectionRecord.getMsg()).length() > 0) {
           bool = true;
         } else {
           bool = false;

@@ -23,12 +23,12 @@ public final class V2Central implements CentralInterface {
       PeripheralDevice peripheralDevice;
       return new ConnectionRecord(v2ReadRequestPayload.getV(), v2ReadRequestPayload.getId(), v2ReadRequestPayload.getO(), peripheralDevice, TracerApp.Companion.asCentralDevice(), paramInt, paramInteger);
     } finally {
-      paramInteger = null;
+      paramString = null;
       CentralLog.Companion companion = CentralLog.Companion;
       String str = this.TAG;
       StringBuilder stringBuilder = new StringBuilder();
       stringBuilder.append("Failed to deserialize read payload ");
-      stringBuilder.append(paramInteger.getMessage());
+      stringBuilder.append(paramString.getMessage());
       companion.e(str, stringBuilder.toString());
     } 
   }

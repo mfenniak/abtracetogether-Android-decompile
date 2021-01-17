@@ -79,11 +79,11 @@ public final class RecordListAdapter extends RecyclerView.Adapter<RecordListAdap
   
   private final List<StreetPassRecordViewModel> filterByModelP(StreetPassRecordViewModel paramStreetPassRecordViewModel, List<StreetPassRecord> paramList) {
     if (paramStreetPassRecordViewModel != null) {
-      list = paramList;
+      List<StreetPassRecord> list = paramList;
       paramList = new ArrayList<>();
-      for (List<StreetPassRecord> list : list) {
-        if (Intrinsics.areEqual(((StreetPassRecord)list).getModelP(), paramStreetPassRecordViewModel.getModelP()))
-          paramList.add(list); 
+      for (StreetPassRecord streetPassRecord : list) {
+        if (Intrinsics.areEqual(((StreetPassRecord)streetPassRecord).getModelP(), paramStreetPassRecordViewModel.getModelP()))
+          paramList.add(streetPassRecord); 
       } 
       return prepareViewData(paramList);
     } 
@@ -91,7 +91,7 @@ public final class RecordListAdapter extends RecyclerView.Adapter<RecordListAdap
   }
   
   private final List<StreetPassRecordViewModel> prepareCollapsedData(List<StreetPassRecord> paramList) {
-    list = paramList;
+    List<StreetPassRecord> list = paramList;
     LinkedHashMap<Object, Object> linkedHashMap = new LinkedHashMap<>();
     for (StreetPassRecord streetPassRecord : list) {
       String str = ((StreetPassRecord)streetPassRecord).getModelC();
@@ -104,12 +104,12 @@ public final class RecordListAdapter extends RecyclerView.Adapter<RecordListAdap
       ((List<StreetPassRecord>)object1).add(streetPassRecord);
     } 
     HashSet<String> hashSet = new HashSet();
-    ArrayList<List<StreetPassRecord>> arrayList2 = new ArrayList();
-    for (List<StreetPassRecord> list : list) {
-      if (hashSet.add(((StreetPassRecord)list).getModelC()))
-        arrayList2.add(list); 
+    ArrayList<StreetPassRecord> arrayList2 = new ArrayList();
+    for (StreetPassRecord streetPassRecord : list) {
+      if (hashSet.add(((StreetPassRecord)streetPassRecord).getModelC()))
+        arrayList2.add(streetPassRecord); 
     } 
-    ArrayList<List<StreetPassRecord>> arrayList1 = arrayList2;
+    ArrayList<StreetPassRecord> arrayList1 = arrayList2;
     ArrayList<StreetPassRecordViewModel> arrayList = new ArrayList(CollectionsKt.collectionSizeOrDefault(arrayList1, 10));
     for (StreetPassRecord streetPassRecord : arrayList1) {
       StreetPassRecordViewModel streetPassRecordViewModel;
@@ -129,7 +129,7 @@ public final class RecordListAdapter extends RecyclerView.Adapter<RecordListAdap
         if (list2 != null) {
           Iterator<List<StreetPassRecord>> iterator = list2.iterator();
           if (!iterator.hasNext()) {
-            ArrayList<List<StreetPassRecord>> arrayList3 = arrayList2;
+            list1 = arrayList2;
           } else {
             list1 = iterator.next();
             if (iterator.hasNext()) {
@@ -193,35 +193,35 @@ public final class RecordListAdapter extends RecyclerView.Adapter<RecordListAdap
     paramRecordViewHolder.getMsgView().setText(streetPassRecordViewModel.getMsg());
     paramRecordViewHolder.getModelCView().setText(streetPassRecordViewModel.getModelC());
     paramRecordViewHolder.getModelPView().setText(streetPassRecordViewModel.getModelP());
-    TextView textView3 = paramRecordViewHolder.getFindsView();
-    StringBuilder stringBuilder4 = new StringBuilder();
-    stringBuilder4.append("Detections: ");
-    stringBuilder4.append(streetPassRecordViewModel.getNumber());
-    textView3.setText(stringBuilder4.toString());
+    TextView textView2 = paramRecordViewHolder.getFindsView();
+    StringBuilder stringBuilder3 = new StringBuilder();
+    stringBuilder3.append("Detections: ");
+    stringBuilder3.append(streetPassRecordViewModel.getNumber());
+    textView2.setText(stringBuilder3.toString());
     String str = Utils.INSTANCE.getDate(streetPassRecordViewModel.getTimeStamp());
     paramRecordViewHolder.getTimestampView().setText(str);
-    TextView textView2 = paramRecordViewHolder.getVersion();
-    stringBuilder4 = new StringBuilder();
-    stringBuilder4.append("v: ");
-    stringBuilder4.append(streetPassRecordViewModel.getVersion());
-    textView2.setText(stringBuilder4.toString());
-    TextView textView5 = paramRecordViewHolder.getOrg();
+    TextView textView3 = paramRecordViewHolder.getVersion();
+    StringBuilder stringBuilder1 = new StringBuilder();
+    stringBuilder1.append("v: ");
+    stringBuilder1.append(streetPassRecordViewModel.getVersion());
+    textView3.setText(stringBuilder1.toString());
+    TextView textView1 = paramRecordViewHolder.getOrg();
     StringBuilder stringBuilder2 = new StringBuilder();
     stringBuilder2.append("ORG: ");
     stringBuilder2.append(streetPassRecordViewModel.getOrg());
-    textView5.setText(stringBuilder2.toString());
+    textView1.setText(stringBuilder2.toString());
     paramRecordViewHolder.getFilterModelP().setTag(streetPassRecordViewModel);
     paramRecordViewHolder.getFilterModelC().setTag(streetPassRecordViewModel);
-    TextView textView1 = paramRecordViewHolder.getSignalStrengthView();
-    StringBuilder stringBuilder3 = new StringBuilder();
-    stringBuilder3.append("Signal Strength: ");
-    stringBuilder3.append(streetPassRecordViewModel.getRssi());
-    textView1.setText(stringBuilder3.toString());
-    TextView textView4 = paramRecordViewHolder.getTxpowerView();
-    StringBuilder stringBuilder1 = new StringBuilder();
-    stringBuilder1.append("Tx Power: ");
-    stringBuilder1.append(streetPassRecordViewModel.getTransmissionPower());
-    textView4.setText(stringBuilder1.toString());
+    textView1 = paramRecordViewHolder.getSignalStrengthView();
+    stringBuilder2 = new StringBuilder();
+    stringBuilder2.append("Signal Strength: ");
+    stringBuilder2.append(streetPassRecordViewModel.getRssi());
+    textView1.setText(stringBuilder2.toString());
+    textView1 = paramRecordViewHolder.getTxpowerView();
+    stringBuilder2 = new StringBuilder();
+    stringBuilder2.append("Tx Power: ");
+    stringBuilder2.append(streetPassRecordViewModel.getTransmissionPower());
+    textView1.setText(stringBuilder2.toString());
     paramRecordViewHolder.getFilterModelP().setOnClickListener(new RecordListAdapter$onBindViewHolder$1());
     paramRecordViewHolder.getFilterModelC().setOnClickListener(new RecordListAdapter$onBindViewHolder$2());
   }

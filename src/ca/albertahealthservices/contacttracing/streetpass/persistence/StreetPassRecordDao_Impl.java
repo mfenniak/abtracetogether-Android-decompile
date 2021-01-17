@@ -197,17 +197,17 @@ public final class StreetPassRecordDao_Impl implements StreetPassRecordDao {
             if (cursor.moveToFirst()) {
               k = cursor.getInt(k);
               String str2 = cursor.getString(m);
-              String str3 = cursor.getString(n);
-              String str4 = cursor.getString(i1);
-              String str1 = cursor.getString(i2);
-              m = cursor.getInt(i3);
+              String str1 = cursor.getString(n);
+              String str3 = cursor.getString(i1);
+              String str4 = cursor.getString(i2);
+              i2 = cursor.getInt(i3);
               if (cursor.isNull(i4)) {
                 null = integer;
               } else {
                 null = Integer.valueOf(cursor.getInt(i4));
               } 
               StreetPassRecord streetPassRecord1 = new StreetPassRecord();
-              this(k, str2, str3, str4, str1, m, null);
+              this(k, str2, str1, str3, str4, i2, null);
               streetPassRecord1.setId(cursor.getInt(i));
               streetPassRecord1.setTimestamp(cursor.getLong(j));
               streetPassRecord = streetPassRecord1;

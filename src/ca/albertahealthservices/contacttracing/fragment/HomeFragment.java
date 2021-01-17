@@ -365,29 +365,29 @@ public final class HomeFragment extends Fragment {
     } 
     if (getView() != null) {
       String[] arrayOfString = Utils.INSTANCE.getRequiredPermissions();
-      ImageView imageView2 = (ImageView)_$_findCachedViewById(R.id.iv_location);
-      if (imageView2 != null) {
+      ImageView imageView = (ImageView)_$_findCachedViewById(R.id.iv_location);
+      if (imageView != null) {
         FragmentActivity fragmentActivity1 = getActivity();
         if (fragmentActivity1 != null) {
-          imageView2.setSelected(EasyPermissions.hasPermissions((Context)fragmentActivity1, Arrays.<String>copyOf(arrayOfString, arrayOfString.length)));
+          imageView.setSelected(EasyPermissions.hasPermissions((Context)fragmentActivity1, Arrays.<String>copyOf(arrayOfString, arrayOfString.length)));
         } else {
           throw new TypeCastException("null cannot be cast to non-null type ca.albertahealthservices.contacttracing.MainActivity");
         } 
       } 
-      ImageView imageView1 = (ImageView)_$_findCachedViewById(R.id.iv_push);
-      if (imageView1 != null) {
+      imageView = (ImageView)_$_findCachedViewById(R.id.iv_push);
+      if (imageView != null) {
         FragmentActivity fragmentActivity1 = getActivity();
         if (fragmentActivity1 != null) {
-          imageView1.setSelected(NotificationManagerCompat.from((Context)fragmentActivity1).areNotificationsEnabled());
+          imageView.setSelected(NotificationManagerCompat.from((Context)fragmentActivity1).areNotificationsEnabled());
         } else {
           throw new TypeCastException("null cannot be cast to non-null type ca.albertahealthservices.contacttracing.MainActivity");
         } 
       } 
       BluetoothAdapter bluetoothAdapter = getBluetoothAdapter();
       if (bluetoothAdapter != null) {
-        imageView1 = (ImageView)_$_findCachedViewById(R.id.iv_bluetooth);
-        Intrinsics.checkExpressionValueIsNotNull(imageView1, "iv_bluetooth");
-        imageView1.setSelected(isDisabled(bluetoothAdapter) ^ true);
+        imageView = (ImageView)_$_findCachedViewById(R.id.iv_bluetooth);
+        Intrinsics.checkExpressionValueIsNotNull(imageView, "iv_bluetooth");
+        imageView.setSelected(isDisabled(bluetoothAdapter) ^ true);
       } 
       FragmentActivity fragmentActivity = getActivity();
       if (fragmentActivity != null) {
@@ -437,7 +437,7 @@ public final class HomeFragment extends Fragment {
     if (appCompatTextView != null) {
       StringBuilder stringBuilder = new StringBuilder();
       stringBuilder.append(getString(2131820582));
-      stringBuilder.append("1.4.0");
+      stringBuilder.append("1.5.0");
       stringBuilder.append(str);
       appCompatTextView.setText(stringBuilder.toString());
     } 
@@ -572,15 +572,15 @@ public final class HomeFragment extends Fragment {
   static final class HomeFragment$onViewCreated$1<T> implements Observer<StatusRecord> {
     public final void onChanged(StatusRecord param1StatusRecord) {
       if (param1StatusRecord != null) {
-        AppCompatTextView appCompatTextView1 = (AppCompatTextView)HomeFragment.this._$_findCachedViewById(R.id.tv_last_update);
-        if (appCompatTextView1 != null)
-          appCompatTextView1.setVisibility(0); 
-        AppCompatTextView appCompatTextView2 = (AppCompatTextView)HomeFragment.this._$_findCachedViewById(R.id.tv_last_update);
-        if (appCompatTextView2 != null) {
+        AppCompatTextView appCompatTextView = (AppCompatTextView)HomeFragment.this._$_findCachedViewById(R.id.tv_last_update);
+        if (appCompatTextView != null)
+          appCompatTextView.setVisibility(0); 
+        appCompatTextView = (AppCompatTextView)HomeFragment.this._$_findCachedViewById(R.id.tv_last_update);
+        if (appCompatTextView != null) {
           StringBuilder stringBuilder = new StringBuilder();
           stringBuilder.append(HomeFragment.this.getString(2131820643));
           stringBuilder.append(Utils.INSTANCE.getTime(param1StatusRecord.getTimestamp()));
-          appCompatTextView2.setText(stringBuilder.toString());
+          appCompatTextView.setText(stringBuilder.toString());
         } 
         long l = System.currentTimeMillis();
         CentralLog.Companion.d(HomeFragment.this.TAG, String.valueOf(param1StatusRecord.getTimestamp()));

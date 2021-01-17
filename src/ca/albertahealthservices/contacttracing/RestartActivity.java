@@ -59,15 +59,15 @@ public final class RestartActivity extends AppCompatActivity {
     if (str != null) {
       CentralLog.Companion companion = CentralLog.Companion;
       String str1 = this.TAG;
-      StringBuilder stringBuilder2 = new StringBuilder();
-      stringBuilder2.append(str);
-      stringBuilder2.append(", Restarting application");
-      companion.e(str1, stringBuilder2.toString());
+      StringBuilder stringBuilder = new StringBuilder();
+      stringBuilder.append(str);
+      stringBuilder.append(", Restarting application");
+      companion.e(str1, stringBuilder.toString());
       WFLog.Companion companion1 = WFLog.Companion;
-      StringBuilder stringBuilder1 = new StringBuilder();
-      stringBuilder1.append(str);
-      stringBuilder1.append(", Restarting application");
-      companion1.logError(stringBuilder1.toString());
+      stringBuilder = new StringBuilder();
+      stringBuilder.append(str);
+      stringBuilder.append(", Restarting application");
+      companion1.logError(stringBuilder.toString());
     } 
     AlertDialog.Builder builder = new AlertDialog.Builder((Context)this);
     builder.setMessage(getString(2131820742));
