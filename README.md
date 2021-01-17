@@ -1,7 +1,7 @@
 Instructions for Decompiling
 #
 
-1. Download an APK version; apkpure.com is a recommended source.  Store it in the "apk" subfolder, and git add it.
+1. Download an APK version; apkpure.com is a recommended source.  Store it in the "apk" subfolder.
 
 2. Extract the APK
 
@@ -9,7 +9,7 @@ Instructions for Decompiling
 rm -rf tmp
 mkdir tmp
 cd tmp
-unzip ../apk/ABTraceTogether_v1.0.0_apkpure.com.apk
+unzip ../apk/ABTraceTogether_v1.4.0_apkpure.com.apk
 ```
 
 3. Convert classes.dex to classes.jar, using the tool dex2jar from dex-tools.  The specific version tested is refered to here.
@@ -18,9 +18,7 @@ unzip ../apk/ABTraceTogether_v1.0.0_apkpure.com.apk
 dex-tools-2.1-20171001-lanchon/d2j-dex2jar.sh classes.dex
 ```
 
-Some errors are expected, but can generally be ignored as long as a `classes-dex2jar.jar` file is generated.
-
-classes2.dex seems to only contain third-party dependencies, so I don't bother converting and decompiling it.
+Some errors are expected; based upon my experience so far, they're always errors in translating third-party libraries (com.google.common, androidx.core.text), so I ignore them because they're not relevant.  classes2.dex seems to only contain third-party dependencies, so I don't bother converting and decompiling it.
 
 4. Using JD-GUI, decompile the jar file.
 
@@ -36,20 +34,24 @@ classes2.dex seems to only contain third-party dependencies, so I don't bother c
 cd ..
 rm -rf src
 mkdir src
+cd src
 unzip ../tmp/classes-dex2jar.jar.src.zip
 ```
 
-6. Remove all the third-party sources that aren't relevant.
+6. Verify that VERSION_NAME in ca/albertahealthservices/contracttracing/BuildConfig.java is the expected version that was being decompiled.  If it isn't, restart JD-GUI and retry step 4 & 5.
+
+7. Remove all the third-party sources that aren't relevant.
 
 ```
 rm -rf android androidx com io
 ```
 
-7. Commit to a new git release.
+8. Commit to a new git release.
 
 ```
+cd ..
 git add apk src
-git commit -m"Decompiled ABTraceTogether 1.0.0"
-git tag -a v1.0.0 -m"Decompiled ABTraceTogether 1.0.0"
+git commit -m"Decompiled ABTraceTogether 1.4.0"
+git tag -a v1.4.0 -m"Decompiled ABTraceTogether 1.4.0"
 git push
 ```

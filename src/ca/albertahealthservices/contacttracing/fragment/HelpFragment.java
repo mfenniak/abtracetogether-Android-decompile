@@ -51,26 +51,36 @@ public final class HelpFragment extends Fragment {
   }
   
   public void onViewCreated(View paramView, Bundle paramBundle) {
+    WebSettings webSettings;
     Intrinsics.checkParameterIsNotNull(paramView, "view");
     super.onViewCreated(paramView, paramBundle);
-    WebView webView3 = (WebView)_$_findCachedViewById(R.id.help_webview);
-    Intrinsics.checkExpressionValueIsNotNull(webView3, "help_webview");
-    webView3.setWebViewClient(new WebViewClient());
-    webView3 = (WebView)_$_findCachedViewById(R.id.help_webview);
-    Intrinsics.checkExpressionValueIsNotNull(webView3, "help_webview");
-    WebSettings webSettings2 = webView3.getSettings();
-    Intrinsics.checkExpressionValueIsNotNull(webSettings2, "help_webview.settings");
-    webSettings2.setJavaScriptEnabled(true);
     WebView webView2 = (WebView)_$_findCachedViewById(R.id.help_webview);
-    Intrinsics.checkExpressionValueIsNotNull(webView2, "help_webview");
-    WebSettings webSettings1 = webView2.getSettings();
-    Intrinsics.checkExpressionValueIsNotNull(webSettings1, "help_webview.settings");
-    webSettings1.setLoadWithOverviewMode(true);
-    ((WebView)_$_findCachedViewById(R.id.help_webview)).loadUrl("https://alberta.ca/ABTraceTogetherFAQ");
-    HelpFragment$onViewCreated$wbc$1 helpFragment$onViewCreated$wbc$1 = new HelpFragment$onViewCreated$wbc$1();
+    if (webView2 != null)
+      webView2.setWebViewClient(new WebViewClient()); 
+    webView2 = (WebView)_$_findCachedViewById(R.id.help_webview);
+    paramBundle = null;
+    if (webView2 != null) {
+      webSettings = webView2.getSettings();
+    } else {
+      webView2 = null;
+    } 
+    if (webView2 == null)
+      Intrinsics.throwNpe(); 
+    webView2.setJavaScriptEnabled(true);
+    WebView webView3 = (WebView)_$_findCachedViewById(R.id.help_webview);
+    Bundle bundle = paramBundle;
+    if (webView3 != null)
+      webSettings = webView3.getSettings(); 
+    if (webSettings == null)
+      Intrinsics.throwNpe(); 
+    webSettings.setLoadWithOverviewMode(true);
     WebView webView1 = (WebView)_$_findCachedViewById(R.id.help_webview);
-    Intrinsics.checkExpressionValueIsNotNull(webView1, "help_webview");
-    webView1.setWebChromeClient(helpFragment$onViewCreated$wbc$1);
+    if (webView1 != null)
+      webView1.loadUrl("https://alberta.ca/ABTraceTogetherFAQ"); 
+    HelpFragment$onViewCreated$wbc$1 helpFragment$onViewCreated$wbc$1 = new HelpFragment$onViewCreated$wbc$1();
+    webView1 = (WebView)_$_findCachedViewById(R.id.help_webview);
+    if (webView1 != null)
+      webView1.setWebChromeClient(helpFragment$onViewCreated$wbc$1); 
   }
   
   @Metadata(bv = {1, 0, 3}, d1 = {"\000\027\n\000\n\002\030\002\n\000\n\002\020\002\n\000\n\002\030\002\n\000*\001\000\b\n\030\0002\0020\001J\020\020\002\032\0020\0032\006\020\004\032\0020\005H\026¨\006\006"}, d2 = {"ca/albertahealthservices/contacttracing/fragment/HelpFragment$onViewCreated$wbc$1", "Landroid/webkit/WebChromeClient;", "onCloseWindow", "", "w", "Landroid/webkit/WebView;", "app_release"}, k = 1, mv = {1, 1, 16})

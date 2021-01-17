@@ -125,65 +125,65 @@ public final class PlotActivity extends AppCompatActivity {
       SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
       long l1 = ((StreetPassRecord)CollectionsKt.sortedWith(param1ExportData.getRecordList(), new PlotActivity$onCreate$zipResult$2$$special$$inlined$sortedByDescending$1()).get(0)).getTimestamp();
       long l2 = 1000L;
-      l1 = l1 / l2 + 60L;
-      String str1 = simpleDateFormat.format(new Date(l1 * l2));
-      long l3 = l1 - (this.$displayTimePeriod * 3600);
-      String str2 = simpleDateFormat.format(new Date(l3 * l2));
-      List list = param1ExportData.getRecordList();
-      ArrayList<StreetPassRecord> arrayList = new ArrayList();
-      Iterator<Object> iterator = list.iterator();
+      long l3 = l1 / l2 + 60L;
+      String str1 = simpleDateFormat.format(new Date(l3 * l2));
+      l1 = l3 - (this.$displayTimePeriod * 3600);
+      String str2 = simpleDateFormat.format(new Date(l1 * l2));
+      List<StreetPassRecord> list = param1ExportData.getRecordList();
+      ArrayList<List> arrayList = new ArrayList();
+      Iterator<List> iterator = list.iterator();
       while (true) {
         boolean bool = iterator.hasNext();
         int i = 1;
         if (bool) {
-          StreetPassRecord streetPassRecord1 = (StreetPassRecord)iterator.next();
-          StreetPassRecord streetPassRecord2 = streetPassRecord1;
-          if (streetPassRecord2.getTimestamp() / l2 < l3 || streetPassRecord2.getTimestamp() / l2 > l1)
+          list = iterator.next();
+          StreetPassRecord streetPassRecord = (StreetPassRecord)list;
+          if (streetPassRecord.getTimestamp() / l2 < l1 || streetPassRecord.getTimestamp() / l2 > l3)
             i = 0; 
           if (i)
-            arrayList.add(streetPassRecord1); 
+            arrayList.add(list); 
           continue;
         } 
         arrayList = arrayList;
         bool = arrayList.isEmpty();
-        String str4 = "UTF-8";
-        String str3 = "text/html";
+        String str3 = "UTF-8";
+        String str4 = "text/html";
         if ((bool ^ true) != 0) {
-          ArrayList<StreetPassRecord> arrayList1 = arrayList;
+          arrayList1 = arrayList;
           LinkedHashMap<Object, Object> linkedHashMap1 = new LinkedHashMap<>();
           for (StreetPassRecord streetPassRecord : arrayList1) {
             String str = ((StreetPassRecord)streetPassRecord).getModelC();
-            Object object2 = linkedHashMap1.get(str);
-            Object object1 = object2;
-            if (object2 == null) {
-              object1 = new ArrayList();
-              linkedHashMap1.put(str, object1);
+            list = (List<StreetPassRecord>)linkedHashMap1.get(str);
+            List<StreetPassRecord> list3 = list;
+            if (list == null) {
+              list3 = new ArrayList();
+              linkedHashMap1.put(str, list3);
             } 
-            ((List<StreetPassRecord>)object1).add(streetPassRecord);
+            list3.add(streetPassRecord);
           } 
           LinkedHashMap<Object, Object> linkedHashMap2 = new LinkedHashMap<>();
-          for (StreetPassRecord streetPassRecord : arrayList1) {
-            String str = ((StreetPassRecord)streetPassRecord).getModelP();
-            Object object2 = linkedHashMap2.get(str);
-            Object object1 = object2;
-            if (object2 == null) {
-              object1 = new ArrayList();
-              linkedHashMap2.put(str, object1);
+          for (ArrayList<List> arrayList1 : arrayList1) {
+            String str = ((StreetPassRecord)arrayList1).getModelP();
+            list = (List<StreetPassRecord>)linkedHashMap2.get(str);
+            List<StreetPassRecord> list3 = list;
+            if (list == null) {
+              list3 = new ArrayList<>();
+              linkedHashMap2.put(str, list3);
             } 
-            ((List<StreetPassRecord>)object1).add(streetPassRecord);
+            list3.add(arrayList1);
           } 
-          Set set2 = CollectionsKt.union(linkedHashMap1.keySet(), CollectionsKt.toList(linkedHashMap2.keySet()));
+          Set set = CollectionsKt.union(linkedHashMap1.keySet(), CollectionsKt.toList(linkedHashMap2.keySet()));
           String str6 = PlotActivity.this.TAG;
           StringBuilder stringBuilder1 = new StringBuilder();
           stringBuilder1.append("allModels: ");
-          stringBuilder1.append(set2);
+          stringBuilder1.append(set);
           Log.d(str6, stringBuilder1.toString());
-          List list1 = CollectionsKt.sortedWith(set2, new PlotActivity$onCreate$zipResult$2$sortedModelList$1(linkedHashMap1, linkedHashMap2));
-          List list2 = list1;
+          List<String> list1 = CollectionsKt.sortedWith(set, new PlotActivity$onCreate$zipResult$2$sortedModelList$1(linkedHashMap1, linkedHashMap2));
+          List<String> list2 = list1;
           ArrayList<String> arrayList2 = new ArrayList(CollectionsKt.collectionSizeOrDefault(list2, 10));
           Iterator<String> iterator1 = list2.iterator();
           String str5 = str2;
-          Set set1 = set2;
+          str2 = str4;
           while (true) {
             bool = iterator1.hasNext();
             String str13 = "";
@@ -200,9 +200,9 @@ public final class PlotActivity extends AppCompatActivity {
               if (list3 != null) {
                 list3 = list3;
                 ArrayList<String> arrayList6 = new ArrayList(CollectionsKt.collectionSizeOrDefault(list3, 10));
-                Iterator<StreetPassRecord> iterator4 = list3.iterator();
-                while (iterator4.hasNext())
-                  arrayList6.add(simpleDateFormat.format(new Date(((StreetPassRecord)iterator4.next()).getTimestamp()))); 
+                Iterator<StreetPassRecord> iterator3 = list3.iterator();
+                while (iterator3.hasNext())
+                  arrayList6.add(simpleDateFormat.format(new Date(((StreetPassRecord)iterator3.next()).getTimestamp()))); 
                 str14 = CollectionsKt.joinToString$default(arrayList6, "\", \"", "[\"", "\"]", 0, null, null, 56, null);
               } else {
                 list3 = null;
@@ -211,9 +211,9 @@ public final class PlotActivity extends AppCompatActivity {
               if (list4 != null) {
                 List<Integer> list7 = list4;
                 list4 = new ArrayList(CollectionsKt.collectionSizeOrDefault(list7, 10));
-                Iterator<StreetPassRecord> iterator4 = list7.iterator();
-                while (iterator4.hasNext())
-                  list4.add(Integer.valueOf(((StreetPassRecord)iterator4.next()).getRssi())); 
+                Iterator<StreetPassRecord> iterator3 = list7.iterator();
+                while (iterator3.hasNext())
+                  list4.add(Integer.valueOf(((StreetPassRecord)iterator3.next()).getRssi())); 
                 str15 = CollectionsKt.joinToString$default(list4, ", ", "[", "]", 0, null, null, 56, null);
               } else {
                 list4 = null;
@@ -222,9 +222,9 @@ public final class PlotActivity extends AppCompatActivity {
               if (list5 != null) {
                 list5 = list5;
                 ArrayList<String> arrayList6 = new ArrayList(CollectionsKt.collectionSizeOrDefault(list5, 10));
-                Iterator<StreetPassRecord> iterator4 = list5.iterator();
-                while (iterator4.hasNext())
-                  arrayList6.add(simpleDateFormat.format(new Date(((StreetPassRecord)iterator4.next()).getTimestamp()))); 
+                Iterator<StreetPassRecord> iterator3 = list5.iterator();
+                while (iterator3.hasNext())
+                  arrayList6.add(simpleDateFormat.format(new Date(((StreetPassRecord)iterator3.next()).getTimestamp()))); 
                 String str = CollectionsKt.joinToString$default(arrayList6, "\", \"", "[\"", "\"]", 0, null, null, 56, null);
               } else {
                 list5 = null;
@@ -233,9 +233,9 @@ public final class PlotActivity extends AppCompatActivity {
               if (list6 != null) {
                 list6 = list6;
                 arrayList5 = new ArrayList(CollectionsKt.collectionSizeOrDefault(list6, 10));
-                Iterator<StreetPassRecord> iterator4 = list6.iterator();
-                while (iterator4.hasNext())
-                  arrayList5.add(Integer.valueOf(((StreetPassRecord)iterator4.next()).getRssi())); 
+                Iterator<StreetPassRecord> iterator3 = list6.iterator();
+                while (iterator3.hasNext())
+                  arrayList5.add(Integer.valueOf(((StreetPassRecord)iterator3.next()).getRssi())); 
                 str18 = CollectionsKt.joinToString$default(arrayList5, ", ", "[", "]", 0, null, null, 56, null);
               } 
               StringBuilder stringBuilder5 = new StringBuilder();
@@ -296,12 +296,13 @@ public final class PlotActivity extends AppCompatActivity {
               arrayList2.add(stringBuilder4.toString());
               continue;
             } 
-            str9 = str5;
-            String str12 = CollectionsKt.joinToString$default(arrayList2, "\n", null, null, 0, null, null, 62, null);
+            str9 = str1;
+            str1 = str5;
+            String str11 = CollectionsKt.joinToString$default(arrayList2, "\n", null, null, 0, null, null, 62, null);
             ArrayList<String> arrayList3 = new ArrayList(CollectionsKt.collectionSizeOrDefault(list2, 10));
-            Iterator<String> iterator3 = list2.iterator();
-            while (iterator3.hasNext()) {
-              i = list1.indexOf(iterator3.next()) + 1;
+            Iterator<String> iterator2 = list2.iterator();
+            while (iterator2.hasNext()) {
+              i = list1.indexOf(iterator2.next()) + 1;
               if (i < 20) {
                 StringBuilder stringBuilder4 = new StringBuilder();
                 stringBuilder4.append("\n                            data = data.concat(data");
@@ -313,11 +314,10 @@ public final class PlotActivity extends AppCompatActivity {
               } 
               arrayList3.add(str5);
             } 
-            String str11 = CollectionsKt.joinToString$default(arrayList3, "\n", null, null, 0, null, null, 62, null);
+            String str7 = CollectionsKt.joinToString$default(arrayList3, "\n", null, null, 0, null, null, 62, null);
             ArrayList<String> arrayList4 = new ArrayList(CollectionsKt.collectionSizeOrDefault(list2, 10));
-            Iterator<String> iterator2 = list2.iterator();
-            str5 = str1;
-            str1 = str9;
+            iterator2 = list2.iterator();
+            str5 = str9;
             while (iterator2.hasNext()) {
               i = list1.indexOf(iterator2.next()) + 1;
               if (i < 20) {
@@ -337,7 +337,7 @@ public final class PlotActivity extends AppCompatActivity {
               } 
               arrayList4.add(str9);
             } 
-            String str7 = CollectionsKt.joinToString$default(arrayList4, ",\n", null, null, 0, null, null, 62, null);
+            String str12 = CollectionsKt.joinToString$default(arrayList4, ",\n", null, null, 0, null, null, 62, null);
             arrayList4 = new ArrayList<>(CollectionsKt.collectionSizeOrDefault(list2, 10));
             for (String str9 : list2) {
               i = list1.indexOf(str9) + 1;
@@ -357,9 +357,9 @@ public final class PlotActivity extends AppCompatActivity {
             String str10 = CollectionsKt.joinToString$default(arrayList4, ",\n", null, null, 0, null, null, 62, null);
             StringBuilder stringBuilder3 = new StringBuilder();
             stringBuilder3.append("\n                        <head>\n                            <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>\n                        </head>\n                        <body>\n                            <div id='myDiv'></div>\n                            <script>\n                                ");
-            stringBuilder3.append(str12);
-            stringBuilder3.append("\n                                \n                                var data = [];\n                                ");
             stringBuilder3.append(str11);
+            stringBuilder3.append("\n                                \n                                var data = [];\n                                ");
+            stringBuilder3.append(str7);
             stringBuilder3.append("\n                                \n                                var layout = {\n                                  title: 'Activities from <b>");
             Intrinsics.checkExpressionValueIsNotNull(str1, "startTimeString");
             stringBuilder3.append(StringsKt.substring(str1, new IntRange(11, 15)));
@@ -367,21 +367,21 @@ public final class PlotActivity extends AppCompatActivity {
             Intrinsics.checkExpressionValueIsNotNull(str5, "endTimeString");
             stringBuilder3.append(StringsKt.substring(str5, new IntRange(11, 15)));
             stringBuilder3.append("</b>   <span style=\"color:blue\">central</span> <span style=\"color:red\">peripheral</span>',\n                                  height: 135 * ");
-            stringBuilder3.append(set1.size());
+            stringBuilder3.append(set.size());
             stringBuilder3.append(",\n                                  showlegend: false,\n                                  grid: {rows: ");
-            stringBuilder3.append(set1.size());
+            stringBuilder3.append(set.size());
             stringBuilder3.append(", columns: 1, pattern: 'independent'},\n                                  margin: {\n                                    t: 30,\n                                    r: 30,\n                                    b: 20,\n                                    l: 50,\n                                    pad: 0\n                                  },\n                                  ");
-            stringBuilder3.append(str7);
+            stringBuilder3.append(str12);
             stringBuilder3.append(",\n                                  ");
             stringBuilder3.append(str10);
             stringBuilder3.append("\n                                };\n                                \n                                var config = {\n                                    responsive: true, \n                                    displayModeBar: false, \n                                    displaylogo: false, \n                                    modeBarButtonsToRemove: ['toImage', 'sendDataToCloud', 'editInChartStudio', 'zoom2d', 'select2d', 'pan2d', 'lasso2d', 'autoScale2d', 'resetScale2d', 'zoomIn2d', 'zoomOut2d', 'hoverClosestCartesian', 'hoverCompareCartesian', 'toggleHover', 'toggleSpikelines']\n                                }\n                                \n                                Plotly.newPlot('myDiv', data, layout, config);\n                            </script>\n                        </body>\n                    ");
-            String str8 = StringsKt.trimIndent(stringBuilder3.toString());
-            str1 = PlotActivity.this.TAG;
+            str1 = StringsKt.trimIndent(stringBuilder3.toString());
+            String str8 = PlotActivity.this.TAG;
             StringBuilder stringBuilder2 = new StringBuilder();
             stringBuilder2.append("customHtml: ");
-            stringBuilder2.append(str8);
-            Log.d(str1, stringBuilder2.toString());
-            ((WebView)PlotActivity.this._$_findCachedViewById(R.id.webView)).loadData(str8, str3, str4);
+            stringBuilder2.append(str1);
+            Log.d(str8, stringBuilder2.toString());
+            ((WebView)PlotActivity.this._$_findCachedViewById(R.id.webView)).loadData(str1, str2, str3);
             return;
           } 
           break;

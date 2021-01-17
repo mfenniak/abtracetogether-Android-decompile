@@ -23,9 +23,11 @@ public final class BuildConfig {
   
   public static final String FLAVOR = "";
   
-  public static final String GITHASH = "ec489ae";
+  public static final String GITHASH = "6a85dce";
   
   public static final long HEALTH_CHECK_INTERVAL = 900000L;
+  
+  public static final String IOS_BACKGROUND_SERVICE_UUID = "AQAAAAAgAAAAAAAAAAAAAAA=";
   
   public static final long MAX_QUEUE_TIME = 7000L;
   
@@ -59,9 +61,9 @@ public final class BuildConfig {
   
   public static final String V2_CHARACTERISTIC_ID = "7bee419e-8882-11ea-bc55-0242ac130003";
   
-  public static final int VERSION_CODE = 3;
+  public static final int VERSION_CODE = 14;
   
-  public static final String VERSION_NAME = "1.0.0";
+  public static final String VERSION_NAME = "1.4.0";
 }
 
 

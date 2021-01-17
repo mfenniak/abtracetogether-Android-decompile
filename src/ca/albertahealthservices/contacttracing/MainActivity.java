@@ -3,6 +3,7 @@ package ca.albertahealthservices.contacttracing;
 import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,14 +13,28 @@ import androidx.fragment.app.FragmentTransaction;
 import ca.albertahealthservices.contacttracing.fragment.ForUseByOTCFragment;
 import ca.albertahealthservices.contacttracing.fragment.HelpFragment;
 import ca.albertahealthservices.contacttracing.fragment.HomeFragment;
+import ca.albertahealthservices.contacttracing.logging.CentralLog;
+import ca.albertahealthservices.contacttracing.onboarding.PreOnboardingActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.HashMap;
 import kotlin.Metadata;
+import kotlin.ResultKt;
 import kotlin.TypeCastException;
+import kotlin.Unit;
+import kotlin.coroutines.Continuation;
+import kotlin.coroutines.CoroutineContext;
+import kotlin.coroutines.intrinsics.IntrinsicsKt;
+import kotlin.coroutines.jvm.internal.DebugMetadata;
+import kotlin.coroutines.jvm.internal.SuspendLambda;
+import kotlin.jvm.functions.Function2;
 import kotlin.jvm.internal.Intrinsics;
+import kotlinx.coroutines.BuildersKt;
+import kotlinx.coroutines.CoroutineScope;
+import kotlinx.coroutines.CoroutineScopeKt;
+import kotlinx.coroutines.Job;
 
-@Metadata(bv = {1, 0, 3}, d1 = {"\000B\n\002\030\002\n\002\030\002\n\002\b\002\n\002\020\b\n\002\b\005\n\002\020\016\n\002\b\003\n\002\020\002\n\002\b\002\n\002\020\013\n\000\n\002\030\002\n\002\b\002\n\002\030\002\n\002\b\003\n\002\030\002\n\002\b\003\030\0002\0020\001B\005¢\006\002\020\002J\b\020\r\032\0020\016H\002J\006\020\017\032\0020\016J\024\020\020\032\0020\0212\n\020\022\032\006\022\002\b\0030\023H\002J\022\020\024\032\0020\0162\b\020\025\032\004\030\0010\026H\024J&\020\027\032\0020\0162\006\020\030\032\0020\0042\006\020\031\032\0020\0322\006\020\033\032\0020\n2\006\020\034\032\0020\004R\032\020\003\032\0020\004X\016¢\006\016\n\000\032\004\b\005\020\006\"\004\b\007\020\bR\016\020\t\032\0020\nXD¢\006\002\n\000R\016\020\013\032\0020\004X\016¢\006\002\n\000R\016\020\f\032\0020\004X\016¢\006\002\n\000¨\006\035"}, d2 = {"Lca/albertahealthservices/contacttracing/MainActivity;", "Landroidx/appcompat/app/AppCompatActivity;", "()V", "LAYOUT_MAIN_ID", "", "getLAYOUT_MAIN_ID", "()I", "setLAYOUT_MAIN_ID", "(I)V", "TAG", "", "mNavigationLevel", "selected", "getFCMToken", "", "goToHome", "isMyServiceRunning", "", "serviceClass", "Ljava/lang/Class;", "onCreate", "savedInstanceState", "Landroid/os/Bundle;", "openFragment", "containerViewId", "fragment", "Landroidx/fragment/app/Fragment;", "tag", "title", "app_release"}, k = 1, mv = {1, 1, 16})
-public final class MainActivity extends AppCompatActivity {
+@Metadata(bv = {1, 0, 3}, d1 = {"\000P\n\002\030\002\n\002\030\002\n\002\030\002\n\002\b\002\n\002\020\b\n\002\b\005\n\002\020\016\n\000\n\002\030\002\n\002\b\005\n\002\020\002\n\000\n\002\020\013\n\000\n\002\030\002\n\002\b\002\n\002\030\002\n\002\b\004\n\002\030\002\n\002\b\003\n\002\030\002\n\000\030\0002\0020\0012\0020\002B\005¢\006\002\020\003J\006\020\022\032\0020\023J\024\020\024\032\0020\0252\n\020\026\032\006\022\002\b\0030\027H\002J\022\020\030\032\0020\0232\b\020\031\032\004\030\0010\032H\024J\b\020\033\032\0020\023H\024J&\020\034\032\0020\0232\006\020\035\032\0020\0052\006\020\036\032\0020\0372\006\020 \032\0020\0132\006\020!\032\0020\005J\b\020\"\032\0020#H\002R\032\020\004\032\0020\005X\016¢\006\016\n\000\032\004\b\006\020\007\"\004\b\b\020\tR\016\020\n\032\0020\013XD¢\006\002\n\000R\022\020\f\032\0020\rX\005¢\006\006\032\004\b\016\020\017R\016\020\020\032\0020\005X\016¢\006\002\n\000R\016\020\021\032\0020\005X\016¢\006\002\n\000¨\006$"}, d2 = {"Lca/albertahealthservices/contacttracing/MainActivity;", "Landroidx/appcompat/app/AppCompatActivity;", "Lkotlinx/coroutines/CoroutineScope;", "()V", "LAYOUT_MAIN_ID", "", "getLAYOUT_MAIN_ID", "()I", "setLAYOUT_MAIN_ID", "(I)V", "TAG", "", "coroutineContext", "Lkotlin/coroutines/CoroutineContext;", "getCoroutineContext", "()Lkotlin/coroutines/CoroutineContext;", "mNavigationLevel", "selected", "goToHome", "", "isMyServiceRunning", "", "serviceClass", "Ljava/lang/Class;", "onCreate", "savedInstanceState", "Landroid/os/Bundle;", "onResume", "openFragment", "containerViewId", "fragment", "Landroidx/fragment/app/Fragment;", "tag", "title", "showAppRegistrationStatus", "Lkotlinx/coroutines/Job;", "app_release"}, k = 1, mv = {1, 1, 16})
+public final class MainActivity extends AppCompatActivity implements CoroutineScope {
   private int LAYOUT_MAIN_ID;
   
   private final String TAG = "MainActivity";
@@ -29,8 +44,6 @@ public final class MainActivity extends AppCompatActivity {
   private int mNavigationLevel;
   
   private int selected;
-  
-  private final void getFCMToken() {}
   
   private final boolean isMyServiceRunning(Class<?> paramClass) {
     Object object = getSystemService("activity");
@@ -45,6 +58,10 @@ public final class MainActivity extends AppCompatActivity {
       return false;
     } 
     throw new TypeCastException("null cannot be cast to non-null type android.app.ActivityManager");
+  }
+  
+  private final Job showAppRegistrationStatus() {
+    return BuildersKt.launch$default(this, null, null, new MainActivity$showAppRegistrationStatus$1(null), 3, null);
   }
   
   public void _$_clearFindViewByIdCache() {
@@ -65,6 +82,10 @@ public final class MainActivity extends AppCompatActivity {
     return view2;
   }
   
+  public CoroutineContext getCoroutineContext() {
+    return this.$$delegate_0.getCoroutineContext();
+  }
+  
   public final int getLAYOUT_MAIN_ID() {
     return this.LAYOUT_MAIN_ID;
   }
@@ -83,7 +104,11 @@ public final class MainActivity extends AppCompatActivity {
     MainActivity$onCreate$mOnNavigationItemSelectedListener$1 mainActivity$onCreate$mOnNavigationItemSelectedListener$1 = new MainActivity$onCreate$mOnNavigationItemSelectedListener$1();
     ((BottomNavigationView)_$_findCachedViewById(R.id.nav_view)).setOnNavigationItemSelectedListener(mainActivity$onCreate$mOnNavigationItemSelectedListener$1);
     goToHome();
-    getFCMToken();
+  }
+  
+  protected void onResume() {
+    super.onResume();
+    showAppRegistrationStatus();
   }
   
   public final void openFragment(int paramInt1, Fragment paramFragment, String paramString, int paramInt2) {
@@ -147,6 +172,61 @@ public final class MainActivity extends AppCompatActivity {
       } 
       MainActivity.this.selected = 2131296486;
       return true;
+    }
+  }
+  
+  @Metadata(bv = {1, 0, 3}, d1 = {"\000\016\n\000\n\002\020\002\n\002\030\002\n\002\b\002\020\000\032\0020\001*\0020\002H@¢\006\004\b\003\020\004"}, d2 = {"<anonymous>", "", "Lkotlinx/coroutines/CoroutineScope;", "invoke", "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;"}, k = 3, mv = {1, 1, 16})
+  @DebugMetadata(c = "ca.albertahealthservices.contacttracing.MainActivity$showAppRegistrationStatus$1", f = "MainActivity.kt", i = {0}, l = {92}, m = "invokeSuspend", n = {"$this$launch"}, s = {"L$0"})
+  static final class MainActivity$showAppRegistrationStatus$1 extends SuspendLambda implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    Object L$0;
+    
+    int label;
+    
+    private CoroutineScope p$;
+    
+    MainActivity$showAppRegistrationStatus$1(Continuation param1Continuation) {
+      super(2, param1Continuation);
+    }
+    
+    public final Continuation<Unit> create(Object param1Object, Continuation<?> param1Continuation) {
+      Intrinsics.checkParameterIsNotNull(param1Continuation, "completion");
+      MainActivity$showAppRegistrationStatus$1 mainActivity$showAppRegistrationStatus$1 = new MainActivity$showAppRegistrationStatus$1(param1Continuation);
+      mainActivity$showAppRegistrationStatus$1.p$ = (CoroutineScope)param1Object;
+      return (Continuation<Unit>)mainActivity$showAppRegistrationStatus$1;
+    }
+    
+    public final Object invoke(Object param1Object1, Object param1Object2) {
+      return ((MainActivity$showAppRegistrationStatus$1)create(param1Object1, (Continuation)param1Object2)).invokeSuspend(Unit.INSTANCE);
+    }
+    
+    public final Object invokeSuspend(Object param1Object) {
+      Object object = IntrinsicsKt.getCOROUTINE_SUSPENDED();
+      int i = this.label;
+      if (i != 0) {
+        if (i == 1) {
+          CoroutineScope coroutineScope = (CoroutineScope)this.L$0;
+          ResultKt.throwOnFailure(param1Object);
+        } else {
+          throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
+        } 
+      } else {
+        ResultKt.throwOnFailure(param1Object);
+        param1Object = this.p$;
+        Utils utils = Utils.INSTANCE;
+        this.L$0 = param1Object;
+        this.label = 1;
+        Object object1 = utils.checkIfAppRegistered((Continuation<? super Boolean>)this);
+        param1Object = object1;
+        if (object1 == object)
+          return object; 
+      } 
+      if (!((Boolean)param1Object).booleanValue()) {
+        CentralLog.Companion.i(MainActivity.this.TAG, "App version not supported, stopping BluetoothMonitoringService");
+        Utils.INSTANCE.stopBluetoothMonitoringService((Context)MainActivity.this);
+        MainActivity.this.startActivity(new Intent((Context)MainActivity.this, PreOnboardingActivity.class));
+        MainActivity.this.finish();
+      } 
+      return Unit.INSTANCE;
     }
   }
 }

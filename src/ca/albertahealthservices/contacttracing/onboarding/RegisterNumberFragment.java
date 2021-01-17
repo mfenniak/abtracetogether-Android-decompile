@@ -21,8 +21,10 @@ import ca.albertahealthservices.contacttracing.logging.CentralLog;
 import java.util.HashMap;
 import kotlin.Metadata;
 import kotlin.TypeCastException;
+import kotlin.Unit;
 import kotlin.jvm.internal.Intrinsics;
 import kotlin.text.Regex;
+import kotlin.text.StringsKt;
 
 @Metadata(bv = {1, 0, 3}, d1 = {"\000P\n\002\030\002\n\002\030\002\n\002\b\002\n\002\020\016\n\000\n\002\020\013\n\002\b\002\n\002\030\002\n\000\n\002\030\002\n\000\n\002\020\b\n\000\n\002\020\002\n\002\b\006\n\002\030\002\n\002\b\006\n\002\030\002\n\000\n\002\030\002\n\000\n\002\030\002\n\002\b\t\030\0002\0020\001:\001)B\005¢\006\002\020\002J\020\020\016\032\0020\0172\006\020\020\032\0020\004H\002J\b\020\021\032\0020\017H\026J\b\020\022\032\0020\017H\002J\020\020\023\032\0020\0042\006\020\020\032\0020\004H\002J\020\020\024\032\0020\0172\006\020\025\032\0020\026H\026J\020\020\027\032\0020\0172\006\020\030\032\0020\013H\026J\020\020\031\032\0020\0172\006\020\032\032\0020\013H\026J$\020\033\032\0020\0132\006\020\034\032\0020\0352\b\020\036\032\004\030\0010\0372\b\020 \032\004\030\0010!H\026J\b\020\"\032\0020\017H\026J\020\020#\032\0020\0172\006\020$\032\0020\004H\026J\020\020%\032\0020\0172\006\020\020\032\0020\004H\026J\032\020&\032\0020\0172\006\020\030\032\0020\0132\b\020 \032\004\030\0010!H\026J\b\020'\032\0020\017H\002J\020\020(\032\0020\0062\006\020\020\032\0020\004H\002R\016\020\003\032\0020\004XD¢\006\002\n\000R\016\020\005\032\0020\006X\016¢\006\002\n\000R\016\020\007\032\0020\006X\016¢\006\002\n\000R\020\020\b\032\004\030\0010\tX\016¢\006\002\n\000R\020\020\n\032\004\030\0010\013X\016¢\006\002\n\000R\016\020\f\032\0020\rX\016¢\006\002\n\000¨\006*"}, d2 = {"Lca/albertahealthservices/contacttracing/onboarding/RegisterNumberFragment;", "Lca/albertahealthservices/contacttracing/onboarding/OnboardingFragmentInterface;", "()V", "TAG", "", "backspaceFlag", "", "editFlag", "listener", "Lca/albertahealthservices/contacttracing/onboarding/RegisterNumberFragment$OnFragmentInteractionListener;", "mView", "Landroid/view/View;", "selectionPointer", "", "applyMask", "", "num", "becomesVisible", "disableButtonAndRequestOTP", "getUnmaskedNumber", "onAttach", "context", "Landroid/content/Context;", "onBackButtonClick", "view", "onButtonClick", "buttonView", "onCreateView", "inflater", "Landroid/view/LayoutInflater;", "container", "Landroid/view/ViewGroup;", "savedInstanceState", "Landroid/os/Bundle;", "onDetach", "onError", "error", "onUpdatePhoneNumber", "onViewCreated", "requestOTP", "validateNumber", "OnFragmentInteractionListener", "app_release"}, k = 1, mv = {1, 1, 16})
 public final class RegisterNumberFragment extends OnboardingFragmentInterface {
@@ -63,12 +65,16 @@ public final class RegisterNumberFragment extends OnboardingFragmentInterface {
               paramString = paramString.substring(6);
               Intrinsics.checkExpressionValueIsNotNull(paramString, "(this as java.lang.String).substring(startIndex)");
               stringBuilder.append(paramString);
-              paramString = stringBuilder.toString();
-              ((EditText)_$_findCachedViewById(R.id.phone_number)).setText(paramString);
+              String str1 = stringBuilder.toString();
               editText = (EditText)_$_findCachedViewById(R.id.phone_number);
+              if (editText != null)
+                editText.setText(str1); 
               EditText editText1 = (EditText)_$_findCachedViewById(R.id.phone_number);
-              Intrinsics.checkExpressionValueIsNotNull(editText1, "phone_number");
-              editText.setSelection(editText1.getText().length() - this.selectionPointer);
+              if (editText1 != null) {
+                editText = (EditText)_$_findCachedViewById(R.id.phone_number);
+                Intrinsics.checkExpressionValueIsNotNull(editText, "phone_number");
+                editText1.setSelection(editText.getText().length() - this.selectionPointer);
+              } 
             } else {
               throw new TypeCastException("null cannot be cast to non-null type java.lang.String");
             } 
@@ -91,12 +97,16 @@ public final class RegisterNumberFragment extends OnboardingFragmentInterface {
             String str1 = editText.substring(3);
             Intrinsics.checkExpressionValueIsNotNull(str1, "(this as java.lang.String).substring(startIndex)");
             stringBuilder.append(str1);
-            str1 = stringBuilder.toString();
-            ((EditText)_$_findCachedViewById(R.id.phone_number)).setText(str1);
+            String str2 = stringBuilder.toString();
             EditText editText1 = (EditText)_$_findCachedViewById(R.id.phone_number);
+            if (editText1 != null)
+              editText1.setText(str2); 
             EditText editText2 = (EditText)_$_findCachedViewById(R.id.phone_number);
-            Intrinsics.checkExpressionValueIsNotNull(editText2, "phone_number");
-            editText1.setSelection(editText2.getText().length() - this.selectionPointer);
+            if (editText2 != null) {
+              editText1 = (EditText)_$_findCachedViewById(R.id.phone_number);
+              Intrinsics.checkExpressionValueIsNotNull(editText1, "phone_number");
+              editText2.setSelection(editText1.getText().length() - this.selectionPointer);
+            } 
           } else {
             throw new TypeCastException("null cannot be cast to non-null type java.lang.String");
           } 
@@ -122,32 +132,36 @@ public final class RegisterNumberFragment extends OnboardingFragmentInterface {
   private final void requestOTP() {
     if (this.mView != null) {
       AppCompatTextView appCompatTextView = (AppCompatTextView)_$_findCachedViewById(R.id.phone_number_error);
-      Intrinsics.checkExpressionValueIsNotNull(appCompatTextView, "phone_number_error");
-      appCompatTextView.setVisibility(4);
+      if (appCompatTextView != null)
+        appCompatTextView.setVisibility(4); 
       EditText editText = (EditText)_$_findCachedViewById(R.id.phone_number);
-      Intrinsics.checkExpressionValueIsNotNull(editText, "phone_number");
-      String str1 = getUnmaskedNumber(editText.getText().toString());
+      if (editText != null) {
+        Editable editable = editText.getText();
+      } else {
+        editText = null;
+      } 
+      String str1 = getUnmaskedNumber(String.valueOf(editText));
       CentralLog.Companion companion = CentralLog.Companion;
       String str2 = this.TAG;
       StringBuilder stringBuilder = new StringBuilder();
       stringBuilder.append("The value retrieved: ");
       stringBuilder.append(str1);
       companion.d(str2, stringBuilder.toString());
-      Context context = getContext();
-      if (context != null) {
-        OnboardingActivity onboardingActivity = (OnboardingActivity)context;
-        Preference.INSTANCE.putPhoneNumber(TracerApp.Companion.getAppContext(), str1);
+      OnboardingActivity onboardingActivity = (OnboardingActivity)getContext();
+      Preference.INSTANCE.putPhoneNumber(TracerApp.Companion.getAppContext(), str1);
+      if (onboardingActivity != null) {
         onboardingActivity.updatePhoneNumber(str1);
-        OnboardingActivity.requestForOTP$default(onboardingActivity, str1, false, 2, null);
-      } else {
-        throw new TypeCastException("null cannot be cast to non-null type ca.albertahealthservices.contacttracing.onboarding.OnboardingActivity");
+        if (OnboardingActivity.requestForOTP$default(onboardingActivity, str1, false, 2, null) != null)
+          return; 
       } 
+      Utils.INSTANCE.restartAppWithNoContext(0, "RegisterNumberFragment not attached to OnboardingActivity");
+      Unit unit = Unit.INSTANCE;
     } 
   }
   
   private final boolean validateNumber(String paramString) {
     boolean bool;
-    if (getUnmaskedNumber(paramString).length() >= 8) {
+    if (getUnmaskedNumber(paramString).length() == 10) {
       bool = true;
     } else {
       bool = false;
@@ -207,12 +221,12 @@ public final class RegisterNumberFragment extends OnboardingFragmentInterface {
   
   public void onBackButtonClick(View paramView) {
     Intrinsics.checkParameterIsNotNull(paramView, "view");
-    Context context = getContext();
-    if (context != null) {
-      ((OnboardingActivity)context).onBackPressed();
-      return;
+    OnboardingActivity onboardingActivity = (OnboardingActivity)getContext();
+    if (onboardingActivity != null) {
+      onboardingActivity.onBackPressed();
+    } else {
+      Utils.INSTANCE.restartAppWithNoContext(0, "RegisterNumberFragment not attached to OnboardingActivity");
     } 
-    throw new TypeCastException("null cannot be cast to non-null type ca.albertahealthservices.contacttracing.onboarding.OnboardingActivity");
   }
   
   public void onButtonClick(View paramView) {
@@ -239,13 +253,14 @@ public final class RegisterNumberFragment extends OnboardingFragmentInterface {
   
   public void onError(String paramString) {
     Intrinsics.checkParameterIsNotNull(paramString, "error");
-    AppCompatTextView appCompatTextView = (AppCompatTextView)_$_findCachedViewById(R.id.phone_number_error);
-    appCompatTextView = (AppCompatTextView)_$_findCachedViewById(R.id.phone_number_error);
-    Intrinsics.checkExpressionValueIsNotNull(appCompatTextView, "phone_number_error");
-    appCompatTextView.setVisibility(0);
-    appCompatTextView = (AppCompatTextView)_$_findCachedViewById(R.id.phone_number_error);
-    Intrinsics.checkExpressionValueIsNotNull(appCompatTextView, "phone_number_error");
-    appCompatTextView.setText(paramString);
+    if ((AppCompatTextView)_$_findCachedViewById(R.id.phone_number_error) != null) {
+      AppCompatTextView appCompatTextView = (AppCompatTextView)_$_findCachedViewById(R.id.phone_number_error);
+      Intrinsics.checkExpressionValueIsNotNull(appCompatTextView, "phone_number_error");
+      appCompatTextView.setVisibility(0);
+      appCompatTextView = (AppCompatTextView)_$_findCachedViewById(R.id.phone_number_error);
+      Intrinsics.checkExpressionValueIsNotNull(appCompatTextView, "phone_number_error");
+      appCompatTextView.setText(paramString);
+    } 
     CentralLog.Companion companion = CentralLog.Companion;
     String str = this.TAG;
     StringBuilder stringBuilder = new StringBuilder();
@@ -265,12 +280,30 @@ public final class RegisterNumberFragment extends OnboardingFragmentInterface {
   }
   
   public void onViewCreated(View paramView, Bundle paramBundle) {
+    String str;
     Intrinsics.checkParameterIsNotNull(paramView, "view");
     super.onViewCreated(paramView, paramBundle);
     CentralLog.Companion.i(this.TAG, "View created");
     this.mView = paramView;
-    ((EditText)_$_findCachedViewById(R.id.phone_number)).addTextChangedListener((TextWatcher)new RegisterNumberFragment$onViewCreated$1());
-    ((EditText)_$_findCachedViewById(R.id.phone_number)).setOnEditorActionListener(new RegisterNumberFragment$onViewCreated$2(paramView));
+    EditText editText = (EditText)_$_findCachedViewById(R.id.phone_number);
+    if (editText != null)
+      editText.addTextChangedListener((TextWatcher)new RegisterNumberFragment$onViewCreated$1()); 
+    editText = (EditText)_$_findCachedViewById(R.id.phone_number);
+    if (editText != null)
+      editText.setOnEditorActionListener(new RegisterNumberFragment$onViewCreated$2(paramView)); 
+    if (StringsKt.contains$default(Utils.INSTANCE.getServerURL(), "stg", false, 2, null)) {
+      str = ".S";
+    } else {
+      str = "";
+    } 
+    AppCompatTextView appCompatTextView = (AppCompatTextView)_$_findCachedViewById(R.id.tv_app_version);
+    if (appCompatTextView != null) {
+      StringBuilder stringBuilder = new StringBuilder();
+      stringBuilder.append(getString(2131820582));
+      stringBuilder.append("1.4.0");
+      stringBuilder.append(str);
+      appCompatTextView.setText(stringBuilder.toString());
+    } 
     disableButton();
   }
   

@@ -7,6 +7,7 @@ import android.bluetooth.le.ScanFilter;
 import android.bluetooth.le.ScanSettings;
 import android.content.Context;
 import android.os.ParcelUuid;
+import android.util.Base64;
 import ca.albertahealthservices.contacttracing.Utils;
 import ca.albertahealthservices.contacttracing.logging.CentralLog;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ import kotlin.properties.ReadWriteProperty;
 import kotlin.reflect.KDeclarationContainer;
 import kotlin.reflect.KProperty;
 
-@Metadata(bv = {1, 0, 3}, d1 = {"\0004\n\002\030\002\n\002\020\000\n\000\n\002\030\002\n\000\n\002\020\016\n\000\n\002\020\t\n\002\b\017\n\002\030\002\n\000\n\002\030\002\n\002\b\007\n\002\020\002\n\002\b\003\030\0002\0020\001B\035\022\006\020\002\032\0020\003\022\006\020\004\032\0020\005\022\006\020\006\032\0020\007¢\006\002\020\bJ\006\020 \032\0020!J\016\020\"\032\0020!2\006\020\026\032\0020\027J\006\020#\032\0020!R\016\020\t\032\0020\005XD¢\006\002\n\000R+\020\002\032\0020\0032\006\020\n\032\0020\0038B@BX\002¢\006\022\n\004\b\017\020\020\032\004\b\013\020\f\"\004\b\r\020\016R+\020\006\032\0020\0072\006\020\n\032\0020\0078B@BX\002¢\006\022\n\004\b\025\020\020\032\004\b\021\020\022\"\004\b\023\020\024R\020\020\026\032\004\030\0010\027X\016¢\006\002\n\000R\020\020\030\032\004\030\0010\031X\016¢\006\002\n\000R+\020\032\032\0020\0052\006\020\n\032\0020\0058B@BX\002¢\006\022\n\004\b\037\020\020\032\004\b\033\020\034\"\004\b\035\020\036¨\006$"}, d2 = {"Lca/albertahealthservices/contacttracing/bluetooth/BLEScanner;", "", "context", "Landroid/content/Context;", "uuid", "", "reportDelay", "", "(Landroid/content/Context;Ljava/lang/String;J)V", "TAG", "<set-?>", "getContext", "()Landroid/content/Context;", "setContext", "(Landroid/content/Context;)V", "context$delegate", "Lkotlin/properties/ReadWriteProperty;", "getReportDelay", "()J", "setReportDelay", "(J)V", "reportDelay$delegate", "scanCallback", "Landroid/bluetooth/le/ScanCallback;", "scanner", "Landroid/bluetooth/le/BluetoothLeScanner;", "serviceUUID", "getServiceUUID", "()Ljava/lang/String;", "setServiceUUID", "(Ljava/lang/String;)V", "serviceUUID$delegate", "flush", "", "startScan", "stopScan", "app_release"}, k = 1, mv = {1, 1, 16})
+@Metadata(bv = {1, 0, 3}, d1 = {"\0004\n\002\030\002\n\002\020\000\n\000\n\002\030\002\n\000\n\002\020\016\n\000\n\002\020\t\n\002\b\017\n\002\030\002\n\000\n\002\030\002\n\002\b\007\n\002\020\002\n\002\b\004\030\0002\0020\001:\001$B\035\022\006\020\002\032\0020\003\022\006\020\004\032\0020\005\022\006\020\006\032\0020\007¢\006\002\020\bJ\006\020 \032\0020!J\016\020\"\032\0020!2\006\020\026\032\0020\027J\006\020#\032\0020!R\016\020\t\032\0020\005XD¢\006\002\n\000R+\020\002\032\0020\0032\006\020\n\032\0020\0038B@BX\002¢\006\022\n\004\b\017\020\020\032\004\b\013\020\f\"\004\b\r\020\016R+\020\006\032\0020\0072\006\020\n\032\0020\0078B@BX\002¢\006\022\n\004\b\025\020\020\032\004\b\021\020\022\"\004\b\023\020\024R\020\020\026\032\004\030\0010\027X\016¢\006\002\n\000R\020\020\030\032\004\030\0010\031X\016¢\006\002\n\000R+\020\032\032\0020\0052\006\020\n\032\0020\0058B@BX\002¢\006\022\n\004\b\037\020\020\032\004\b\033\020\034\"\004\b\035\020\036¨\006%"}, d2 = {"Lca/albertahealthservices/contacttracing/bluetooth/BLEScanner;", "", "context", "Landroid/content/Context;", "uuid", "", "reportDelay", "", "(Landroid/content/Context;Ljava/lang/String;J)V", "TAG", "<set-?>", "getContext", "()Landroid/content/Context;", "setContext", "(Landroid/content/Context;)V", "context$delegate", "Lkotlin/properties/ReadWriteProperty;", "getReportDelay", "()J", "setReportDelay", "(J)V", "reportDelay$delegate", "scanCallback", "Landroid/bluetooth/le/ScanCallback;", "scanner", "Landroid/bluetooth/le/BluetoothLeScanner;", "serviceUUID", "getServiceUUID", "()Ljava/lang/String;", "setServiceUUID", "(Ljava/lang/String;)V", "serviceUUID$delegate", "flush", "", "startScan", "stopScan", "FilterConstant", "app_release"}, k = 1, mv = {1, 1, 16})
 public final class BLEScanner {
   private final String TAG;
   
@@ -80,9 +81,11 @@ public final class BLEScanner {
   
   public final void startScan(ScanCallback paramScanCallback) {
     Intrinsics.checkParameterIsNotNull(paramScanCallback, "scanCallback");
-    ScanFilter scanFilter = (new ScanFilter.Builder()).setServiceUuid(new ParcelUuid(UUID.fromString(getServiceUUID()))).build();
+    ScanFilter scanFilter1 = (new ScanFilter.Builder()).setServiceUuid(new ParcelUuid(UUID.fromString(getServiceUUID()))).build();
+    ScanFilter scanFilter2 = (new ScanFilter.Builder()).setServiceUuid(null).setManufacturerData(76, FilterConstant.INSTANCE.getIOS_BACKGROUND_SERVICE_UUID()).build();
     ArrayList<ScanFilter> arrayList = new ArrayList();
-    arrayList.add(scanFilter);
+    arrayList.add(scanFilter1);
+    arrayList.add(scanFilter2);
     ScanSettings scanSettings = (new ScanSettings.Builder()).setReportDelay(getReportDelay()).setScanMode(0).build();
     this.scanCallback = paramScanCallback;
     BluetoothLeScanner bluetoothLeScanner = this.scanner;
@@ -112,6 +115,25 @@ public final class BLEScanner {
       stringBuilder.append("unable to stop scanning - callback null or bluetooth off? : ");
       stringBuilder.append(exception.getLocalizedMessage());
     } 
+  }
+  
+  @Metadata(bv = {1, 0, 3}, d1 = {"\000\032\n\002\030\002\n\002\020\000\n\002\b\002\n\002\020\b\n\000\n\002\020\022\n\002\b\003\bÆ\002\030\0002\0020\001B\007\b\002¢\006\002\020\002R\016\020\003\032\0020\004XT¢\006\002\n\000R\021\020\005\032\0020\006¢\006\b\n\000\032\004\b\007\020\b¨\006\t"}, d2 = {"Lca/albertahealthservices/contacttracing/bluetooth/BLEScanner$FilterConstant;", "", "()V", "APPLE_MANUFACTURER_ID", "", "IOS_BACKGROUND_SERVICE_UUID", "", "getIOS_BACKGROUND_SERVICE_UUID", "()[B", "app_release"}, k = 1, mv = {1, 1, 16})
+  public static final class FilterConstant {
+    public static final int APPLE_MANUFACTURER_ID = 76;
+    
+    public static final FilterConstant INSTANCE = new FilterConstant();
+    
+    private static final byte[] IOS_BACKGROUND_SERVICE_UUID;
+    
+    static {
+      byte[] arrayOfByte = Base64.decode("AQAAAAAgAAAAAAAAAAAAAAA=", 0);
+      Intrinsics.checkExpressionValueIsNotNull(arrayOfByte, "decode(BuildConfig.IOS_B…ICE_UUID, Base64.DEFAULT)");
+      IOS_BACKGROUND_SERVICE_UUID = arrayOfByte;
+    }
+    
+    public final byte[] getIOS_BACKGROUND_SERVICE_UUID() {
+      return IOS_BACKGROUND_SERVICE_UUID;
+    }
   }
 }
 

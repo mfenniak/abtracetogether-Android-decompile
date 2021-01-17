@@ -140,7 +140,7 @@ public final class BLEAdvertiser {
         } finally {
           arrayOfByte = null;
           CentralLog.Companion companion1 = CentralLog.Companion;
-          str1 = this.TAG;
+          String str2 = this.TAG;
           StringBuilder stringBuilder1 = new StringBuilder();
           stringBuilder1.append("Failed to start advertising legacy: ");
           stringBuilder1.append(arrayOfByte.getMessage());

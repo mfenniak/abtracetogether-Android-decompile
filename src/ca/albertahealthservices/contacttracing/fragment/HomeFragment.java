@@ -30,6 +30,7 @@ import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.text.HtmlCompat;
+import androidx.core.view.ViewKt;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.LiveData;
@@ -59,6 +60,7 @@ import kotlin.jvm.internal.PropertyReference1Impl;
 import kotlin.jvm.internal.Reflection;
 import kotlin.reflect.KDeclarationContainer;
 import kotlin.reflect.KProperty;
+import kotlin.text.StringsKt;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
@@ -86,7 +88,7 @@ public final class HomeFragment extends Fragment {
     FragmentActivity fragmentActivity = getActivity();
     if (fragmentActivity != null) {
       AlertDialog.Builder builder = new AlertDialog.Builder((Context)fragmentActivity);
-      builder.setMessage(paramString).setCancelable(false).setPositiveButton(getString(2131820688), HomeFragment$alertDialog$1.INSTANCE);
+      builder.setMessage(paramString).setCancelable(false).setPositiveButton(getString(2131820693), HomeFragment$alertDialog$1.INSTANCE);
       builder.create().show();
       return;
     } 
@@ -107,8 +109,8 @@ public final class HomeFragment extends Fragment {
   
   private final void clearAndHideAnnouncement() {
     ConstraintLayout constraintLayout = (ConstraintLayout)_$_findCachedViewById(R.id.view_announcement);
-    Intrinsics.checkExpressionValueIsNotNull(constraintLayout, "view_announcement");
-    ((View)constraintLayout).setVisibility(8);
+    if (constraintLayout != null)
+      ViewKt.setVisible((View)constraintLayout, false); 
     Preference preference = Preference.INSTANCE;
     FragmentActivity fragmentActivity = getActivity();
     if (fragmentActivity == null)
@@ -136,16 +138,7 @@ public final class HomeFragment extends Fragment {
   }
   
   private final boolean isShowRestartSetup() {
-    if (canRequestBatteryOptimizerExemption()) {
-      ImageView imageView = (ImageView)_$_findCachedViewById(R.id.iv_bluetooth);
-      Intrinsics.checkExpressionValueIsNotNull(imageView, "iv_bluetooth");
-      if (imageView.isSelected()) {
-        imageView = (ImageView)_$_findCachedViewById(R.id.iv_location);
-        Intrinsics.checkExpressionValueIsNotNull(imageView, "iv_location");
-        if (imageView.isSelected())
-          return false; 
-      } 
-    } else {
+    if ((ImageView)_$_findCachedViewById(R.id.iv_bluetooth) != null && (ImageView)_$_findCachedViewById(R.id.iv_location) != null) {
       ImageView imageView = (ImageView)_$_findCachedViewById(R.id.iv_bluetooth);
       Intrinsics.checkExpressionValueIsNotNull(imageView, "iv_bluetooth");
       if (imageView.isSelected()) {
@@ -163,7 +156,7 @@ public final class HomeFragment extends Fragment {
     intent.setType("text/plain");
     intent.putExtra("android.intent.extra.SUBJECT", getString(2131820577));
     StringBuilder stringBuilder = new StringBuilder();
-    stringBuilder.append(getString(2131820744));
+    stringBuilder.append(getString(2131820755));
     stringBuilder.append("https://www.alberta.ca/ab-trace-together.aspx");
     intent.putExtra("android.intent.extra.TEXT", stringBuilder.toString());
     startActivity(Intent.createChooser(intent, "Choose one"));
@@ -178,68 +171,65 @@ public final class HomeFragment extends Fragment {
     Intrinsics.checkExpressionValueIsNotNull(fragmentActivity, "activity!!");
     Context context = fragmentActivity.getApplicationContext();
     Intrinsics.checkExpressionValueIsNotNull(context, "activity!!.applicationContext");
-    String str1 = preference.getAnnouncement(context);
-    if (str1.length() == 0) {
+    String str = preference.getAnnouncement(context);
+    if (str.length() == 0) {
       bool = true;
     } else {
       bool = false;
     } 
     if (bool)
       return; 
-    CentralLog.Companion companion = CentralLog.Companion;
-    String str2 = this.TAG;
-    StringBuilder stringBuilder = new StringBuilder();
-    stringBuilder.append("FCM Announcement Changed to ");
-    stringBuilder.append(str1);
-    stringBuilder.append('!');
-    companion.d(str2, stringBuilder.toString());
     AppCompatTextView appCompatTextView2 = (AppCompatTextView)_$_findCachedViewById(R.id.tv_announcement);
-    Intrinsics.checkExpressionValueIsNotNull(appCompatTextView2, "tv_announcement");
-    appCompatTextView2.setText((CharSequence)HtmlCompat.fromHtml(str1, 63));
+    if (appCompatTextView2 != null)
+      appCompatTextView2.setText((CharSequence)HtmlCompat.fromHtml(str, 63)); 
     AppCompatTextView appCompatTextView1 = (AppCompatTextView)_$_findCachedViewById(R.id.tv_announcement);
-    Intrinsics.checkExpressionValueIsNotNull(appCompatTextView1, "tv_announcement");
-    appCompatTextView1.setMovementMethod((MovementMethod)new HomeFragment$showNonEmptyAnnouncement$1());
+    if (appCompatTextView1 != null)
+      appCompatTextView1.setMovementMethod((MovementMethod)new HomeFragment$showNonEmptyAnnouncement$1()); 
     ConstraintLayout constraintLayout = (ConstraintLayout)_$_findCachedViewById(R.id.view_announcement);
-    Intrinsics.checkExpressionValueIsNotNull(constraintLayout, "view_announcement");
-    ((View)constraintLayout).setVisibility(0);
+    if (constraintLayout != null)
+      ViewKt.setVisible((View)constraintLayout, true); 
   }
   
   private final void updatedPremLabels() {
-    String str3;
-    String str2;
-    String str1;
-    ImageView imageView3 = (ImageView)_$_findCachedViewById(R.id.iv_location);
-    Intrinsics.checkExpressionValueIsNotNull(imageView3, "iv_location");
-    boolean bool = imageView3.isSelected();
-    String str4 = "Yes";
-    if (bool) {
-      str3 = "Yes";
-    } else {
-      str3 = "No";
+    String str1 = getString(2131820790);
+    Intrinsics.checkExpressionValueIsNotNull(str1, "getString(R.string.yes)");
+    String str2 = getString(2131820688);
+    Intrinsics.checkExpressionValueIsNotNull(str2, "getString(R.string.no)");
+    if ((AppCompatTextView)_$_findCachedViewById(R.id.tv_location) != null) {
+      String str;
+      ImageView imageView = (ImageView)_$_findCachedViewById(R.id.iv_location);
+      Intrinsics.checkExpressionValueIsNotNull(imageView, "iv_location");
+      if (imageView.isSelected()) {
+        str = str1;
+      } else {
+        str = str2;
+      } 
+      AppCompatTextView appCompatTextView = (AppCompatTextView)_$_findCachedViewById(R.id.tv_location);
+      Intrinsics.checkExpressionValueIsNotNull(appCompatTextView, "tv_location");
+      appCompatTextView.setText((CharSequence)HtmlCompat.fromHtml(getString(2131820644, new Object[] { String.valueOf(str) }), 0));
     } 
-    AppCompatTextView appCompatTextView2 = (AppCompatTextView)_$_findCachedViewById(R.id.tv_location);
-    if (appCompatTextView2 != null)
-      appCompatTextView2.setText((CharSequence)HtmlCompat.fromHtml(getString(2131820640, new Object[] { str3 }), 0)); 
-    ImageView imageView2 = (ImageView)_$_findCachedViewById(R.id.iv_bluetooth);
-    Intrinsics.checkExpressionValueIsNotNull(imageView2, "iv_bluetooth");
-    if (imageView2.isSelected()) {
-      str2 = "Yes";
-    } else {
-      str2 = "No";
+    if ((AppCompatTextView)_$_findCachedViewById(R.id.tv_bluetooth) != null) {
+      String str;
+      ImageView imageView = (ImageView)_$_findCachedViewById(R.id.iv_bluetooth);
+      Intrinsics.checkExpressionValueIsNotNull(imageView, "iv_bluetooth");
+      if (imageView.isSelected()) {
+        str = str1;
+      } else {
+        str = str2;
+      } 
+      AppCompatTextView appCompatTextView = (AppCompatTextView)_$_findCachedViewById(R.id.tv_bluetooth);
+      Intrinsics.checkExpressionValueIsNotNull(appCompatTextView, "tv_bluetooth");
+      appCompatTextView.setText((CharSequence)HtmlCompat.fromHtml(getString(2131820590, new Object[] { String.valueOf(str) }), 0));
     } 
-    appCompatTextView2 = (AppCompatTextView)_$_findCachedViewById(R.id.tv_bluetooth);
-    if (appCompatTextView2 != null)
-      appCompatTextView2.setText((CharSequence)HtmlCompat.fromHtml(getString(2131820589, new Object[] { str2 }), 0)); 
-    ImageView imageView1 = (ImageView)_$_findCachedViewById(R.id.iv_push);
-    Intrinsics.checkExpressionValueIsNotNull(imageView1, "iv_push");
-    if (imageView1.isSelected()) {
-      str1 = str4;
-    } else {
-      str1 = "No";
+    if ((AppCompatTextView)_$_findCachedViewById(R.id.tv_push) != null) {
+      ImageView imageView = (ImageView)_$_findCachedViewById(R.id.iv_push);
+      Intrinsics.checkExpressionValueIsNotNull(imageView, "iv_push");
+      if (!imageView.isSelected())
+        str1 = str2; 
+      AppCompatTextView appCompatTextView = (AppCompatTextView)_$_findCachedViewById(R.id.tv_push);
+      Intrinsics.checkExpressionValueIsNotNull(appCompatTextView, "tv_push");
+      appCompatTextView.setText((CharSequence)HtmlCompat.fromHtml(getString(2131820729, new Object[] { String.valueOf(str1) }), 0));
     } 
-    AppCompatTextView appCompatTextView1 = (AppCompatTextView)_$_findCachedViewById(R.id.tv_push);
-    if (appCompatTextView1 != null)
-      appCompatTextView1.setText((CharSequence)HtmlCompat.fromHtml(getString(2131820719, new Object[] { str1 }), 0)); 
   }
   
   public void _$_clearFindViewByIdCache() {
@@ -265,23 +255,32 @@ public final class HomeFragment extends Fragment {
   
   public void onActivityCreated(Bundle paramBundle) {
     super.onActivityCreated(paramBundle);
-    ((CardView)_$_findCachedViewById(R.id.share_card_view)).setOnClickListener(new HomeFragment$onActivityCreated$1());
-    ((LottieAnimationView)_$_findCachedViewById(R.id.animation_view)).setOnClickListener(new HomeFragment$onActivityCreated$2());
-    ((Button)_$_findCachedViewById(R.id.btn_restart_app_setup)).setOnClickListener(new HomeFragment$onActivityCreated$3());
-    ((ImageButton)_$_findCachedViewById(R.id.btn_announcement_close)).setOnClickListener(new HomeFragment$onActivityCreated$4());
+    CardView cardView = (CardView)_$_findCachedViewById(R.id.share_card_view);
+    if (cardView != null)
+      cardView.setOnClickListener(new HomeFragment$onActivityCreated$1()); 
+    LottieAnimationView lottieAnimationView = (LottieAnimationView)_$_findCachedViewById(R.id.animation_view);
+    if (lottieAnimationView != null)
+      lottieAnimationView.setOnClickListener(new HomeFragment$onActivityCreated$2()); 
+    Button button = (Button)_$_findCachedViewById(R.id.btn_restart_app_setup);
+    if (button != null)
+      button.setOnClickListener(new HomeFragment$onActivityCreated$3()); 
+    ImageButton imageButton = (ImageButton)_$_findCachedViewById(R.id.btn_announcement_close);
+    if (imageButton != null)
+      imageButton.setOnClickListener(new HomeFragment$onActivityCreated$4()); 
   }
   
   public void onActivityResult(int paramInt1, int paramInt2, Intent paramIntent) {
     if (paramInt1 == 123) {
-      boolean bool;
       ImageView imageView = (ImageView)_$_findCachedViewById(R.id.iv_bluetooth);
-      Intrinsics.checkExpressionValueIsNotNull(imageView, "iv_bluetooth");
-      if (paramInt2 == -1) {
-        bool = true;
-      } else {
-        bool = false;
+      if (imageView != null) {
+        boolean bool;
+        if (paramInt2 == -1) {
+          bool = true;
+        } else {
+          bool = false;
+        } 
+        imageView.setSelected(bool);
       } 
-      imageView.setSelected(bool);
     } 
     showSetup();
     super.onActivityResult(paramInt1, paramInt2, paramIntent);
@@ -341,13 +340,14 @@ public final class HomeFragment extends Fragment {
     companion.d(str, stringBuilder.toString());
     if (paramInt == 456) {
       ImageView imageView = (ImageView)_$_findCachedViewById(R.id.iv_location);
-      Intrinsics.checkExpressionValueIsNotNull(imageView, "iv_location");
-      if (paramArrayOfString.length == 0) {
-        paramInt = 1;
-      } else {
-        paramInt = 0;
+      if (imageView != null) {
+        if (paramArrayOfString.length == 0) {
+          paramInt = 1;
+        } else {
+          paramInt = 0;
+        } 
+        imageView.setSelected(paramInt ^ 0x1);
       } 
-      imageView.setSelected(paramInt ^ 0x1);
     } 
     showSetup();
   }
@@ -365,48 +365,50 @@ public final class HomeFragment extends Fragment {
     } 
     if (getView() != null) {
       String[] arrayOfString = Utils.INSTANCE.getRequiredPermissions();
-      ImageView imageView = (ImageView)_$_findCachedViewById(R.id.iv_location);
-      Intrinsics.checkExpressionValueIsNotNull(imageView, "iv_location");
+      ImageView imageView2 = (ImageView)_$_findCachedViewById(R.id.iv_location);
+      if (imageView2 != null) {
+        FragmentActivity fragmentActivity1 = getActivity();
+        if (fragmentActivity1 != null) {
+          imageView2.setSelected(EasyPermissions.hasPermissions((Context)fragmentActivity1, Arrays.<String>copyOf(arrayOfString, arrayOfString.length)));
+        } else {
+          throw new TypeCastException("null cannot be cast to non-null type ca.albertahealthservices.contacttracing.MainActivity");
+        } 
+      } 
+      ImageView imageView1 = (ImageView)_$_findCachedViewById(R.id.iv_push);
+      if (imageView1 != null) {
+        FragmentActivity fragmentActivity1 = getActivity();
+        if (fragmentActivity1 != null) {
+          imageView1.setSelected(NotificationManagerCompat.from((Context)fragmentActivity1).areNotificationsEnabled());
+        } else {
+          throw new TypeCastException("null cannot be cast to non-null type ca.albertahealthservices.contacttracing.MainActivity");
+        } 
+      } 
+      BluetoothAdapter bluetoothAdapter = getBluetoothAdapter();
+      if (bluetoothAdapter != null) {
+        imageView1 = (ImageView)_$_findCachedViewById(R.id.iv_bluetooth);
+        Intrinsics.checkExpressionValueIsNotNull(imageView1, "iv_bluetooth");
+        imageView1.setSelected(isDisabled(bluetoothAdapter) ^ true);
+      } 
       FragmentActivity fragmentActivity = getActivity();
       if (fragmentActivity != null) {
-        imageView.setSelected(EasyPermissions.hasPermissions((Context)fragmentActivity, Arrays.<String>copyOf(arrayOfString, arrayOfString.length)));
-        imageView = (ImageView)_$_findCachedViewById(R.id.iv_push);
-        Intrinsics.checkExpressionValueIsNotNull(imageView, "iv_push");
-        fragmentActivity = getActivity();
-        if (fragmentActivity != null) {
-          imageView.setSelected(NotificationManagerCompat.from((Context)fragmentActivity).areNotificationsEnabled());
-          BluetoothAdapter bluetoothAdapter = getBluetoothAdapter();
-          if (bluetoothAdapter != null) {
-            ImageView imageView1 = (ImageView)_$_findCachedViewById(R.id.iv_bluetooth);
-            Intrinsics.checkExpressionValueIsNotNull(imageView1, "iv_bluetooth");
-            imageView1.setSelected(isDisabled(bluetoothAdapter) ^ true);
-          } 
-          fragmentActivity = getActivity();
-          if (fragmentActivity != null) {
-            Object object = ((MainActivity)fragmentActivity).getSystemService("power");
-            if (object != null) {
-              object = object;
-              FragmentActivity fragmentActivity1 = getActivity();
-              if (fragmentActivity1 != null) {
-                String str = ((MainActivity)fragmentActivity1).getPackageName();
-                if (Build.VERSION.SDK_INT >= 23)
-                  if (!object.isIgnoringBatteryOptimizations(str)) {
-                    CentralLog.Companion.d(this.TAG, "Not on Battery Optimization whitelist");
-                  } else {
-                    CentralLog.Companion.d(this.TAG, "On Battery Optimization whitelist");
-                  }  
-                showSetup();
+        Object object = ((MainActivity)fragmentActivity).getSystemService("power");
+        if (object != null) {
+          object = object;
+          FragmentActivity fragmentActivity1 = getActivity();
+          if (fragmentActivity1 != null) {
+            String str = ((MainActivity)fragmentActivity1).getPackageName();
+            if (Build.VERSION.SDK_INT >= 23)
+              if (!object.isIgnoringBatteryOptimizations(str)) {
+                CentralLog.Companion.d(this.TAG, "Not on Battery Optimization whitelist");
               } else {
-                throw new TypeCastException("null cannot be cast to non-null type ca.albertahealthservices.contacttracing.MainActivity");
-              } 
-            } else {
-              throw new TypeCastException("null cannot be cast to non-null type android.os.PowerManager");
-            } 
+                CentralLog.Companion.d(this.TAG, "On Battery Optimization whitelist");
+              }  
+            showSetup();
           } else {
             throw new TypeCastException("null cannot be cast to non-null type ca.albertahealthservices.contacttracing.MainActivity");
           } 
         } else {
-          throw new TypeCastException("null cannot be cast to non-null type ca.albertahealthservices.contacttracing.MainActivity");
+          throw new TypeCastException("null cannot be cast to non-null type android.os.PowerManager");
         } 
       } else {
         throw new TypeCastException("null cannot be cast to non-null type ca.albertahealthservices.contacttracing.MainActivity");
@@ -415,6 +417,7 @@ public final class HomeFragment extends Fragment {
   }
   
   public void onViewCreated(View paramView, Bundle paramBundle) {
+    String str;
     Intrinsics.checkParameterIsNotNull(paramView, "view");
     super.onViewCreated(paramView, paramBundle);
     StreetPassRecordDatabase.Companion companion = StreetPassRecordDatabase.Companion;
@@ -425,7 +428,22 @@ public final class HomeFragment extends Fragment {
     if (liveData == null)
       Intrinsics.throwUninitializedPropertyAccessException("lastKnownScanningStarted"); 
     liveData.observe(getViewLifecycleOwner(), new HomeFragment$onViewCreated$1());
-    ((ImageView)_$_findCachedViewById(R.id.prem_info_button)).setOnClickListener(new HomeFragment$onViewCreated$2());
+    if (StringsKt.contains$default(Utils.INSTANCE.getServerURL(), "stg", false, 2, null)) {
+      str = ".S";
+    } else {
+      str = "";
+    } 
+    AppCompatTextView appCompatTextView = (AppCompatTextView)_$_findCachedViewById(R.id.tv_app_version);
+    if (appCompatTextView != null) {
+      StringBuilder stringBuilder = new StringBuilder();
+      stringBuilder.append(getString(2131820582));
+      stringBuilder.append("1.4.0");
+      stringBuilder.append(str);
+      appCompatTextView.setText(stringBuilder.toString());
+    } 
+    ImageView imageView = (ImageView)_$_findCachedViewById(R.id.prem_info_button);
+    if (imageView != null)
+      imageView.setOnClickListener(new HomeFragment$onViewCreated$2()); 
     showSetup();
     Preference preference = Preference.INSTANCE;
     FragmentActivity fragmentActivity = getActivity();
@@ -445,7 +463,7 @@ public final class HomeFragment extends Fragment {
       FragmentActivity fragmentActivity = getActivity();
       if (fragmentActivity != null) {
         if (!EasyPermissions.hasPermissions((Context)fragmentActivity, Arrays.<String>copyOf(arrayOfString, arrayOfString.length)))
-          EasyPermissions.requestPermissions(this, getString(2131820705), 456, Arrays.<String>copyOf(arrayOfString, arrayOfString.length)); 
+          EasyPermissions.requestPermissions(this, getString(2131820710), 456, Arrays.<String>copyOf(arrayOfString, arrayOfString.length)); 
       } else {
         throw new TypeCastException("null cannot be cast to non-null type ca.albertahealthservices.contacttracing.MainActivity");
       } 
@@ -455,8 +473,8 @@ public final class HomeFragment extends Fragment {
   public final void showSetup() {
     updatedPremLabels();
     LinearLayout linearLayout = (LinearLayout)_$_findCachedViewById(R.id.view_complete);
-    Intrinsics.checkExpressionValueIsNotNull(linearLayout, "view_complete");
-    ((View)linearLayout).setVisibility(0);
+    if (linearLayout != null)
+      ViewKt.setVisible((View)linearLayout, true); 
   }
   
   @Metadata(bv = {1, 0, 3}, d1 = {"\000\026\n\000\n\002\020\002\n\000\n\002\030\002\n\002\b\002\n\002\020\b\n\000\020\000\032\0020\0012\016\020\002\032\n \004*\004\030\0010\0030\0032\006\020\005\032\0020\006H\n¢\006\002\b\007"}, d2 = {"<anonymous>", "", "dialog", "Landroid/content/DialogInterface;", "kotlin.jvm.PlatformType", "id", "", "onClick"}, k = 3, mv = {1, 1, 16})
@@ -504,16 +522,16 @@ public final class HomeFragment extends Fragment {
         int i = param1Intent.getIntExtra("android.bluetooth.adapter.extra.STATE", -1);
         if (i == 10) {
           ImageView imageView = (ImageView)HomeFragment.this._$_findCachedViewById(R.id.iv_bluetooth);
-          Intrinsics.checkExpressionValueIsNotNull(imageView, "iv_bluetooth");
-          imageView.setSelected(false);
+          if (imageView != null)
+            imageView.setSelected(false); 
         } else if (i == 13) {
           ImageView imageView = (ImageView)HomeFragment.this._$_findCachedViewById(R.id.iv_bluetooth);
-          Intrinsics.checkExpressionValueIsNotNull(imageView, "iv_bluetooth");
-          imageView.setSelected(false);
+          if (imageView != null)
+            imageView.setSelected(false); 
         } else if (i == 12) {
           ImageView imageView = (ImageView)HomeFragment.this._$_findCachedViewById(R.id.iv_bluetooth);
-          Intrinsics.checkExpressionValueIsNotNull(imageView, "iv_bluetooth");
-          imageView.setSelected(true);
+          if (imageView != null)
+            imageView.setSelected(true); 
         } 
         HomeFragment.this.showSetup();
       } 
@@ -554,21 +572,24 @@ public final class HomeFragment extends Fragment {
   static final class HomeFragment$onViewCreated$1<T> implements Observer<StatusRecord> {
     public final void onChanged(StatusRecord param1StatusRecord) {
       if (param1StatusRecord != null) {
-        AppCompatTextView appCompatTextView = (AppCompatTextView)HomeFragment.this._$_findCachedViewById(R.id.tv_last_update);
-        Intrinsics.checkExpressionValueIsNotNull(appCompatTextView, "tv_last_update");
-        appCompatTextView.setVisibility(0);
-        appCompatTextView = (AppCompatTextView)HomeFragment.this._$_findCachedViewById(R.id.tv_last_update);
-        Intrinsics.checkExpressionValueIsNotNull(appCompatTextView, "tv_last_update");
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Last updated: ");
-        stringBuilder.append(Utils.INSTANCE.getTime(param1StatusRecord.getTimestamp()));
-        appCompatTextView.setText(stringBuilder.toString());
+        AppCompatTextView appCompatTextView1 = (AppCompatTextView)HomeFragment.this._$_findCachedViewById(R.id.tv_last_update);
+        if (appCompatTextView1 != null)
+          appCompatTextView1.setVisibility(0); 
+        AppCompatTextView appCompatTextView2 = (AppCompatTextView)HomeFragment.this._$_findCachedViewById(R.id.tv_last_update);
+        if (appCompatTextView2 != null) {
+          StringBuilder stringBuilder = new StringBuilder();
+          stringBuilder.append(HomeFragment.this.getString(2131820643));
+          stringBuilder.append(Utils.INSTANCE.getTime(param1StatusRecord.getTimestamp()));
+          appCompatTextView2.setText(stringBuilder.toString());
+        } 
         long l = System.currentTimeMillis();
         CentralLog.Companion.d(HomeFragment.this.TAG, String.valueOf(param1StatusRecord.getTimestamp()));
         CentralLog.Companion.d(HomeFragment.this.TAG, String.valueOf(l));
         if (l - HomeFragment.this.animationWindow >= param1StatusRecord.getTimestamp() && param1StatusRecord.getTimestamp() <= l + HomeFragment.this.animationWindow) {
           CentralLog.Companion.d(HomeFragment.this.TAG, "Start animation");
-          ((LottieAnimationView)HomeFragment.this._$_findCachedViewById(R.id.animation_view)).playAnimation();
+          LottieAnimationView lottieAnimationView = (LottieAnimationView)HomeFragment.this._$_findCachedViewById(R.id.animation_view);
+          if (lottieAnimationView != null)
+            lottieAnimationView.playAnimation(); 
         } 
       } 
     }

@@ -26,7 +26,7 @@ public final class NotificationTemplates {
       Intrinsics.checkParameterIsNotNull(param1String, "channel");
       Intent intent = new Intent(param1Context, MainActivity.class);
       PendingIntent pendingIntent = PendingIntent.getActivity(param1Context, BluetoothMonitoringService.Companion.getPENDING_ACTIVITY(), intent, 0);
-      Notification notification = (new NotificationCompat.Builder(param1Context, param1String)).setContentTitle(param1Context.getText(2131820739)).setContentText(param1Context.getText(2131820738)).setOngoing(true).setPriority(-1).setSmallIcon(2131165378).setContentIntent(pendingIntent).setTicker(param1Context.getText(2131820738)).setStyle((NotificationCompat.Style)(new NotificationCompat.BigTextStyle()).bigText(param1Context.getText(2131820738))).setWhen(System.currentTimeMillis()).setSound(null).setVibrate(null).setColor(ContextCompat.getColor(param1Context, 2131034313)).build();
+      Notification notification = (new NotificationCompat.Builder(param1Context, param1String)).setContentTitle(param1Context.getText(2131820750)).setContentText(param1Context.getText(2131820749)).setOngoing(true).setPriority(-1).setSmallIcon(2131165378).setContentIntent(pendingIntent).setTicker(param1Context.getText(2131820749)).setStyle((NotificationCompat.Style)(new NotificationCompat.BigTextStyle()).bigText(param1Context.getText(2131820749))).setWhen(System.currentTimeMillis()).setSound(null).setVibrate(null).setColor(ContextCompat.getColor(param1Context, 2131034313)).build();
       Intrinsics.checkExpressionValueIsNotNull(notification, "builder.build()");
       return notification;
     }
@@ -45,7 +45,7 @@ public final class NotificationTemplates {
       Intent intent = new Intent(param1Context, OnboardingActivity.class);
       intent.putExtra("page", 3);
       PendingIntent pendingIntent = PendingIntent.getActivity(param1Context, BluetoothMonitoringService.Companion.getPENDING_WIZARD_REQ_CODE(), intent, 0);
-      Notification notification = (new NotificationCompat.Builder(param1Context, param1String)).setContentTitle(param1Context.getText(2131820737)).setContentText(param1Context.getText(2131820736)).setOngoing(true).setPriority(-1).setSmallIcon(2131165380).setTicker(param1Context.getText(2131820736)).addAction(2131165379, param1Context.getText(2131820735), pendingIntent).setContentIntent(pendingIntent).setWhen(System.currentTimeMillis()).setSound(null).setVibrate(null).setColor(ContextCompat.getColor(param1Context, 2131034313)).build();
+      Notification notification = (new NotificationCompat.Builder(param1Context, param1String)).setContentTitle(param1Context.getText(2131820748)).setContentText(param1Context.getText(2131820747)).setOngoing(true).setPriority(-1).setSmallIcon(2131165380).setTicker(param1Context.getText(2131820747)).addAction(2131165379, param1Context.getText(2131820746), pendingIntent).setContentIntent(pendingIntent).setWhen(System.currentTimeMillis()).setSound(null).setVibrate(null).setColor(ContextCompat.getColor(param1Context, 2131034313)).build();
       Intrinsics.checkExpressionValueIsNotNull(notification, "builder.build()");
       return notification;
     }

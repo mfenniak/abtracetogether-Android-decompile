@@ -49,10 +49,14 @@ public final class VerifyCallerFragment extends Fragment {
     Intrinsics.checkParameterIsNotNull(paramView, "view");
     super.onViewCreated(paramView, paramBundle);
     AppCompatTextView appCompatTextView = (AppCompatTextView)_$_findCachedViewById(R.id.verifyCallerFragmentVerificationCode);
-    Intrinsics.checkExpressionValueIsNotNull(appCompatTextView, "verifyCallerFragmentVerificationCode");
-    appCompatTextView.setText(Preference.INSTANCE.getUUID(paramView.getContext()));
-    ((LinearLayout)_$_findCachedViewById(R.id.verifyCallerFragmentActionButton)).setOnClickListener(new VerifyCallerFragment$onViewCreated$1());
-    ((AppCompatImageView)_$_findCachedViewById(R.id.verifyCallerBackButton)).setOnClickListener(new VerifyCallerFragment$onViewCreated$2());
+    if (appCompatTextView != null)
+      appCompatTextView.setText(Preference.INSTANCE.getUUID(paramView.getContext())); 
+    LinearLayout linearLayout = (LinearLayout)_$_findCachedViewById(R.id.verifyCallerFragmentActionButton);
+    if (linearLayout != null)
+      linearLayout.setOnClickListener(new VerifyCallerFragment$onViewCreated$1()); 
+    AppCompatImageView appCompatImageView = (AppCompatImageView)_$_findCachedViewById(R.id.verifyCallerBackButton);
+    if (appCompatImageView != null)
+      appCompatImageView.setOnClickListener(new VerifyCallerFragment$onViewCreated$2()); 
   }
   
   @Metadata(bv = {1, 0, 3}, d1 = {"\000\020\n\000\n\002\020\002\n\000\n\002\030\002\n\002\b\002\020\000\032\0020\0012\016\020\002\032\n \004*\004\030\0010\0030\003H\n¢\006\002\b\005"}, d2 = {"<anonymous>", "", "it", "Landroid/view/View;", "kotlin.jvm.PlatformType", "onClick"}, k = 3, mv = {1, 1, 16})

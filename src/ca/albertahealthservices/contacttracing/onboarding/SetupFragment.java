@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import ca.albertahealthservices.contacttracing.Utils;
 import ca.albertahealthservices.contacttracing.logging.CentralLog;
 import java.util.HashMap;
 import kotlin.Metadata;
@@ -76,8 +77,11 @@ public final class SetupFragment extends OnboardingFragmentInterface {
     Intrinsics.checkParameterIsNotNull(paramView, "view");
     CentralLog.Companion.d(this.TAG, "OnButtonClick 2");
     OnboardingActivity onboardingActivity = (OnboardingActivity)getContext();
-    if (onboardingActivity != null)
-      onboardingActivity.enableBluetooth(); 
+    if (onboardingActivity != null) {
+      onboardingActivity.enableBluetooth();
+    } else {
+      Utils.INSTANCE.restartAppWithNoContext(0, "SetupFragment not attached to OnboardingActivity");
+    } 
   }
   
   public final void onButtonPressed(Uri paramUri) {

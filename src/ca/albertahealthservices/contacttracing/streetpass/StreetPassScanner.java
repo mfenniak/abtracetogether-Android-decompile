@@ -130,8 +130,8 @@ public final class StreetPassScanner {
           byte[] arrayOfByte1 = scanRecord.getManufacturerSpecificData(1023);
           if (arrayOfByte1 != null) {
             String str3 = new String(arrayOfByte1, Charsets.UTF_8);
-            connectablePeripheral = new ConnectablePeripheral(str3, integer2, i);
-            CentralLog.Companion companion1 = CentralLog.Companion;
+            ConnectablePeripheral connectablePeripheral1 = new ConnectablePeripheral(str3, integer2, i);
+            companion = CentralLog.Companion;
             String str4 = this.TAG;
             StringBuilder stringBuilder1 = new StringBuilder();
             stringBuilder1.append("Scanned: ");
@@ -139,8 +139,8 @@ public final class StreetPassScanner {
             stringBuilder1.append(" - ");
             Intrinsics.checkExpressionValueIsNotNull(bluetoothDevice, "device");
             stringBuilder1.append(bluetoothDevice.getAddress());
-            companion1.i(str4, stringBuilder1.toString());
-            Utils.INSTANCE.broadcastDeviceScanned(StreetPassScanner.this.getContext(), bluetoothDevice, connectablePeripheral);
+            companion.i(str4, stringBuilder1.toString());
+            Utils.INSTANCE.broadcastDeviceScanned(StreetPassScanner.this.getContext(), bluetoothDevice, connectablePeripheral1);
             return;
           } 
         } 
@@ -150,7 +150,7 @@ public final class StreetPassScanner {
         return;
       } 
       String str1 = new String(arrayOfByte, Charsets.UTF_8);
-      ConnectablePeripheral connectablePeripheral = new ConnectablePeripheral(str1, (Integer)connectablePeripheral, i);
+      ConnectablePeripheral connectablePeripheral = new ConnectablePeripheral(str1, (Integer)companion, i);
       CentralLog.Companion companion = CentralLog.Companion;
       String str2 = this.TAG;
       StringBuilder stringBuilder = new StringBuilder();

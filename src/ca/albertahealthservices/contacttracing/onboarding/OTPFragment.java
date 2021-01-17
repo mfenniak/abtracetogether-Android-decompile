@@ -15,7 +15,6 @@ import android.widget.TextView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.ContextCompat;
 import androidx.core.text.HtmlCompat;
-import androidx.fragment.app.FragmentActivity;
 import ca.albertahealthservices.contacttracing.Preference;
 import ca.albertahealthservices.contacttracing.R;
 import ca.albertahealthservices.contacttracing.Utils;
@@ -30,7 +29,7 @@ import kotlin.jvm.internal.Intrinsics;
 
 @Metadata(bv = {1, 0, 3}, d1 = {"\000l\n\002\030\002\n\002\030\002\n\002\b\002\n\002\020\t\n\000\n\002\020\016\n\000\n\002\020\b\n\002\b\002\n\002\030\002\n\000\n\002\020!\n\002\030\002\n\002\b\004\n\002\030\002\n\000\n\002\020\013\n\000\n\002\020\002\n\002\b\006\n\002\030\002\n\002\b\002\n\002\030\002\n\002\b\003\n\002\030\002\n\002\b\002\n\002\030\002\n\000\n\002\030\002\n\002\b\020\030\0002\0020\001:\00289B\005¢\006\002\020\002J\b\020\026\032\0020\027H\026J\020\020\030\032\0020\0062\006\020\031\032\0020\006H\002J\b\020\032\032\0020\027H\002J\b\020\033\032\0020\006H\002J\020\020\034\032\0020\0272\006\020\035\032\0020\036H\026J\020\020\037\032\0020\0272\006\020 \032\0020!H\026J\020\020\"\032\0020\0272\006\020 \032\0020!H\026J\022\020#\032\0020\0272\b\020$\032\004\030\0010%H\026J&\020&\032\004\030\0010!2\006\020'\032\0020(2\b\020)\032\004\030\0010*2\b\020$\032\004\030\0010%H\026J\b\020+\032\0020\027H\026J\b\020,\032\0020\027H\026J\020\020-\032\0020\0272\006\020.\032\0020\006H\026J\020\020/\032\0020\0272\006\0200\032\0020\006H\026J\032\0201\032\0020\0272\006\020 \032\0020!2\b\020$\032\004\030\0010%H\026J\b\0202\032\0020\027H\002J\b\0203\032\0020\027H\002J\020\0204\032\0020\0272\006\0205\032\0020\025H\026J\b\0206\032\0020\027H\002J\020\0207\032\0020\0252\006\0200\032\0020\006H\002R\016\020\003\032\0020\004XD¢\006\002\n\000R\016\020\005\032\0020\006XD¢\006\002\n\000R\016\020\007\032\0020\bX\016¢\006\002\n\000R\016\020\t\032\0020\bX\016¢\006\002\n\000R\020\020\n\032\004\030\0010\013X\016¢\006\002\n\000R\024\020\f\032\b\022\004\022\0020\0160\rX\016¢\006\002\n\000R\020\020\017\032\004\030\0010\006X\016¢\006\002\n\000R\020\020\020\032\004\030\0010\006X\016¢\006\002\n\000R\016\020\021\032\0020\006X.¢\006\002\n\000R\020\020\022\032\004\030\0010\023X\016¢\006\002\n\000R\016\020\024\032\0020\025X\016¢\006\002\n\000¨\006:"}, d2 = {"Lca/albertahealthservices/contacttracing/onboarding/OTPFragment;", "Lca/albertahealthservices/contacttracing/onboarding/OnboardingFragmentInterface;", "()V", "COUNTDOWN_DURATION", "", "TAG", "", "colorError", "", "colorText", "listener", "Lca/albertahealthservices/contacttracing/onboarding/OTPFragment$OnFragmentInteractionListener;", "otpInputs", "", "Landroid/widget/EditText;", "param1", "param2", "phoneNumber", "stopWatch", "Landroid/os/CountDownTimer;", "timerHasFinished", "", "becomesVisible", "", "buildPhoneString", "phone", "clearInputs", "getOtp", "onAttach", "context", "Landroid/content/Context;", "onBackButtonClick", "view", "Landroid/view/View;", "onButtonClick", "onCreate", "savedInstanceState", "Landroid/os/Bundle;", "onCreateView", "inflater", "Landroid/view/LayoutInflater;", "container", "Landroid/view/ViewGroup;", "onDestroy", "onDetach", "onError", "error", "onUpdatePhoneNumber", "num", "onViewCreated", "resendCodeAndStartTimer", "resetTimer", "setUserVisibleHint", "isVisibleToUser", "startTimer", "validateNumber", "OTPTextWatcher", "OnFragmentInteractionListener", "app_release"}, k = 1, mv = {1, 1, 16})
 public final class OTPFragment extends OnboardingFragmentInterface {
-  private final long COUNTDOWN_DURATION = 120L;
+  private final long COUNTDOWN_DURATION = 180L;
   
   private final String TAG = "OTPFragment";
   
@@ -83,12 +82,24 @@ public final class OTPFragment extends OnboardingFragmentInterface {
   }
   
   private final void clearInputs() {
-    ((EditText)_$_findCachedViewById(R.id.otp_et6)).setText("");
-    ((EditText)_$_findCachedViewById(R.id.otp_et5)).setText("");
-    ((EditText)_$_findCachedViewById(R.id.otp_et4)).setText("");
-    ((EditText)_$_findCachedViewById(R.id.otp_et3)).setText("");
-    ((EditText)_$_findCachedViewById(R.id.otp_et2)).setText("");
-    ((EditText)_$_findCachedViewById(R.id.otp_et1)).setText("");
+    EditText editText = (EditText)_$_findCachedViewById(R.id.otp_et6);
+    if (editText != null)
+      editText.setText(""); 
+    editText = (EditText)_$_findCachedViewById(R.id.otp_et5);
+    if (editText != null)
+      editText.setText(""); 
+    editText = (EditText)_$_findCachedViewById(R.id.otp_et4);
+    if (editText != null)
+      editText.setText(""); 
+    editText = (EditText)_$_findCachedViewById(R.id.otp_et3);
+    if (editText != null)
+      editText.setText(""); 
+    editText = (EditText)_$_findCachedViewById(R.id.otp_et2);
+    if (editText != null)
+      editText.setText(""); 
+    editText = (EditText)_$_findCachedViewById(R.id.otp_et1);
+    if (editText != null)
+      editText.setText(""); 
   }
   
   private final String getOtp() {
@@ -104,16 +115,15 @@ public final class OTPFragment extends OnboardingFragmentInterface {
   }
   
   private final void resendCodeAndStartTimer() {
-    FragmentActivity fragmentActivity = getActivity();
-    if (fragmentActivity != null) {
-      fragmentActivity = fragmentActivity;
-      clearInputs();
-      OnboardingActivity.resendCode$default((OnboardingActivity)fragmentActivity, false, 1, null);
-      resetTimer();
-      startTimer();
-      return;
+    OnboardingActivity onboardingActivity = (OnboardingActivity)getActivity();
+    clearInputs();
+    if (onboardingActivity != null) {
+      OnboardingActivity.resendCode$default(onboardingActivity, false, 1, null);
+    } else {
+      Utils.INSTANCE.restartAppWithNoContext(0, "OTPFragment not attached to OnboardingActivity");
     } 
-    throw new TypeCastException("null cannot be cast to non-null type ca.albertahealthservices.contacttracing.onboarding.OnboardingActivity");
+    resetTimer();
+    startTimer();
   }
   
   private final void resetTimer() {
@@ -129,7 +139,9 @@ public final class OTPFragment extends OnboardingFragmentInterface {
     this.stopWatch = oTPFragment$startTimer$1;
     if (oTPFragment$startTimer$1 != null)
       oTPFragment$startTimer$1.start(); 
-    ((AppCompatTextView)_$_findCachedViewById(R.id.timer)).setTextColor(this.colorText);
+    AppCompatTextView appCompatTextView = (AppCompatTextView)_$_findCachedViewById(R.id.timer);
+    if (appCompatTextView != null)
+      appCompatTextView.setTextColor(this.colorText); 
   }
   
   private final boolean validateNumber(String paramString) {
@@ -183,29 +195,26 @@ public final class OTPFragment extends OnboardingFragmentInterface {
   
   public void onBackButtonClick(View paramView) {
     Intrinsics.checkParameterIsNotNull(paramView, "view");
-    Context context = getContext();
-    if (context != null) {
-      ((OnboardingActivity)context).onBackPressed();
-      return;
+    OnboardingActivity onboardingActivity = (OnboardingActivity)getContext();
+    if (onboardingActivity != null) {
+      onboardingActivity.onBackPressed();
+    } else {
+      Utils.INSTANCE.restartAppWithNoContext(0, "OTPFragment not attached to OnboardingActivity");
     } 
-    throw new TypeCastException("null cannot be cast to non-null type ca.albertahealthservices.contacttracing.onboarding.OnboardingActivity");
   }
   
   public void onButtonClick(View paramView) {
     Intrinsics.checkParameterIsNotNull(paramView, "view");
     CentralLog.Companion.d(this.TAG, "OnButtonClick 3B");
     String str = getOtp();
-    Context context = getContext();
-    if (context != null) {
-      OnboardingActivity onboardingActivity = (OnboardingActivity)context;
-      if (this.timerHasFinished) {
-        resendCodeAndStartTimer();
-      } else {
-        onboardingActivity.validateOTP(str);
-      } 
-      return;
+    OnboardingActivity onboardingActivity = (OnboardingActivity)getContext();
+    if (this.timerHasFinished) {
+      resendCodeAndStartTimer();
+    } else if (onboardingActivity != null) {
+      onboardingActivity.validateOTP(str);
+    } else {
+      Utils.INSTANCE.restartAppWithNoContext(0, "OTPFragment not attached to OnboardingActivity");
     } 
-    throw new TypeCastException("null cannot be cast to non-null type ca.albertahealthservices.contacttracing.onboarding.OnboardingActivity");
   }
   
   public void onCreate(Bundle paramBundle) {
@@ -236,12 +245,12 @@ public final class OTPFragment extends OnboardingFragmentInterface {
   
   public void onError(String paramString) {
     Intrinsics.checkParameterIsNotNull(paramString, "error");
-    Context context = getContext();
-    if (context != null) {
-      ((OnboardingActivity)context).onBackPressed();
-      return;
+    OnboardingActivity onboardingActivity = (OnboardingActivity)getContext();
+    if (onboardingActivity != null) {
+      onboardingActivity.onBackPressed();
+    } else {
+      Utils.INSTANCE.restartAppWithNoContext(0, "OTPFragment not attached to OnboardingActivity");
     } 
-    throw new TypeCastException("null cannot be cast to non-null type ca.albertahealthservices.contacttracing.onboarding.OnboardingActivity");
   }
   
   public void onUpdatePhoneNumber(String paramString) {
@@ -253,23 +262,24 @@ public final class OTPFragment extends OnboardingFragmentInterface {
     stringBuilder.append(paramString);
     companion.d(str, stringBuilder.toString());
     AppCompatTextView appCompatTextView = (AppCompatTextView)_$_findCachedViewById(R.id.sent_to);
-    Intrinsics.checkExpressionValueIsNotNull(appCompatTextView, "sent_to");
-    appCompatTextView.setText((CharSequence)HtmlCompat.fromHtml(getString(2131820693, new Object[] { String.valueOf(buildPhoneString(paramString)) }), 0));
+    if (appCompatTextView != null)
+      appCompatTextView.setText((CharSequence)HtmlCompat.fromHtml(getString(2131820698, new Object[] { String.valueOf(buildPhoneString(paramString)) }), 0)); 
     this.phoneNumber = paramString;
   }
   
   public void onViewCreated(View paramView, Bundle paramBundle) {
     Intrinsics.checkParameterIsNotNull(paramView, "view");
     super.onViewCreated(paramView, paramBundle);
-    AppCompatTextView appCompatTextView = (AppCompatTextView)_$_findCachedViewById(R.id.sent_to);
-    Intrinsics.checkExpressionValueIsNotNull(appCompatTextView, "sent_to");
-    Preference preference = Preference.INSTANCE;
+    AppCompatTextView appCompatTextView2 = (AppCompatTextView)_$_findCachedViewById(R.id.sent_to);
+    if (appCompatTextView2 != null) {
+      Preference preference = Preference.INSTANCE;
+      Context context1 = getContext();
+      if (context1 == null)
+        Intrinsics.throwNpe(); 
+      Intrinsics.checkExpressionValueIsNotNull(context1, "context!!");
+      appCompatTextView2.setText((CharSequence)HtmlCompat.fromHtml(getString(2131820698, new Object[] { String.valueOf(buildPhoneString(preference.getPhoneNumber(context1))) }), 0));
+    } 
     Context context = getContext();
-    if (context == null)
-      Intrinsics.throwNpe(); 
-    Intrinsics.checkExpressionValueIsNotNull(context, "context!!");
-    appCompatTextView.setText((CharSequence)HtmlCompat.fromHtml(getString(2131820693, new Object[] { String.valueOf(buildPhoneString(preference.getPhoneNumber(context))) }), 0));
-    context = getContext();
     if (context == null)
       Intrinsics.throwNpe(); 
     this.colorError = ContextCompat.getColor(context, 2131034204);
@@ -277,56 +287,72 @@ public final class OTPFragment extends OnboardingFragmentInterface {
     if (context == null)
       Intrinsics.throwNpe(); 
     this.colorText = ContextCompat.getColor(context, 2131034218);
-    List<EditText> list6 = this.otpInputs;
+    List<EditText> list4 = this.otpInputs;
     EditText editText4 = (EditText)_$_findCachedViewById(R.id.otp_et1);
     Intrinsics.checkExpressionValueIsNotNull(editText4, "otp_et1");
-    list6.add(editText4);
-    List<EditText> list3 = this.otpInputs;
-    EditText editText7 = (EditText)_$_findCachedViewById(R.id.otp_et2);
-    Intrinsics.checkExpressionValueIsNotNull(editText7, "otp_et2");
-    list3.add(editText7);
-    List<EditText> list5 = this.otpInputs;
-    EditText editText3 = (EditText)_$_findCachedViewById(R.id.otp_et3);
-    Intrinsics.checkExpressionValueIsNotNull(editText3, "otp_et3");
-    list5.add(editText3);
+    list4.add(editText4);
+    list4 = this.otpInputs;
+    editText4 = (EditText)_$_findCachedViewById(R.id.otp_et2);
+    Intrinsics.checkExpressionValueIsNotNull(editText4, "otp_et2");
+    list4.add(editText4);
     List<EditText> list2 = this.otpInputs;
-    EditText editText6 = (EditText)_$_findCachedViewById(R.id.otp_et4);
-    Intrinsics.checkExpressionValueIsNotNull(editText6, "otp_et4");
+    EditText editText6 = (EditText)_$_findCachedViewById(R.id.otp_et3);
+    Intrinsics.checkExpressionValueIsNotNull(editText6, "otp_et3");
     list2.add(editText6);
-    List<EditText> list4 = this.otpInputs;
-    EditText editText2 = (EditText)_$_findCachedViewById(R.id.otp_et5);
-    Intrinsics.checkExpressionValueIsNotNull(editText2, "otp_et5");
-    list4.add(editText2);
+    List<EditText> list3 = this.otpInputs;
+    EditText editText3 = (EditText)_$_findCachedViewById(R.id.otp_et4);
+    Intrinsics.checkExpressionValueIsNotNull(editText3, "otp_et4");
+    list3.add(editText3);
     List<EditText> list1 = this.otpInputs;
-    EditText editText5 = (EditText)_$_findCachedViewById(R.id.otp_et6);
+    EditText editText5 = (EditText)_$_findCachedViewById(R.id.otp_et5);
+    Intrinsics.checkExpressionValueIsNotNull(editText5, "otp_et5");
+    list1.add(editText5);
+    list1 = this.otpInputs;
+    editText5 = (EditText)_$_findCachedViewById(R.id.otp_et6);
     Intrinsics.checkExpressionValueIsNotNull(editText5, "otp_et6");
     list1.add(editText5);
     editText5 = (EditText)_$_findCachedViewById(R.id.otp_et1);
-    EditText editText1 = (EditText)_$_findCachedViewById(R.id.otp_et1);
-    Intrinsics.checkExpressionValueIsNotNull(editText1, "otp_et1");
-    editText5.addTextChangedListener(new OTPTextWatcher((View)editText1, this.otpInputs));
-    editText1 = (EditText)_$_findCachedViewById(R.id.otp_et2);
-    editText5 = (EditText)_$_findCachedViewById(R.id.otp_et2);
-    Intrinsics.checkExpressionValueIsNotNull(editText5, "otp_et2");
-    editText1.addTextChangedListener(new OTPTextWatcher((View)editText5, this.otpInputs));
-    editText1 = (EditText)_$_findCachedViewById(R.id.otp_et3);
+    if (editText5 != null) {
+      EditText editText = (EditText)_$_findCachedViewById(R.id.otp_et1);
+      Intrinsics.checkExpressionValueIsNotNull(editText, "otp_et1");
+      editText5.addTextChangedListener(new OTPTextWatcher((View)editText, this.otpInputs));
+    } 
+    EditText editText2 = (EditText)_$_findCachedViewById(R.id.otp_et2);
+    if (editText2 != null) {
+      editText5 = (EditText)_$_findCachedViewById(R.id.otp_et2);
+      Intrinsics.checkExpressionValueIsNotNull(editText5, "otp_et2");
+      editText2.addTextChangedListener(new OTPTextWatcher((View)editText5, this.otpInputs));
+    } 
     editText5 = (EditText)_$_findCachedViewById(R.id.otp_et3);
-    Intrinsics.checkExpressionValueIsNotNull(editText5, "otp_et3");
-    editText1.addTextChangedListener(new OTPTextWatcher((View)editText5, this.otpInputs));
-    editText5 = (EditText)_$_findCachedViewById(R.id.otp_et4);
-    editText1 = (EditText)_$_findCachedViewById(R.id.otp_et4);
-    Intrinsics.checkExpressionValueIsNotNull(editText1, "otp_et4");
-    editText5.addTextChangedListener(new OTPTextWatcher((View)editText1, this.otpInputs));
-    editText1 = (EditText)_$_findCachedViewById(R.id.otp_et5);
-    editText5 = (EditText)_$_findCachedViewById(R.id.otp_et5);
-    Intrinsics.checkExpressionValueIsNotNull(editText5, "otp_et5");
-    editText1.addTextChangedListener(new OTPTextWatcher((View)editText5, this.otpInputs));
-    editText5 = (EditText)_$_findCachedViewById(R.id.otp_et6);
-    editText1 = (EditText)_$_findCachedViewById(R.id.otp_et6);
-    Intrinsics.checkExpressionValueIsNotNull(editText1, "otp_et6");
-    editText5.addTextChangedListener(new OTPTextWatcher((View)editText1, this.otpInputs));
-    ((AppCompatTextView)_$_findCachedViewById(R.id.resendCode)).setOnClickListener(new OTPFragment$onViewCreated$1());
-    ((EditText)_$_findCachedViewById(R.id.otp_et6)).setOnEditorActionListener(new OTPFragment$onViewCreated$2(paramView));
+    if (editText5 != null) {
+      editText2 = (EditText)_$_findCachedViewById(R.id.otp_et3);
+      Intrinsics.checkExpressionValueIsNotNull(editText2, "otp_et3");
+      editText5.addTextChangedListener(new OTPTextWatcher((View)editText2, this.otpInputs));
+    } 
+    editText2 = (EditText)_$_findCachedViewById(R.id.otp_et4);
+    if (editText2 != null) {
+      editText5 = (EditText)_$_findCachedViewById(R.id.otp_et4);
+      Intrinsics.checkExpressionValueIsNotNull(editText5, "otp_et4");
+      editText2.addTextChangedListener(new OTPTextWatcher((View)editText5, this.otpInputs));
+    } 
+    editText2 = (EditText)_$_findCachedViewById(R.id.otp_et5);
+    if (editText2 != null) {
+      editText5 = (EditText)_$_findCachedViewById(R.id.otp_et5);
+      Intrinsics.checkExpressionValueIsNotNull(editText5, "otp_et5");
+      editText2.addTextChangedListener(new OTPTextWatcher((View)editText5, this.otpInputs));
+    } 
+    editText2 = (EditText)_$_findCachedViewById(R.id.otp_et6);
+    if (editText2 != null) {
+      editText5 = (EditText)_$_findCachedViewById(R.id.otp_et6);
+      Intrinsics.checkExpressionValueIsNotNull(editText5, "otp_et6");
+      editText2.addTextChangedListener(new OTPTextWatcher((View)editText5, this.otpInputs));
+    } 
+    AppCompatTextView appCompatTextView1 = (AppCompatTextView)_$_findCachedViewById(R.id.resendCode);
+    if (appCompatTextView1 != null)
+      appCompatTextView1.setOnClickListener(new OTPFragment$onViewCreated$1()); 
+    EditText editText1 = (EditText)_$_findCachedViewById(R.id.otp_et6);
+    if (editText1 != null)
+      editText1.setOnEditorActionListener(new OTPFragment$onViewCreated$2(paramView)); 
   }
   
   public void setUserVisibleHint(boolean paramBoolean) {
@@ -362,18 +388,19 @@ public final class OTPFragment extends OnboardingFragmentInterface {
         default:
           return;
         case 2131296511:
+          bool5 = bool4;
           if (str.length() == 0)
-            bool4 = true; 
-          if (bool4)
+            bool5 = true; 
+          if (bool5)
             ((EditText)this.inputs.get(4)).requestFocus(); 
         case 2131296510:
           if (str.length() == 1) {
             str = (String)this.inputs.get(5);
           } else {
-            bool4 = bool1;
+            bool5 = bool1;
             if (str.length() == 0)
-              bool4 = true; 
-            if (bool4) {
+              bool5 = true; 
+            if (bool5) {
               str = (String)this.inputs.get(3);
             } else {
             
@@ -384,10 +411,10 @@ public final class OTPFragment extends OnboardingFragmentInterface {
           if (str.length() == 1) {
             str = (String)this.inputs.get(4);
           } else {
-            bool4 = bool2;
+            bool5 = bool2;
             if (str.length() == 0)
-              bool4 = true; 
-            if (bool4) {
+              bool5 = true; 
+            if (bool5) {
               str = (String)this.inputs.get(2);
             } else {
             
@@ -398,10 +425,10 @@ public final class OTPFragment extends OnboardingFragmentInterface {
           if (str.length() == 1) {
             str = (String)this.inputs.get(3);
           } else {
-            bool4 = bool3;
+            bool5 = bool3;
             if (str.length() == 0)
-              bool4 = true; 
-            if (bool4) {
+              bool5 = true; 
+            if (bool5) {
               str = (String)this.inputs.get(1);
             } else {
             
@@ -412,12 +439,9 @@ public final class OTPFragment extends OnboardingFragmentInterface {
           if (str.length() == 1) {
             str = (String)this.inputs.get(2);
           } else {
-            if (str.length() == 0) {
-              bool4 = bool5;
-            } else {
-              bool4 = false;
-            } 
-            if (bool4) {
+            if (str.length() != 0)
+              bool5 = false; 
+            if (bool5) {
               str = (String)this.inputs.get(0);
             } else {
             
@@ -449,15 +473,15 @@ public final class OTPFragment extends OnboardingFragmentInterface {
         utils.hideKeyboardFrom(context, this.view);
         OTPFragment.this.enableButton();
         OTPFragment oTPFragment1 = OTPFragment.this;
-        String str = oTPFragment1.getString(2131820751);
+        String str = oTPFragment1.getString(2131820762);
         Intrinsics.checkExpressionValueIsNotNull(str, "getString(R.string.submit_button)");
         oTPFragment1.setButtonText(str);
       } else {
         OTPFragment.this.disableButton();
-        oTPFragment = OTPFragment.this;
-        String str = oTPFragment.getString(2131820683);
+        OTPFragment oTPFragment1 = OTPFragment.this;
+        String str = oTPFragment1.getString(2131820687);
         Intrinsics.checkExpressionValueIsNotNull(str, "getString(R.string.next_button)");
-        oTPFragment.setButtonText(str);
+        oTPFragment1.setButtonText(str);
       } 
     }
   }
@@ -480,24 +504,20 @@ public final class OTPFragment extends OnboardingFragmentInterface {
     OTPFragment$onViewCreated$2(View param1View) {}
     
     public final boolean onEditorAction(TextView param1TextView, int param1Int, KeyEvent param1KeyEvent) {
-      boolean bool;
       if (param1Int == 2) {
         Utils utils = Utils.INSTANCE;
         Context context = this.$view.getContext();
         Intrinsics.checkExpressionValueIsNotNull(context, "view.context");
         utils.hideKeyboardFrom(context, this.$view);
         String str = OTPFragment.this.getOtp();
-        context = OTPFragment.this.getContext();
-        if (context != null) {
-          ((OnboardingActivity)context).validateOTP(str);
-          bool = true;
+        OnboardingActivity onboardingActivity = (OnboardingActivity)OTPFragment.this.getContext();
+        if (onboardingActivity != null) {
+          onboardingActivity.validateOTP(str);
         } else {
-          throw new TypeCastException("null cannot be cast to non-null type ca.albertahealthservices.contacttracing.onboarding.OnboardingActivity");
+          Utils.INSTANCE.restartAppWithNoContext(0, "OTPFragment not attached to OnboardingActivity");
         } 
-      } else {
-        bool = false;
       } 
-      return bool;
+      return false;
     }
   }
   
@@ -510,10 +530,12 @@ public final class OTPFragment extends OnboardingFragmentInterface {
     public void onFinish() {
       AppCompatTextView appCompatTextView = (AppCompatTextView)OTPFragment.this._$_findCachedViewById(R.id.timer);
       if (appCompatTextView != null)
-        appCompatTextView.setText(OTPFragment.this.getString(2131820692)); 
-      ((AppCompatTextView)OTPFragment.this._$_findCachedViewById(R.id.timer)).setTextColor(OTPFragment.this.colorError);
+        appCompatTextView.setText(OTPFragment.this.getString(2131820697)); 
+      appCompatTextView = (AppCompatTextView)OTPFragment.this._$_findCachedViewById(R.id.timer);
+      if (appCompatTextView != null)
+        appCompatTextView.setTextColor(OTPFragment.this.colorError); 
       OTPFragment oTPFragment = OTPFragment.this;
-      String str = oTPFragment.getString(2131820728);
+      String str = oTPFragment.getString(2131820738);
       Intrinsics.checkExpressionValueIsNotNull(str, "getString(R.string.resend_button)");
       oTPFragment.setButtonText(str);
       OTPFragment.this.enableButton();
@@ -542,7 +564,7 @@ public final class OTPFragment extends OnboardingFragmentInterface {
         stringBuilder.append(':');
         stringBuilder.append(str);
         stringBuilder.append("</b>");
-        appCompatTextView.setText((CharSequence)HtmlCompat.fromHtml(oTPFragment.getString(2131820691, new Object[] { stringBuilder.toString() }), 0));
+        appCompatTextView.setText((CharSequence)HtmlCompat.fromHtml(oTPFragment.getString(2131820696, new Object[] { stringBuilder.toString() }), 0));
       } 
     }
   }

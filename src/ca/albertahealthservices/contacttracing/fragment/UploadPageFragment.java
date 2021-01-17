@@ -6,14 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import ca.albertahealthservices.contacttracing.MainActivity;
 import ca.albertahealthservices.contacttracing.R;
+import ca.albertahealthservices.contacttracing.Utils;
 import java.util.HashMap;
 import kotlin.Metadata;
-import kotlin.TypeCastException;
 import kotlin.jvm.internal.Intrinsics;
 
 @Metadata(bv = {1, 0, 3}, d1 = {"\000.\n\002\030\002\n\002\030\002\n\002\b\002\n\002\020\002\n\002\b\004\n\002\030\002\n\000\n\002\030\002\n\000\n\002\030\002\n\000\n\002\030\002\n\002\b\006\030\0002\0020\001B\005¢\006\002\020\002J\006\020\003\032\0020\004J\006\020\005\032\0020\004J\006\020\006\032\0020\004J\006\020\007\032\0020\004J&\020\b\032\004\030\0010\t2\006\020\n\032\0020\0132\b\020\f\032\004\030\0010\r2\b\020\016\032\004\030\0010\017H\026J\032\020\020\032\0020\0042\006\020\021\032\0020\t2\b\020\016\032\004\030\0010\017H\026J\006\020\022\032\0020\004J\006\020\023\032\0020\004J\006\020\024\032\0020\004¨\006\025"}, d2 = {"Lca/albertahealthservices/contacttracing/fragment/UploadPageFragment;", "Landroidx/fragment/app/Fragment;", "()V", "goBackToHome", "", "navigateToOTCFragment", "navigateToUploadComplete", "navigateToUploadPin", "onCreateView", "Landroid/view/View;", "inflater", "Landroid/view/LayoutInflater;", "container", "Landroid/view/ViewGroup;", "savedInstanceState", "Landroid/os/Bundle;", "onViewCreated", "view", "popStack", "turnOffLoadingProgress", "turnOnLoadingProgress", "app_release"}, k = 1, mv = {1, 1, 16})
@@ -42,26 +41,25 @@ public final class UploadPageFragment extends Fragment {
   }
   
   public final void goBackToHome() {
-    FragmentActivity fragmentActivity = getActivity();
-    if (fragmentActivity != null) {
-      ((MainActivity)fragmentActivity).goToHome();
-      return;
+    MainActivity mainActivity = (MainActivity)getActivity();
+    if (mainActivity != null) {
+      mainActivity.goToHome();
+    } else {
+      Utils.INSTANCE.restartAppWithNoContext(0, "UploadPageFragment not attached to MainActivity");
     } 
-    throw new TypeCastException("null cannot be cast to non-null type ca.albertahealthservices.contacttracing.MainActivity");
   }
   
   public final void navigateToOTCFragment() {
-    FragmentActivity fragmentActivity = getActivity();
-    if (fragmentActivity != null) {
-      MainActivity mainActivity = (MainActivity)fragmentActivity;
+    MainActivity mainActivity = (MainActivity)getActivity();
+    if (mainActivity != null) {
       int i = mainActivity.getLAYOUT_MAIN_ID();
       ForUseByOTCFragment forUseByOTCFragment = new ForUseByOTCFragment();
       String str = ForUseByOTCFragment.class.getName();
       Intrinsics.checkExpressionValueIsNotNull(str, "ForUseByOTCFragment::class.java.name");
       mainActivity.openFragment(i, forUseByOTCFragment, str, 0);
-      return;
+    } else {
+      Utils.INSTANCE.restartAppWithNoContext(0, "UploadPageFragment not attached to MainActivity");
     } 
-    throw new TypeCastException("null cannot be cast to non-null type ca.albertahealthservices.contacttracing.MainActivity");
   }
   
   public final void navigateToUploadComplete() {

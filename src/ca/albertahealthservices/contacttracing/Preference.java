@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import kotlin.Metadata;
 import kotlin.jvm.internal.Intrinsics;
 
-@Metadata(bv = {1, 0, 3}, d1 = {"\000>\n\002\030\002\n\002\020\000\n\002\b\002\n\002\020\016\n\002\b\013\n\002\030\002\n\000\n\002\020\b\n\000\n\002\020\t\n\002\b\006\n\002\020\013\n\000\n\002\020\002\n\002\b\016\n\002\030\002\n\002\b\002\bÆ\002\030\0002\0020\001B\007\b\002¢\006\002\020\002J\016\020\016\032\0020\0042\006\020\017\032\0020\020J\016\020\021\032\0020\0222\006\020\017\032\0020\020J\016\020\023\032\0020\0242\006\020\017\032\0020\020J\016\020\025\032\0020\0242\006\020\017\032\0020\020J\016\020\026\032\0020\0242\006\020\017\032\0020\020J\016\020\027\032\0020\0242\006\020\017\032\0020\020J\016\020\030\032\0020\0042\006\020\017\032\0020\020J\020\020\031\032\0020\0042\b\020\017\032\004\030\0010\020J\016\020\032\032\0020\0332\006\020\017\032\0020\020J\026\020\034\032\0020\0352\006\020\017\032\0020\0202\006\020\036\032\0020\004J\026\020\037\032\0020\0352\006\020\017\032\0020\0202\006\020 \032\0020\022J\026\020!\032\0020\0352\006\020\017\032\0020\0202\006\020\"\032\0020\024J\026\020#\032\0020\0352\006\020\017\032\0020\0202\006\020 \032\0020\033J\026\020$\032\0020\0352\006\020\017\032\0020\0202\006\020\"\032\0020\024J\026\020%\032\0020\0352\006\020\017\032\0020\0202\006\020&\032\0020\024J\026\020'\032\0020\0352\006\020\017\032\0020\0202\006\020\"\032\0020\024J\026\020(\032\0020\0352\006\020\017\032\0020\0202\006\020 \032\0020\004J\026\020)\032\0020\0352\006\020\017\032\0020\0202\006\020 \032\0020\004J\026\020*\032\0020\0352\006\020\017\032\0020\0202\006\020+\032\0020,J\026\020-\032\0020\0352\006\020\017\032\0020\0202\006\020+\032\0020,R\016\020\003\032\0020\004XT¢\006\002\n\000R\016\020\005\032\0020\004XT¢\006\002\n\000R\016\020\006\032\0020\004XT¢\006\002\n\000R\016\020\007\032\0020\004XT¢\006\002\n\000R\016\020\b\032\0020\004XT¢\006\002\n\000R\016\020\t\032\0020\004XT¢\006\002\n\000R\016\020\n\032\0020\004XT¢\006\002\n\000R\016\020\013\032\0020\004XT¢\006\002\n\000R\016\020\f\032\0020\004XT¢\006\002\n\000R\016\020\r\032\0020\004XT¢\006\002\n\000¨\006."}, d2 = {"Lca/albertahealthservices/contacttracing/Preference;", "", "()V", "ANNOUNCEMENT", "", "CHECK_POINT", "EXPIRY_TIME", "IS_ONBOARDED", "LAST_FETCH_TIME", "LAST_PURGE_TIME", "NEXT_FETCH_TIME", "PHONE_NUMBER", "PREF_ID", "UUID", "getAnnouncement", "context", "Landroid/content/Context;", "getCheckpoint", "", "getExpiryTimeInMillis", "", "getLastFetchTimeInMillis", "getLastPurgeTime", "getNextFetchTimeInMillis", "getPhoneNumber", "getUUID", "isOnBoarded", "", "putAnnouncement", "", "announcement", "putCheckpoint", "value", "putExpiryTimeInMillis", "time", "putIsOnBoarded", "putLastFetchTimeInMillis", "putLastPurgeTime", "lastPurgeTime", "putNextFetchTimeInMillis", "putPhoneNumber", "putUUID", "registerListener", "listener", "Landroid/content/SharedPreferences$OnSharedPreferenceChangeListener;", "unregisterListener", "app_release"}, k = 1, mv = {1, 1, 16})
+@Metadata(bv = {1, 0, 3}, d1 = {"\000>\n\002\030\002\n\002\020\000\n\002\b\002\n\002\020\016\n\002\b\f\n\002\030\002\n\000\n\002\020\b\n\000\n\002\020\t\n\002\b\007\n\002\020\013\n\000\n\002\020\002\n\002\b\017\n\002\030\002\n\002\b\002\bÆ\002\030\0002\0020\001B\007\b\002¢\006\002\020\002J\016\020\017\032\0020\0042\006\020\020\032\0020\021J\016\020\022\032\0020\0232\006\020\020\032\0020\021J\016\020\024\032\0020\0252\006\020\020\032\0020\021J\016\020\026\032\0020\0252\006\020\020\032\0020\021J\016\020\027\032\0020\0252\006\020\020\032\0020\021J\016\020\030\032\0020\0252\006\020\020\032\0020\021J\016\020\031\032\0020\0042\006\020\020\032\0020\021J\020\020\032\032\0020\0042\b\020\020\032\004\030\0010\021J\016\020\033\032\0020\0232\006\020\020\032\0020\021J\016\020\034\032\0020\0352\006\020\020\032\0020\021J\026\020\036\032\0020\0372\006\020\020\032\0020\0212\006\020 \032\0020\004J\026\020!\032\0020\0372\006\020\020\032\0020\0212\006\020\"\032\0020\023J\026\020#\032\0020\0372\006\020\020\032\0020\0212\006\020$\032\0020\025J\026\020%\032\0020\0372\006\020\020\032\0020\0212\006\020\"\032\0020\035J\026\020&\032\0020\0372\006\020\020\032\0020\0212\006\020$\032\0020\025J\026\020'\032\0020\0372\006\020\020\032\0020\0212\006\020(\032\0020\025J\026\020)\032\0020\0372\006\020\020\032\0020\0212\006\020$\032\0020\025J\026\020*\032\0020\0372\006\020\020\032\0020\0212\006\020\"\032\0020\004J\026\020+\032\0020\0372\006\020\020\032\0020\0212\006\020\"\032\0020\004J\026\020,\032\0020\0372\006\020\020\032\0020\0212\006\020\"\032\0020\023J\026\020-\032\0020\0372\006\020\020\032\0020\0212\006\020.\032\0020/J\026\0200\032\0020\0372\006\020\020\032\0020\0212\006\020.\032\0020/R\016\020\003\032\0020\004XT¢\006\002\n\000R\016\020\005\032\0020\004XT¢\006\002\n\000R\016\020\006\032\0020\004XT¢\006\002\n\000R\016\020\007\032\0020\004XT¢\006\002\n\000R\016\020\b\032\0020\004XT¢\006\002\n\000R\016\020\t\032\0020\004XT¢\006\002\n\000R\016\020\n\032\0020\004XT¢\006\002\n\000R\016\020\013\032\0020\004XT¢\006\002\n\000R\016\020\f\032\0020\004XT¢\006\002\n\000R\016\020\r\032\0020\004XT¢\006\002\n\000R\016\020\016\032\0020\004XT¢\006\002\n\000¨\0061"}, d2 = {"Lca/albertahealthservices/contacttracing/Preference;", "", "()V", "ANNOUNCEMENT", "", "CHECK_POINT", "EXPIRY_TIME", "IS_ONBOARDED", "LAST_FETCH_TIME", "LAST_PURGE_TIME", "NEXT_FETCH_TIME", "PHONE_NUMBER", "PREF_ID", "UUID", "UUID_RETRY_ATTEMPTS", "getAnnouncement", "context", "Landroid/content/Context;", "getCheckpoint", "", "getExpiryTimeInMillis", "", "getLastFetchTimeInMillis", "getLastPurgeTime", "getNextFetchTimeInMillis", "getPhoneNumber", "getUUID", "getUUIDRetryAttempts", "isOnBoarded", "", "putAnnouncement", "", "announcement", "putCheckpoint", "value", "putExpiryTimeInMillis", "time", "putIsOnBoarded", "putLastFetchTimeInMillis", "putLastPurgeTime", "lastPurgeTime", "putNextFetchTimeInMillis", "putPhoneNumber", "putUUID", "putUUIDRetryAttempts", "registerListener", "listener", "Landroid/content/SharedPreferences$OnSharedPreferenceChangeListener;", "unregisterListener", "app_release"}, k = 1, mv = {1, 1, 16})
 public final class Preference {
   private static final String ANNOUNCEMENT = "ANNOUNCEMENT";
   
@@ -28,6 +28,8 @@ public final class Preference {
   private static final String PREF_ID = "Tracer_pref";
   
   private static final String UUID = "UUID";
+  
+  private static final String UUID_RETRY_ATTEMPTS = "UUID_RETRY_ATTEMPTS";
   
   public final String getAnnouncement(Context paramContext) {
     Intrinsics.checkParameterIsNotNull(paramContext, "context");
@@ -90,6 +92,11 @@ public final class Preference {
     return str2;
   }
   
+  public final int getUUIDRetryAttempts(Context paramContext) {
+    Intrinsics.checkParameterIsNotNull(paramContext, "context");
+    return paramContext.getSharedPreferences("Tracer_pref", 0).getInt("UUID_RETRY_ATTEMPTS", 0);
+  }
+  
   public final boolean isOnBoarded(Context paramContext) {
     Intrinsics.checkParameterIsNotNull(paramContext, "context");
     return paramContext.getSharedPreferences("Tracer_pref", 0).getBoolean("IS_ONBOARDED", false);
@@ -141,6 +148,11 @@ public final class Preference {
     Intrinsics.checkParameterIsNotNull(paramContext, "context");
     Intrinsics.checkParameterIsNotNull(paramString, "value");
     paramContext.getSharedPreferences("Tracer_pref", 0).edit().putString("UUID", paramString).apply();
+  }
+  
+  public final void putUUIDRetryAttempts(Context paramContext, int paramInt) {
+    Intrinsics.checkParameterIsNotNull(paramContext, "context");
+    paramContext.getSharedPreferences("Tracer_pref", 0).edit().putInt("UUID_RETRY_ATTEMPTS", paramInt).apply();
   }
   
   public final void registerListener(Context paramContext, SharedPreferences.OnSharedPreferenceChangeListener paramOnSharedPreferenceChangeListener) {

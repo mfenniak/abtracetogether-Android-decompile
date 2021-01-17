@@ -45,16 +45,16 @@ public final class PeekActivity extends AppCompatActivity {
     setContentView(2131492899);
     Context context = (Context)this;
     RecordListAdapter recordListAdapter = new RecordListAdapter(context);
-    RecyclerView recyclerView = (RecyclerView)_$_findCachedViewById(R.id.recyclerview);
-    Intrinsics.checkExpressionValueIsNotNull(recyclerView, "recyclerview");
-    recyclerView.setAdapter(recordListAdapter);
+    RecyclerView recyclerView2 = (RecyclerView)_$_findCachedViewById(R.id.recyclerview);
+    Intrinsics.checkExpressionValueIsNotNull(recyclerView2, "recyclerview");
+    recyclerView2.setAdapter(recordListAdapter);
     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
-    recyclerView = (RecyclerView)_$_findCachedViewById(R.id.recyclerview);
-    Intrinsics.checkExpressionValueIsNotNull(recyclerView, "recyclerview");
-    recyclerView.setLayoutManager((RecyclerView.LayoutManager)linearLayoutManager);
-    recyclerView = (RecyclerView)_$_findCachedViewById(R.id.recyclerview);
-    Intrinsics.checkExpressionValueIsNotNull(recyclerView, "recyclerview");
-    DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), linearLayoutManager.getOrientation());
+    RecyclerView recyclerView1 = (RecyclerView)_$_findCachedViewById(R.id.recyclerview);
+    Intrinsics.checkExpressionValueIsNotNull(recyclerView1, "recyclerview");
+    recyclerView1.setLayoutManager((RecyclerView.LayoutManager)linearLayoutManager);
+    recyclerView1 = (RecyclerView)_$_findCachedViewById(R.id.recyclerview);
+    Intrinsics.checkExpressionValueIsNotNull(recyclerView1, "recyclerview");
+    DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView1.getContext(), linearLayoutManager.getOrientation());
     ((RecyclerView)_$_findCachedViewById(R.id.recyclerview)).addItemDecoration((RecyclerView.ItemDecoration)dividerItemDecoration);
     ViewModel viewModel = (new ViewModelProvider((ViewModelStoreOwner)this)).get(RecordViewModel.class);
     Intrinsics.checkExpressionValueIsNotNull(viewModel, "ViewModelProvider(this).…ordViewModel::class.java)");
@@ -63,39 +63,52 @@ public final class PeekActivity extends AppCompatActivity {
     if (recordViewModel == null)
       Intrinsics.throwUninitializedPropertyAccessException("viewModel"); 
     recordViewModel.getAllRecords().observe((LifecycleOwner)this, new PeekActivity$newPeek$1(recordListAdapter));
-    ((FloatingActionButton)_$_findCachedViewById(R.id.expand)).setOnClickListener(new PeekActivity$newPeek$2(recordListAdapter));
-    ((FloatingActionButton)_$_findCachedViewById(R.id.collapse)).setOnClickListener(new PeekActivity$newPeek$3(recordListAdapter));
-    ((FloatingActionButton)_$_findCachedViewById(R.id.start)).setOnClickListener(new PeekActivity$newPeek$4());
-    ((FloatingActionButton)_$_findCachedViewById(R.id.stop)).setOnClickListener(new PeekActivity$newPeek$5());
-    ((FloatingActionButton)_$_findCachedViewById(R.id.delete)).setOnClickListener(new PeekActivity$newPeek$6());
-    ((FloatingActionButton)_$_findCachedViewById(R.id.plot)).setOnClickListener(new PeekActivity$newPeek$7());
+    FloatingActionButton floatingActionButton3 = (FloatingActionButton)_$_findCachedViewById(R.id.expand);
+    if (floatingActionButton3 != null)
+      floatingActionButton3.setOnClickListener(new PeekActivity$newPeek$2(recordListAdapter)); 
+    floatingActionButton3 = (FloatingActionButton)_$_findCachedViewById(R.id.collapse);
+    if (floatingActionButton3 != null)
+      floatingActionButton3.setOnClickListener(new PeekActivity$newPeek$3(recordListAdapter)); 
+    FloatingActionButton floatingActionButton2 = (FloatingActionButton)_$_findCachedViewById(R.id.start);
+    if (floatingActionButton2 != null)
+      floatingActionButton2.setOnClickListener(new PeekActivity$newPeek$4()); 
+    floatingActionButton2 = (FloatingActionButton)_$_findCachedViewById(R.id.stop);
+    if (floatingActionButton2 != null)
+      floatingActionButton2.setOnClickListener(new PeekActivity$newPeek$5()); 
+    floatingActionButton2 = (FloatingActionButton)_$_findCachedViewById(R.id.delete);
+    if (floatingActionButton2 != null)
+      floatingActionButton2.setOnClickListener(new PeekActivity$newPeek$6()); 
+    floatingActionButton2 = (FloatingActionButton)_$_findCachedViewById(R.id.plot);
+    if (floatingActionButton2 != null)
+      floatingActionButton2.setOnClickListener(new PeekActivity$newPeek$7()); 
     String str = Preference.INSTANCE.getUUID(getApplicationContext());
     TextView textView = (TextView)_$_findCachedViewById(R.id.info);
-    Intrinsics.checkExpressionValueIsNotNull(textView, "info");
-    StringBuilder stringBuilder = new StringBuilder();
-    stringBuilder.append("UID: ");
-    int i = str.length();
-    if (str != null) {
-      str = str.substring(i - 4);
-      Intrinsics.checkExpressionValueIsNotNull(str, "(this as java.lang.String).substring(startIndex)");
-      stringBuilder.append(str);
-      stringBuilder.append("   SSID: ");
-      str = "70f34cb2-8882-11ea-bc55-0242ac130003".substring(32);
-      Intrinsics.checkExpressionValueIsNotNull(str, "(this as java.lang.String).substring(startIndex)");
-      stringBuilder.append(str);
-      textView.setText(stringBuilder.toString());
-      FloatingActionButton floatingActionButton = (FloatingActionButton)_$_findCachedViewById(R.id.start);
-      Intrinsics.checkExpressionValueIsNotNull(floatingActionButton, "start");
-      floatingActionButton.setVisibility(8);
-      floatingActionButton = (FloatingActionButton)_$_findCachedViewById(R.id.stop);
-      Intrinsics.checkExpressionValueIsNotNull(floatingActionButton, "stop");
-      floatingActionButton.setVisibility(8);
-      floatingActionButton = (FloatingActionButton)_$_findCachedViewById(R.id.delete);
-      Intrinsics.checkExpressionValueIsNotNull(floatingActionButton, "delete");
-      floatingActionButton.setVisibility(8);
-      return;
+    if (textView != null) {
+      StringBuilder stringBuilder = new StringBuilder();
+      stringBuilder.append("UID: ");
+      int i = str.length();
+      if (str != null) {
+        str = str.substring(i - 4);
+        Intrinsics.checkExpressionValueIsNotNull(str, "(this as java.lang.String).substring(startIndex)");
+        stringBuilder.append(str);
+        stringBuilder.append("   SSID: ");
+        str = "70f34cb2-8882-11ea-bc55-0242ac130003".substring(32);
+        Intrinsics.checkExpressionValueIsNotNull(str, "(this as java.lang.String).substring(startIndex)");
+        stringBuilder.append(str);
+        textView.setText(stringBuilder.toString());
+      } else {
+        throw new TypeCastException("null cannot be cast to non-null type java.lang.String");
+      } 
     } 
-    throw new TypeCastException("null cannot be cast to non-null type java.lang.String");
+    FloatingActionButton floatingActionButton1 = (FloatingActionButton)_$_findCachedViewById(R.id.start);
+    if (floatingActionButton1 != null)
+      floatingActionButton1.setVisibility(8); 
+    floatingActionButton1 = (FloatingActionButton)_$_findCachedViewById(R.id.stop);
+    if (floatingActionButton1 != null)
+      floatingActionButton1.setVisibility(8); 
+    floatingActionButton1 = (FloatingActionButton)_$_findCachedViewById(R.id.delete);
+    if (floatingActionButton1 != null)
+      floatingActionButton1.setVisibility(8); 
   }
   
   private final int nextTimePeriod() {
@@ -201,7 +214,7 @@ public final class PeekActivity extends AppCompatActivity {
       Intrinsics.checkExpressionValueIsNotNull(param1View, "view");
       param1View.setEnabled(false);
       AlertDialog.Builder builder = new AlertDialog.Builder((Context)PeekActivity.this);
-      builder.setTitle(2131820701).setCancelable(false).setMessage(2131820606).setPositiveButton(2131820605, new DialogInterface.OnClickListener(param1View) {
+      builder.setTitle(2131820706).setCancelable(false).setMessage(2131820607).setPositiveButton(2131820606, new DialogInterface.OnClickListener(param1View) {
             public final void onClick(DialogInterface param1DialogInterface, int param1Int) {
               Observable.create(new ObservableOnSubscribe<T>() {
                     public final void subscribe(ObservableEmitter<Boolean> param2ObservableEmitter) {
@@ -223,7 +236,7 @@ public final class PeekActivity extends AppCompatActivity {
                     }
                   });
             }
-          }).setNegativeButton(2131820685, new DialogInterface.OnClickListener(param1View) {
+          }).setNegativeButton(2131820690, new DialogInterface.OnClickListener(param1View) {
             public final void onClick(DialogInterface param1DialogInterface, int param1Int) {
               View view = this.$view;
               Intrinsics.checkExpressionValueIsNotNull(view, "view");

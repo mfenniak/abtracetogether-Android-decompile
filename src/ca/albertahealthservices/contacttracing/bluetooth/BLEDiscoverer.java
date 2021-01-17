@@ -85,12 +85,12 @@ public final class BLEDiscoverer {
     try {
       this.localBroadcastManager.unregisterReceiver(this.mDiscoveryReceiver);
     } finally {
-      bluetoothAdapter = null;
+      Exception exception = null;
       CentralLog.Companion companion = CentralLog.Companion;
       String str = this.TAG;
       StringBuilder stringBuilder = new StringBuilder();
       stringBuilder.append("Already unregistered workReceiver? ");
-      stringBuilder.append(bluetoothAdapter.getMessage());
+      stringBuilder.append(exception.getMessage());
     } 
   }
   
@@ -153,12 +153,12 @@ public final class BLEDiscoverer {
               stringBuilder.append(i);
               companion.i(str1, stringBuilder.toString());
               if (bluetoothDevice.getUuids() == null) {
-                CentralLog.Companion companion1 = CentralLog.Companion;
-                String str2 = BLEDiscoverer.this.TAG;
-                StringBuilder stringBuilder1 = new StringBuilder();
-                stringBuilder1.append("Nope. No uuids cached for address: ");
-                stringBuilder1.append(bluetoothDevice.getAddress());
-                companion1.w(str2, stringBuilder1.toString());
+                companion = CentralLog.Companion;
+                str1 = BLEDiscoverer.this.TAG;
+                stringBuilder = new StringBuilder();
+                stringBuilder.append("Nope. No uuids cached for address: ");
+                stringBuilder.append(bluetoothDevice.getAddress());
+                companion.w(str1, stringBuilder.toString());
               } 
             } 
           } else if (bluetoothDevice.equals("android.bluetooth.adapter.action.DISCOVERY_STARTED")) {

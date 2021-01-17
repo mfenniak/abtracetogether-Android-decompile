@@ -103,14 +103,14 @@ public final class StreetPassRecordDatabase_Impl extends StreetPassRecordDatabas
             hashMap2.put("modelC", new TableInfo.Column("modelC", "TEXT", true, 0, null, 1));
             hashMap2.put("rssi", new TableInfo.Column("rssi", "INTEGER", true, 0, null, 1));
             hashMap2.put("txPower", new TableInfo.Column("txPower", "INTEGER", false, 0, null, 1));
-            TableInfo tableInfo3 = new TableInfo("record_table", hashMap2, new HashSet(0), new HashSet(0));
-            TableInfo tableInfo4 = TableInfo.read(param1SupportSQLiteDatabase, "record_table");
-            if (!tableInfo3.equals(tableInfo4)) {
+            TableInfo tableInfo4 = new TableInfo("record_table", hashMap2, new HashSet(0), new HashSet(0));
+            TableInfo tableInfo3 = TableInfo.read(param1SupportSQLiteDatabase, "record_table");
+            if (!tableInfo4.equals(tableInfo3)) {
               stringBuilder = new StringBuilder();
               stringBuilder.append("record_table(ca.albertahealthservices.contacttracing.streetpass.persistence.StreetPassRecord).\n Expected:\n");
-              stringBuilder.append(tableInfo3);
-              stringBuilder.append("\n Found:\n");
               stringBuilder.append(tableInfo4);
+              stringBuilder.append("\n Found:\n");
+              stringBuilder.append(tableInfo3);
               return new RoomOpenHelper.ValidationResult(false, stringBuilder.toString());
             } 
             HashMap<Object, Object> hashMap1 = new HashMap<>(3);

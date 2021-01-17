@@ -27,7 +27,6 @@ import ca.albertahealthservices.contacttracing.R;
 import ca.albertahealthservices.contacttracing.Utils;
 import ca.albertahealthservices.contacttracing.api.ErrorCode;
 import ca.albertahealthservices.contacttracing.api.Request;
-import ca.albertahealthservices.contacttracing.api.Response;
 import ca.albertahealthservices.contacttracing.idmanager.TempIDManager;
 import ca.albertahealthservices.contacttracing.logging.CentralLog;
 import ca.albertahealthservices.contacttracing.services.BluetoothMonitoringService;
@@ -85,7 +84,7 @@ public final class OnboardingActivity extends FragmentActivity implements Corout
   
   private final void alertDialog(String paramString) {
     AlertDialog.Builder builder = new AlertDialog.Builder((Context)this);
-    builder.setMessage(paramString).setCancelable(false).setPositiveButton(getString(2131820688), OnboardingActivity$alertDialog$1.INSTANCE);
+    builder.setMessage(paramString).setCancelable(false).setPositiveButton(getString(2131820693), OnboardingActivity$alertDialog$1.INSTANCE);
     builder.create().show();
   }
   
@@ -336,15 +335,17 @@ public final class OnboardingActivity extends FragmentActivity implements Corout
     FragmentManager fragmentManager = getSupportFragmentManager();
     Intrinsics.checkExpressionValueIsNotNull(fragmentManager, "supportFragmentManager");
     this.pagerAdapter = new ScreenSlidePagerAdapter(fragmentManager);
-    CustomViewPager customViewPager = (CustomViewPager)_$_findCachedViewById(R.id.pager);
-    Intrinsics.checkExpressionValueIsNotNull(customViewPager, "pager");
-    customViewPager.setAdapter((PagerAdapter)this.pagerAdapter);
-    ((TabLayout)_$_findCachedViewById(R.id.tabDots)).setupWithViewPager((ViewPager)_$_findCachedViewById(R.id.pager), true);
+    CustomViewPager customViewPager2 = (CustomViewPager)_$_findCachedViewById(R.id.pager);
+    Intrinsics.checkExpressionValueIsNotNull(customViewPager2, "pager");
+    customViewPager2.setAdapter((PagerAdapter)this.pagerAdapter);
+    TabLayout tabLayout = (TabLayout)_$_findCachedViewById(R.id.tabDots);
+    if (tabLayout != null)
+      tabLayout.setupWithViewPager((ViewPager)_$_findCachedViewById(R.id.pager), true); 
     ((CustomViewPager)_$_findCachedViewById(R.id.pager)).addOnPageChangeListener(new OnboardingActivity$onCreate$1());
     ((CustomViewPager)_$_findCachedViewById(R.id.pager)).setPagingEnabled(false);
-    customViewPager = (CustomViewPager)_$_findCachedViewById(R.id.pager);
-    Intrinsics.checkExpressionValueIsNotNull(customViewPager, "pager");
-    customViewPager.setOffscreenPageLimit(5);
+    CustomViewPager customViewPager1 = (CustomViewPager)_$_findCachedViewById(R.id.pager);
+    Intrinsics.checkExpressionValueIsNotNull(customViewPager1, "pager");
+    customViewPager1.setOffscreenPageLimit(5);
     Intent intent = getIntent();
     Intrinsics.checkExpressionValueIsNotNull(intent, "intent");
     Bundle bundle = intent.getExtras();
@@ -391,7 +392,7 @@ public final class OnboardingActivity extends FragmentActivity implements Corout
             AlertDialog.Builder builder;
             if (!shouldShowRequestPermissionRationale(str1)) {
               builder = new AlertDialog.Builder((Context)this);
-              builder.setMessage(getString(2131820689)).setCancelable(false).setPositiveButton(getString(2131820688), new OnboardingActivity$onRequestPermissionsResult$1()).setNegativeButton(getString(2131820592), OnboardingActivity$onRequestPermissionsResult$2.INSTANCE);
+              builder.setMessage(getString(2131820694)).setCancelable(false).setPositiveButton(getString(2131820693), new OnboardingActivity$onRequestPermissionsResult$1()).setNegativeButton(getString(2131820593), OnboardingActivity$onRequestPermissionsResult$2.INSTANCE);
               builder.create().show();
             } else if ("android.permission.WRITE_CONTACTS".equals(builder)) {
               CentralLog.Companion.d(this.TAG, "user did not CHECKED never ask again");
@@ -437,7 +438,7 @@ public final class OnboardingActivity extends FragmentActivity implements Corout
         initBluetooth();
         excludeFromBatteryOptimization();
       } else {
-        EasyPermissions.requestPermissions((Activity)this, getString(2131820705), 456, Arrays.<String>copyOf(arrayOfString, arrayOfString.length));
+        EasyPermissions.requestPermissions((Activity)this, getString(2131820710), 456, Arrays.<String>copyOf(arrayOfString, arrayOfString.length));
       } 
     } else {
       initBluetooth();
@@ -464,7 +465,7 @@ public final class OnboardingActivity extends FragmentActivity implements Corout
   public final void validateOTP(String paramString) {
     Intrinsics.checkParameterIsNotNull(paramString, "otp");
     if (TextUtils.isEmpty(paramString) || paramString.length() < 6) {
-      paramString = getString(2131820680);
+      paramString = getString(2131820684);
       Intrinsics.checkExpressionValueIsNotNull(paramString, "getString(R.string.must_be_six_digit)");
       updateOTPError(paramString);
       return;
@@ -643,7 +644,7 @@ public final class OnboardingActivity extends FragmentActivity implements Corout
     public void onReceive(Context param1Context, Intent param1Intent) {
       Intrinsics.checkParameterIsNotNull(param1Intent, "intent");
       OnboardingActivity onboardingActivity = OnboardingActivity.this;
-      String str = onboardingActivity.getString(2131820772);
+      String str = onboardingActivity.getString(2131820784);
       Intrinsics.checkExpressionValueIsNotNull(str, "getString(R.string.verification_failed)");
       onboardingActivity.updateOTPError(str);
     }
@@ -657,7 +658,7 @@ public final class OnboardingActivity extends FragmentActivity implements Corout
   }
   
   @Metadata(bv = {1, 0, 3}, d1 = {"\000\016\n\000\n\002\020\002\n\002\030\002\n\002\b\002\020\000\032\0020\001*\0020\002H@¢\006\004\b\003\020\004"}, d2 = {"<anonymous>", "", "Lkotlinx/coroutines/CoroutineScope;", "invoke", "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;"}, k = 3, mv = {1, 1, 16})
-  @DebugMetadata(c = "ca.albertahealthservices.contacttracing.onboarding.OnboardingActivity$requestForOTP$1", f = "OnboardingActivity.kt", i = {0, 0, 1}, l = {465, 478}, m = "invokeSuspend", n = {"$this$launch", "continueToOtp", "$this$launch"}, s = {"L$0", "I$0", "L$0"})
+  @DebugMetadata(c = "ca.albertahealthservices.contacttracing.onboarding.OnboardingActivity$requestForOTP$1", f = "OnboardingActivity.kt", i = {0, 0, 1}, l = {466, 479}, m = "invokeSuspend", n = {"$this$launch", "continueToOtp", "$this$launch"}, s = {"L$0", "I$0", "L$0"})
   static final class OnboardingActivity$requestForOTP$1 extends SuspendLambda implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
     int I$0;
     
@@ -683,8 +684,7 @@ public final class OnboardingActivity extends FragmentActivity implements Corout
     }
     
     public final Object invokeSuspend(Object param1Object) {
-      Object object2;
-      Object object1 = IntrinsicsKt.getCOROUTINE_SUSPENDED();
+      Object object = IntrinsicsKt.getCOROUTINE_SUSPENDED();
       int i = this.label;
       boolean bool = false;
       if (i != 0) {
@@ -699,10 +699,10 @@ public final class OnboardingActivity extends FragmentActivity implements Corout
           i = this.I$0;
           CoroutineScope coroutineScope = (CoroutineScope)this.L$0;
           ResultKt.throwOnFailure(param1Object);
-          Object object = param1Object;
+          Object object1 = param1Object;
           param1Object = coroutineScope;
-          object = object;
-          Integer integer = object.getStatus();
+          object1 = object1;
+          Integer integer = object1.getStatus();
         } 
       } else {
         ResultKt.throwOnFailure(param1Object);
@@ -717,59 +717,59 @@ public final class OnboardingActivity extends FragmentActivity implements Corout
           this.L$0 = param1Object;
           this.I$0 = 1;
           this.label = 1;
-          object = Request.runRequest$default(request, str, "POST", 0, null, null, null, (Continuation)this, 60, null);
-          if (object == object1)
-            return object1; 
+          object1 = Request.runRequest$default(request, str, "POST", 0, null, null, null, (Continuation)this, 60, null);
+          if (object1 == object)
+            return object; 
           i = 1;
         } else {
           i = 1;
           if (i != 0) {
             Request request = Request.INSTANCE;
-            object = new JSONObject();
+            object1 = new JSONObject();
             this.L$0 = param1Object;
             this.label = 2;
-            object2 = Request.runRequest$default(request, "/adapters/smsOtpService/phone/verifySmsOTP", "POST", 0, null, (JSONObject)object, null, (Continuation)this, 44, null);
+            Object object2 = Request.runRequest$default(request, "/adapters/smsOtpService/phone/verifySmsOTP", "POST", 0, null, (JSONObject)object1, null, (Continuation)this, 44, null);
             param1Object = object2;
-            if (object2 == object1)
-              return object1; 
+            if (object2 == object)
+              return object; 
           } else {
             return Unit.INSTANCE;
           } 
         } 
-        Object object = object;
-        Integer integer = object.getStatus();
+        Object object1 = object1;
+        Integer integer = object1.getStatus();
       } 
-      Response response = (Response)param1Object;
-      if (response.isSuccess()) {
-        param1Object = response.getStatus();
-        if (param1Object == null || param1Object.intValue() != 200 || response.getData() == null) {
-          if ((Intrinsics.areEqual(response.getErrorCode(), ErrorCode.INSTANCE.getCHALLENGE_HANDLING_CANCELED()) ^ true) != 0) {
-            param1Object = OnboardingActivity.this;
-            object2 = param1Object.getString(2131820634);
-            Intrinsics.checkExpressionValueIsNotNull(object2, "getString(R.string.invalid_otp)");
-            param1Object.updateOTPError((String)object2);
+      param1Object = param1Object;
+      if (param1Object.isSuccess()) {
+        Integer integer = param1Object.getStatus();
+        if (integer == null || integer.intValue() != 200 || param1Object.getData() == null) {
+          if ((Intrinsics.areEqual(param1Object.getErrorCode(), ErrorCode.INSTANCE.getCHALLENGE_HANDLING_CANCELED()) ^ true) != 0) {
+            OnboardingActivity onboardingActivity = OnboardingActivity.this;
+            param1Object = onboardingActivity.getString(2131820637);
+            Intrinsics.checkExpressionValueIsNotNull(param1Object, "getString(R.string.invalid_otp)");
+            onboardingActivity.updateOTPError((String)param1Object);
           } 
           OnboardingActivity.this.enableFragmentbutton();
           return Unit.INSTANCE;
         } 
         try {
           Preference preference = Preference.INSTANCE;
-          param1Object = OnboardingActivity.this.getApplicationContext();
-          Intrinsics.checkExpressionValueIsNotNull(param1Object, "applicationContext");
-          object2 = object2.getData().getString("userId");
-          Intrinsics.checkExpressionValueIsNotNull(object2, "triggerSmsOTPResponse.data.getString(\"userId\")");
-          preference.putUUID((Context)param1Object, (String)object2);
+          Context context = OnboardingActivity.this.getApplicationContext();
+          Intrinsics.checkExpressionValueIsNotNull(context, "applicationContext");
+          param1Object = param1Object.getData().getString("userId");
+          Intrinsics.checkExpressionValueIsNotNull(param1Object, "triggerSmsOTPResponse.data.getString(\"userId\")");
+          preference.putUUID(context, (String)param1Object);
         } catch (Exception exception) {
           exception.printStackTrace();
         } 
         OnboardingActivity.this.requestTempIdsIfNeeded();
         return Unit.INSTANCE;
       } 
-      if ((Intrinsics.areEqual(object2.getErrorCode(), ErrorCode.INSTANCE.getCHALLENGE_HANDLING_CANCELED()) ^ true) != 0) {
-        param1Object = OnboardingActivity.this;
-        object2 = param1Object.getString(2131820634);
-        Intrinsics.checkExpressionValueIsNotNull(object2, "getString(R.string.invalid_otp)");
-        param1Object.updateOTPError((String)object2);
+      if ((Intrinsics.areEqual(exception.getErrorCode(), ErrorCode.INSTANCE.getCHALLENGE_HANDLING_CANCELED()) ^ true) != 0) {
+        OnboardingActivity onboardingActivity = OnboardingActivity.this;
+        String str = onboardingActivity.getString(2131820637);
+        Intrinsics.checkExpressionValueIsNotNull(str, "getString(R.string.invalid_otp)");
+        onboardingActivity.updateOTPError(str);
       } 
       OnboardingActivity.this.enableFragmentbutton();
       return Unit.INSTANCE;

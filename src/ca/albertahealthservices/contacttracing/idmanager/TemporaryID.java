@@ -51,16 +51,16 @@ public final class TemporaryID {
     long l1 = this.startTime;
     long l2 = 1000L;
     long l3 = this.expiryTime;
-    CentralLog.Companion companion1 = CentralLog.Companion;
-    StringBuilder stringBuilder2 = new StringBuilder();
-    stringBuilder2.append("[TempID] Start time: ");
-    stringBuilder2.append(l1 * l2);
-    companion1.d("TempID", stringBuilder2.toString());
-    CentralLog.Companion companion2 = CentralLog.Companion;
-    StringBuilder stringBuilder1 = new StringBuilder();
-    stringBuilder1.append("[TempID] Expiry time: ");
-    stringBuilder1.append(l3 * l2);
-    companion2.d("TempID", stringBuilder1.toString());
+    CentralLog.Companion companion = CentralLog.Companion;
+    StringBuilder stringBuilder = new StringBuilder();
+    stringBuilder.append("[TempID] Start time: ");
+    stringBuilder.append(l1 * l2);
+    companion.d("TempID", stringBuilder.toString());
+    companion = CentralLog.Companion;
+    stringBuilder = new StringBuilder();
+    stringBuilder.append("[TempID] Expiry time: ");
+    stringBuilder.append(l3 * l2);
+    companion.d("TempID", stringBuilder.toString());
   }
   
   @Metadata(bv = {1, 0, 3}, d1 = {"\000\022\n\002\030\002\n\002\020\000\n\002\b\002\n\002\020\016\n\000\b\003\030\0002\0020\001B\007\b\002¢\006\002\020\002R\016\020\003\032\0020\004XT¢\006\002\n\000¨\006\005"}, d2 = {"Lca/albertahealthservices/contacttracing/idmanager/TemporaryID$Companion;", "", "()V", "TAG", "", "app_release"}, k = 1, mv = {1, 1, 16})

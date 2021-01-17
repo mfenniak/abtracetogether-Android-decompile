@@ -45,7 +45,9 @@ public final class UploadCompleteFragment extends Fragment {
   public void onViewCreated(View paramView, Bundle paramBundle) {
     Intrinsics.checkParameterIsNotNull(paramView, "view");
     super.onViewCreated(paramView, paramBundle);
-    ((LinearLayout)_$_findCachedViewById(R.id.uploadCompleteFragmentActionButton)).setOnClickListener(new UploadCompleteFragment$onViewCreated$1());
+    LinearLayout linearLayout = (LinearLayout)_$_findCachedViewById(R.id.uploadCompleteFragmentActionButton);
+    if (linearLayout != null)
+      linearLayout.setOnClickListener(new UploadCompleteFragment$onViewCreated$1()); 
   }
   
   @Metadata(bv = {1, 0, 3}, d1 = {"\000\020\n\000\n\002\020\002\n\000\n\002\030\002\n\002\b\002\020\000\032\0020\0012\016\020\002\032\n \004*\004\030\0010\0030\003H\n¢\006\002\b\005"}, d2 = {"<anonymous>", "", "it", "Landroid/view/View;", "kotlin.jvm.PlatformType", "onClick"}, k = 3, mv = {1, 1, 16})

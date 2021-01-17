@@ -31,7 +31,7 @@ public final class RequestFileWritePermission extends AppCompatActivity {
       Utils.INSTANCE.startBluetoothMonitoringService(context);
       finish();
     } else {
-      EasyPermissions.requestPermissions((Activity)this, getString(2131820706), 743, Arrays.<String>copyOf(arrayOfString, 1));
+      EasyPermissions.requestPermissions((Activity)this, getString(2131820711), 743, Arrays.<String>copyOf(arrayOfString, 1));
     } 
   }
   

@@ -35,7 +35,9 @@ public final class HowItWorksActivity extends FragmentActivity {
   protected void onCreate(Bundle paramBundle) {
     super.onCreate(paramBundle);
     setContentView(2131492929);
-    ((LinearLayout)_$_findCachedViewById(R.id.btn_onboardingStart)).setOnClickListener(new HowItWorksActivity$onCreate$1());
+    LinearLayout linearLayout = (LinearLayout)_$_findCachedViewById(R.id.btn_onboardingStart);
+    if (linearLayout != null)
+      linearLayout.setOnClickListener(new HowItWorksActivity$onCreate$1()); 
   }
   
   @Metadata(bv = {1, 0, 3}, d1 = {"\000\020\n\000\n\002\020\002\n\000\n\002\030\002\n\002\b\002\020\000\032\0020\0012\016\020\002\032\n \004*\004\030\0010\0030\003H\n¢\006\002\b\005"}, d2 = {"<anonymous>", "", "it", "Landroid/view/View;", "kotlin.jvm.PlatformType", "onClick"}, k = 3, mv = {1, 1, 16})

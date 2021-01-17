@@ -66,11 +66,11 @@ public final class RecordListAdapter extends RecyclerView.Adapter<RecordListAdap
   
   private final List<StreetPassRecordViewModel> filterByModelC(StreetPassRecordViewModel paramStreetPassRecordViewModel, List<StreetPassRecord> paramList) {
     if (paramStreetPassRecordViewModel != null) {
-      list = paramList;
+      List<StreetPassRecord> list = paramList;
       paramList = new ArrayList<>();
-      for (List<StreetPassRecord> list : list) {
-        if (Intrinsics.areEqual(((StreetPassRecord)list).getModelC(), paramStreetPassRecordViewModel.getModelC()))
-          paramList.add(list); 
+      for (StreetPassRecord streetPassRecord : list) {
+        if (Intrinsics.areEqual(((StreetPassRecord)streetPassRecord).getModelC(), paramStreetPassRecordViewModel.getModelC()))
+          paramList.add(streetPassRecord); 
       } 
       return prepareViewData(paramList);
     } 
@@ -79,11 +79,11 @@ public final class RecordListAdapter extends RecyclerView.Adapter<RecordListAdap
   
   private final List<StreetPassRecordViewModel> filterByModelP(StreetPassRecordViewModel paramStreetPassRecordViewModel, List<StreetPassRecord> paramList) {
     if (paramStreetPassRecordViewModel != null) {
-      List<StreetPassRecord> list = paramList;
+      list = paramList;
       paramList = new ArrayList<>();
-      for (StreetPassRecord streetPassRecord : list) {
-        if (Intrinsics.areEqual(((StreetPassRecord)streetPassRecord).getModelP(), paramStreetPassRecordViewModel.getModelP()))
-          paramList.add(streetPassRecord); 
+      for (List<StreetPassRecord> list : list) {
+        if (Intrinsics.areEqual(((StreetPassRecord)list).getModelP(), paramStreetPassRecordViewModel.getModelP()))
+          paramList.add(list); 
       } 
       return prepareViewData(paramList);
     } 
@@ -193,35 +193,35 @@ public final class RecordListAdapter extends RecyclerView.Adapter<RecordListAdap
     paramRecordViewHolder.getMsgView().setText(streetPassRecordViewModel.getMsg());
     paramRecordViewHolder.getModelCView().setText(streetPassRecordViewModel.getModelC());
     paramRecordViewHolder.getModelPView().setText(streetPassRecordViewModel.getModelP());
-    TextView textView2 = paramRecordViewHolder.getFindsView();
-    StringBuilder stringBuilder2 = new StringBuilder();
-    stringBuilder2.append("Detections: ");
-    stringBuilder2.append(streetPassRecordViewModel.getNumber());
-    textView2.setText(stringBuilder2.toString());
+    TextView textView3 = paramRecordViewHolder.getFindsView();
+    StringBuilder stringBuilder4 = new StringBuilder();
+    stringBuilder4.append("Detections: ");
+    stringBuilder4.append(streetPassRecordViewModel.getNumber());
+    textView3.setText(stringBuilder4.toString());
     String str = Utils.INSTANCE.getDate(streetPassRecordViewModel.getTimeStamp());
     paramRecordViewHolder.getTimestampView().setText(str);
-    TextView textView1 = paramRecordViewHolder.getVersion();
-    stringBuilder2 = new StringBuilder();
-    stringBuilder2.append("v: ");
-    stringBuilder2.append(streetPassRecordViewModel.getVersion());
-    textView1.setText(stringBuilder2.toString());
-    textView1 = paramRecordViewHolder.getOrg();
-    stringBuilder2 = new StringBuilder();
+    TextView textView2 = paramRecordViewHolder.getVersion();
+    stringBuilder4 = new StringBuilder();
+    stringBuilder4.append("v: ");
+    stringBuilder4.append(streetPassRecordViewModel.getVersion());
+    textView2.setText(stringBuilder4.toString());
+    TextView textView5 = paramRecordViewHolder.getOrg();
+    StringBuilder stringBuilder2 = new StringBuilder();
     stringBuilder2.append("ORG: ");
     stringBuilder2.append(streetPassRecordViewModel.getOrg());
-    textView1.setText(stringBuilder2.toString());
+    textView5.setText(stringBuilder2.toString());
     paramRecordViewHolder.getFilterModelP().setTag(streetPassRecordViewModel);
     paramRecordViewHolder.getFilterModelC().setTag(streetPassRecordViewModel);
-    textView1 = paramRecordViewHolder.getSignalStrengthView();
-    stringBuilder2 = new StringBuilder();
-    stringBuilder2.append("Signal Strength: ");
-    stringBuilder2.append(streetPassRecordViewModel.getRssi());
-    textView1.setText(stringBuilder2.toString());
-    TextView textView3 = paramRecordViewHolder.getTxpowerView();
+    TextView textView1 = paramRecordViewHolder.getSignalStrengthView();
+    StringBuilder stringBuilder3 = new StringBuilder();
+    stringBuilder3.append("Signal Strength: ");
+    stringBuilder3.append(streetPassRecordViewModel.getRssi());
+    textView1.setText(stringBuilder3.toString());
+    TextView textView4 = paramRecordViewHolder.getTxpowerView();
     StringBuilder stringBuilder1 = new StringBuilder();
     stringBuilder1.append("Tx Power: ");
     stringBuilder1.append(streetPassRecordViewModel.getTransmissionPower());
-    textView3.setText(stringBuilder1.toString());
+    textView4.setText(stringBuilder1.toString());
     paramRecordViewHolder.getFilterModelP().setOnClickListener(new RecordListAdapter$onBindViewHolder$1());
     paramRecordViewHolder.getFilterModelC().setOnClickListener(new RecordListAdapter$onBindViewHolder$2());
   }

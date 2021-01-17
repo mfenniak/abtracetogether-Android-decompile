@@ -114,135 +114,134 @@ public final class Request implements CoroutineScope {
       //   62: invokespecial <init> : ()V
       //   65: astore_2
       //   66: aload_2
-      //   67: ldc 'Request.onFailure url='
+      //   67: ldc 'Request.onFailure request='
       //   69: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
       //   72: pop
       //   73: aload_2
       //   74: aload_0
       //   75: getfield $request : Lcom/worklight/wlclient/api/WLResourceRequest;
-      //   78: invokevirtual getUrl : ()Ljava/net/URL;
-      //   81: invokevirtual append : (Ljava/lang/Object;)Ljava/lang/StringBuilder;
-      //   84: pop
-      //   85: aload_2
-      //   86: ldc ' -  response='
-      //   88: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-      //   91: pop
-      //   92: aload_2
-      //   93: aload_1
-      //   94: invokevirtual append : (Ljava/lang/Object;)Ljava/lang/StringBuilder;
-      //   97: pop
-      //   98: aload_3
-      //   99: aload_2
-      //   100: invokevirtual toString : ()Ljava/lang/String;
-      //   103: invokevirtual logError : (Ljava/lang/String;)V
-      //   106: aload_1
-      //   107: ifnull -> 164
-      //   110: aload_1
-      //   111: invokevirtual getErrorMsg : ()Ljava/lang/String;
-      //   114: ifnull -> 164
-      //   117: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-      //   120: astore_3
-      //   121: new java/lang/StringBuilder
-      //   124: dup
-      //   125: invokespecial <init> : ()V
-      //   128: astore_2
-      //   129: aload_2
-      //   130: aload_1
-      //   131: invokevirtual getErrorStatusCode : ()Ljava/lang/String;
-      //   134: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-      //   137: pop
-      //   138: aload_2
-      //   139: ldc ' - '
-      //   141: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-      //   144: pop
-      //   145: aload_2
-      //   146: aload_1
-      //   147: invokevirtual getErrorMsg : ()Ljava/lang/String;
-      //   150: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-      //   153: pop
+      //   78: invokevirtual append : (Ljava/lang/Object;)Ljava/lang/StringBuilder;
+      //   81: pop
+      //   82: aload_2
+      //   83: ldc ' -  response='
+      //   85: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+      //   88: pop
+      //   89: aload_2
+      //   90: aload_1
+      //   91: invokevirtual append : (Ljava/lang/Object;)Ljava/lang/StringBuilder;
+      //   94: pop
+      //   95: aload_3
+      //   96: aload_2
+      //   97: invokevirtual toString : ()Ljava/lang/String;
+      //   100: invokevirtual logError : (Ljava/lang/String;)V
+      //   103: aload_1
+      //   104: ifnull -> 161
+      //   107: aload_1
+      //   108: invokevirtual getErrorMsg : ()Ljava/lang/String;
+      //   111: ifnull -> 161
+      //   114: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
+      //   117: astore_2
+      //   118: new java/lang/StringBuilder
+      //   121: dup
+      //   122: invokespecial <init> : ()V
+      //   125: astore_3
+      //   126: aload_3
+      //   127: aload_1
+      //   128: invokevirtual getErrorStatusCode : ()Ljava/lang/String;
+      //   131: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+      //   134: pop
+      //   135: aload_3
+      //   136: ldc ' - '
+      //   138: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+      //   141: pop
+      //   142: aload_3
+      //   143: aload_1
+      //   144: invokevirtual getErrorMsg : ()Ljava/lang/String;
+      //   147: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+      //   150: pop
+      //   151: aload_2
+      //   152: ldc 'Request'
       //   154: aload_3
-      //   155: ldc 'Request'
-      //   157: aload_2
-      //   158: invokevirtual toString : ()Ljava/lang/String;
-      //   161: invokevirtual d : (Ljava/lang/String;Ljava/lang/String;)V
-      //   164: aload_0
-      //   165: getfield $cont : Lkotlin/coroutines/Continuation;
-      //   168: astore #4
-      //   170: aconst_null
-      //   171: astore #5
-      //   173: aload_1
-      //   174: ifnull -> 188
-      //   177: aload_1
-      //   178: invokevirtual getStatus : ()I
-      //   181: invokestatic valueOf : (I)Ljava/lang/Integer;
-      //   184: astore_3
-      //   185: goto -> 190
-      //   188: aconst_null
-      //   189: astore_3
-      //   190: aload_1
-      //   191: ifnull -> 202
-      //   194: aload_1
-      //   195: invokevirtual getResponseText : ()Ljava/lang/String;
-      //   198: astore_2
-      //   199: goto -> 204
-      //   202: aconst_null
-      //   203: astore_2
-      //   204: aload_1
-      //   205: ifnull -> 214
-      //   208: aload_1
-      //   209: invokevirtual getResponseJSON : ()Lorg/json/JSONObject;
-      //   212: astore #5
-      //   214: getstatic ca/albertahealthservices/contacttracing/api/ErrorCode.INSTANCE : Lca/albertahealthservices/contacttracing/api/ErrorCode;
-      //   217: astore #6
-      //   219: getstatic ca/albertahealthservices/contacttracing/TracerApp.Companion : Lca/albertahealthservices/contacttracing/TracerApp$Companion;
-      //   222: invokevirtual getAppContext : ()Landroid/content/Context;
-      //   225: astore #7
-      //   227: ldc ''
-      //   229: astore #8
-      //   231: aload_1
-      //   232: ifnull -> 249
-      //   235: aload_1
-      //   236: invokevirtual getErrorStatusCode : ()Ljava/lang/String;
-      //   239: astore #9
-      //   241: aload #9
-      //   243: ifnull -> 249
-      //   246: goto -> 253
-      //   249: ldc ''
-      //   251: astore #9
-      //   253: aload #6
-      //   255: aload #7
-      //   257: aload #9
-      //   259: invokevirtual getStringForErrorCode : (Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;
-      //   262: astore #7
-      //   264: aload #8
-      //   266: astore #9
-      //   268: aload_1
-      //   269: ifnull -> 288
-      //   272: aload_1
-      //   273: invokevirtual getErrorStatusCode : ()Ljava/lang/String;
-      //   276: astore_1
-      //   277: aload #8
-      //   279: astore #9
-      //   281: aload_1
-      //   282: ifnull -> 288
-      //   285: aload_1
-      //   286: astore #9
-      //   288: new ca/albertahealthservices/contacttracing/api/Response
-      //   291: dup
-      //   292: aload_3
-      //   293: aload_2
-      //   294: aload #5
-      //   296: aload #7
-      //   298: aload #9
-      //   300: invokespecial <init> : (Ljava/lang/Integer;Ljava/lang/String;Lorg/json/JSONObject;Ljava/lang/String;Ljava/lang/String;)V
-      //   303: astore_3
-      //   304: getstatic kotlin/Result.Companion : Lkotlin/Result$Companion;
-      //   307: astore_1
-      //   308: aload #4
-      //   310: aload_3
-      //   311: invokestatic constructor-impl : (Ljava/lang/Object;)Ljava/lang/Object;
-      //   314: invokeinterface resumeWith : (Ljava/lang/Object;)V
-      //   319: return
+      //   155: invokevirtual toString : ()Ljava/lang/String;
+      //   158: invokevirtual d : (Ljava/lang/String;Ljava/lang/String;)V
+      //   161: aload_0
+      //   162: getfield $cont : Lkotlin/coroutines/Continuation;
+      //   165: astore #4
+      //   167: aconst_null
+      //   168: astore #5
+      //   170: aload_1
+      //   171: ifnull -> 185
+      //   174: aload_1
+      //   175: invokevirtual getStatus : ()I
+      //   178: invokestatic valueOf : (I)Ljava/lang/Integer;
+      //   181: astore_2
+      //   182: goto -> 187
+      //   185: aconst_null
+      //   186: astore_2
+      //   187: aload_1
+      //   188: ifnull -> 199
+      //   191: aload_1
+      //   192: invokevirtual getResponseText : ()Ljava/lang/String;
+      //   195: astore_3
+      //   196: goto -> 201
+      //   199: aconst_null
+      //   200: astore_3
+      //   201: aload_1
+      //   202: ifnull -> 211
+      //   205: aload_1
+      //   206: invokevirtual getResponseJSON : ()Lorg/json/JSONObject;
+      //   209: astore #5
+      //   211: getstatic ca/albertahealthservices/contacttracing/api/ErrorCode.INSTANCE : Lca/albertahealthservices/contacttracing/api/ErrorCode;
+      //   214: astore #6
+      //   216: getstatic ca/albertahealthservices/contacttracing/TracerApp.Companion : Lca/albertahealthservices/contacttracing/TracerApp$Companion;
+      //   219: invokevirtual getAppContext : ()Landroid/content/Context;
+      //   222: astore #7
+      //   224: ldc ''
+      //   226: astore #8
+      //   228: aload_1
+      //   229: ifnull -> 246
+      //   232: aload_1
+      //   233: invokevirtual getErrorStatusCode : ()Ljava/lang/String;
+      //   236: astore #9
+      //   238: aload #9
+      //   240: ifnull -> 246
+      //   243: goto -> 250
+      //   246: ldc ''
+      //   248: astore #9
+      //   250: aload #6
+      //   252: aload #7
+      //   254: aload #9
+      //   256: invokevirtual getStringForErrorCode : (Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;
+      //   259: astore #7
+      //   261: aload #8
+      //   263: astore #9
+      //   265: aload_1
+      //   266: ifnull -> 285
+      //   269: aload_1
+      //   270: invokevirtual getErrorStatusCode : ()Ljava/lang/String;
+      //   273: astore_1
+      //   274: aload #8
+      //   276: astore #9
+      //   278: aload_1
+      //   279: ifnull -> 285
+      //   282: aload_1
+      //   283: astore #9
+      //   285: new ca/albertahealthservices/contacttracing/api/Response
+      //   288: dup
+      //   289: aload_2
+      //   290: aload_3
+      //   291: aload #5
+      //   293: aload #7
+      //   295: aload #9
+      //   297: invokespecial <init> : (Ljava/lang/Integer;Ljava/lang/String;Lorg/json/JSONObject;Ljava/lang/String;Ljava/lang/String;)V
+      //   300: astore_1
+      //   301: getstatic kotlin/Result.Companion : Lkotlin/Result$Companion;
+      //   304: astore_2
+      //   305: aload #4
+      //   307: aload_1
+      //   308: invokestatic constructor-impl : (Ljava/lang/Object;)Ljava/lang/Object;
+      //   311: invokeinterface resumeWith : (Ljava/lang/Object;)V
+      //   316: return
     }
     
     public void onSuccess(WLResponse param1WLResponse) {

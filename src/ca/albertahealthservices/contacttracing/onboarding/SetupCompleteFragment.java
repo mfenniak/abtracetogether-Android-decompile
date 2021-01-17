@@ -107,7 +107,7 @@ public final class SetupCompleteFragment extends OnboardingFragmentInterface {
   public void onViewCreated(View paramView, Bundle paramBundle) {
     Intrinsics.checkParameterIsNotNull(paramView, "view");
     super.onViewCreated(paramView, paramBundle);
-    String str = getString(2131820618);
+    String str = getString(2131820620);
     Intrinsics.checkExpressionValueIsNotNull(str, "getString(R.string.finish_button)");
     setButtonText(str);
     setButtonIcon(2131165355);

@@ -41,37 +41,47 @@ public final class WebViewActivity extends FragmentActivity {
   
   protected void onCreate(Bundle paramBundle) {
     String str;
+    WebSettings webSettings;
     super.onCreate(paramBundle);
     setContentView(2131492992);
-    WebView webView2 = (WebView)_$_findCachedViewById(R.id.webview);
-    Intrinsics.checkExpressionValueIsNotNull(webView2, "webview");
-    webView2.setWebViewClient(new WebViewClient());
+    WebView webView1 = (WebView)_$_findCachedViewById(R.id.webview);
+    if (webView1 != null)
+      webView1.setWebViewClient(new WebViewClient()); 
     if (getIntent().getIntExtra("type", 0) == 1) {
       AppCompatTextView appCompatTextView = (AppCompatTextView)_$_findCachedViewById(R.id.tv_title);
-      Intrinsics.checkExpressionValueIsNotNull(appCompatTextView, "tv_title");
-      appCompatTextView.setText(getString(2131820617));
+      if (appCompatTextView != null)
+        appCompatTextView.setText(getString(2131820619)); 
       str = "https://alberta.ca/ABTraceTogetherFAQ";
     } else {
       AppCompatTextView appCompatTextView = (AppCompatTextView)_$_findCachedViewById(R.id.tv_title);
-      Intrinsics.checkExpressionValueIsNotNull(appCompatTextView, "tv_title");
-      appCompatTextView.setText(getString(2131820716));
+      if (appCompatTextView != null)
+        appCompatTextView.setText(getString(2131820725)); 
       str = "https://alberta.ca/ABTraceTogetherPrivacy";
     } 
-    WebView webView4 = (WebView)_$_findCachedViewById(R.id.webview);
-    Intrinsics.checkExpressionValueIsNotNull(webView4, "webview");
-    WebSettings webSettings2 = webView4.getSettings();
-    Intrinsics.checkExpressionValueIsNotNull(webSettings2, "webview.settings");
-    webSettings2.setJavaScriptEnabled(true);
     WebView webView3 = (WebView)_$_findCachedViewById(R.id.webview);
-    Intrinsics.checkExpressionValueIsNotNull(webView3, "webview");
-    WebSettings webSettings1 = webView3.getSettings();
-    Intrinsics.checkExpressionValueIsNotNull(webSettings1, "webview.settings");
-    webSettings1.setLoadWithOverviewMode(true);
-    ((WebView)_$_findCachedViewById(R.id.webview)).loadUrl(str);
+    WebView webView4 = null;
+    if (webView3 != null) {
+      webSettings = webView3.getSettings();
+    } else {
+      webView3 = null;
+    } 
+    if (webView3 == null)
+      Intrinsics.throwNpe(); 
+    webView3.setJavaScriptEnabled(true);
+    WebView webView5 = (WebView)_$_findCachedViewById(R.id.webview);
+    webView3 = webView4;
+    if (webView5 != null)
+      webSettings = webView5.getSettings(); 
+    if (webSettings == null)
+      Intrinsics.throwNpe(); 
+    webSettings.setLoadWithOverviewMode(true);
+    WebView webView2 = (WebView)_$_findCachedViewById(R.id.webview);
+    if (webView2 != null)
+      webView2.loadUrl(str); 
     WebViewActivity$onCreate$wbc$1 webViewActivity$onCreate$wbc$1 = new WebViewActivity$onCreate$wbc$1();
-    WebView webView1 = (WebView)_$_findCachedViewById(R.id.webview);
-    Intrinsics.checkExpressionValueIsNotNull(webView1, "webview");
-    webView1.setWebChromeClient(webViewActivity$onCreate$wbc$1);
+    webView2 = (WebView)_$_findCachedViewById(R.id.webview);
+    if (webView2 != null)
+      webView2.setWebChromeClient(webViewActivity$onCreate$wbc$1); 
     AppCompatImageView appCompatImageView = (AppCompatImageView)_$_findCachedViewById(R.id.webviewBackButton);
     if (appCompatImageView != null)
       appCompatImageView.setOnClickListener(new WebViewActivity$onCreate$$inlined$let$lambda$1()); 

@@ -11,7 +11,7 @@ import kotlin.jvm.internal.Intrinsics;
 @Metadata(bv = {1, 0, 3}, d1 = {"\000\036\n\002\030\002\n\002\030\002\n\002\b\002\n\002\020\002\n\000\n\002\030\002\n\000\n\002\030\002\n\000\030\0002\0020\001B\005¢\006\002\020\002J\034\020\003\032\0020\0042\b\020\005\032\004\030\0010\0062\b\020\007\032\004\030\0010\bH\026¨\006\t"}, d2 = {"Lca/albertahealthservices/contacttracing/receivers/UpgradeReceiver;", "Landroid/content/BroadcastReceiver;", "()V", "onReceive", "", "context", "Landroid/content/Context;", "intent", "Landroid/content/Intent;", "app_release"}, k = 1, mv = {1, 1, 16})
 public final class UpgradeReceiver extends BroadcastReceiver {
   public void onReceive(Context paramContext, Intent paramIntent) {
-    CentralLog.Companion companion;
+    StringBuilder stringBuilder;
     if (paramIntent == null) {
       try {
         Intrinsics.throwNpe();
@@ -22,8 +22,8 @@ public final class UpgradeReceiver extends BroadcastReceiver {
           Utils.INSTANCE.startBluetoothMonitoringService(paramContext);
         } 
       } catch (Exception exception) {
-        companion = CentralLog.Companion;
-        StringBuilder stringBuilder = new StringBuilder();
+        CentralLog.Companion companion = CentralLog.Companion;
+        stringBuilder = new StringBuilder();
         stringBuilder.append("Unable to handle upgrade: ");
         stringBuilder.append(exception.getLocalizedMessage());
         companion.e("UpgradeReceiver", stringBuilder.toString());
@@ -32,9 +32,9 @@ public final class UpgradeReceiver extends BroadcastReceiver {
     } 
     if ((Intrinsics.areEqual("android.intent.action.MY_PACKAGE_REPLACED", exception.getAction()) ^ true) != 0)
       return; 
-    if (companion != null) {
+    if (stringBuilder != null) {
       CentralLog.Companion.i("UpgradeReceiver", "Starting service from upgrade receiver");
-      Utils.INSTANCE.startBluetoothMonitoringService((Context)companion);
+      Utils.INSTANCE.startBluetoothMonitoringService((Context)stringBuilder);
     } 
   }
 }

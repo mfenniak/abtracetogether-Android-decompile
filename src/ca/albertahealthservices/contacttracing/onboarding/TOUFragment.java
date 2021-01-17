@@ -13,22 +13,23 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
-import android.widget.TextView;
 import androidx.appcompat.widget.AppCompatTextView;
 import ca.albertahealthservices.contacttracing.R;
+import ca.albertahealthservices.contacttracing.Utils;
 import ca.albertahealthservices.contacttracing.logging.CentralLog;
 import java.util.HashMap;
 import kotlin.Metadata;
-import kotlin.TypeCastException;
 import kotlin.jvm.internal.Intrinsics;
 import kotlin.text.Regex;
 import kotlin.text.StringsKt;
 
-@Metadata(bv = {1, 0, 3}, d1 = {"\000Z\n\002\030\002\n\002\030\002\n\002\b\002\n\002\020\016\n\000\n\002\030\002\n\000\n\002\030\002\n\002\b\003\n\002\030\002\n\000\n\002\020\002\n\000\n\002\030\002\n\002\b\003\n\002\030\002\n\002\b\004\n\002\030\002\n\002\b\004\n\002\030\002\n\002\b\002\n\002\030\002\n\000\n\002\030\002\n\002\b\t\030\0002\0020\001:\001+B\005¢\006\002\020\002J\b\020\r\032\0020\016H\026J \020\017\032\0020\0202\006\020\021\032\0020\0042\006\020\022\032\0020\0042\006\020\023\032\0020\024H\002J\020\020\025\032\0020\0162\006\020\026\032\0020\bH\026J\020\020\027\032\0020\0162\006\020\030\032\0020\031H\026J\020\020\032\032\0020\0162\006\020\033\032\0020\031H\026J\022\020\034\032\0020\0162\b\020\035\032\004\030\0010\036H\026J&\020\037\032\004\030\0010\0312\006\020 \032\0020!2\b\020\"\032\004\030\0010#2\b\020\035\032\004\030\0010\036H\026J\b\020$\032\0020\016H\026J\020\020%\032\0020\0162\006\020&\032\0020\004H\026J\020\020'\032\0020\0162\006\020(\032\0020\004H\026J\032\020)\032\0020\0162\006\020\030\032\0020\0312\b\020\035\032\004\030\0010\036H\026J\b\020*\032\0020\016H\002R\016\020\003\032\0020\004XD¢\006\002\n\000R\020\020\005\032\004\030\0010\006X\016¢\006\002\n\000R\016\020\007\032\0020\bX.¢\006\002\n\000R\020\020\t\032\004\030\0010\004X\016¢\006\002\n\000R\020\020\n\032\004\030\0010\004X\016¢\006\002\n\000R\016\020\013\032\0020\fX.¢\006\002\n\000¨\006,"}, d2 = {"Lca/albertahealthservices/contacttracing/onboarding/TOUFragment;", "Lca/albertahealthservices/contacttracing/onboarding/OnboardingFragmentInterface;", "()V", "TAG", "", "listener", "Lca/albertahealthservices/contacttracing/onboarding/TOUFragment$OnFragmentInteractionListener;", "mainContext", "Landroid/content/Context;", "param1", "param2", "privacyTextView", "Landroid/widget/TextView;", "becomesVisible", "", "createSpannableString", "Landroid/text/SpannableString;", "string", "span", "clickableSpan", "Landroid/text/style/ClickableSpan;", "onAttach", "context", "onBackButtonClick", "view", "Landroid/view/View;", "onButtonClick", "buttonView", "onCreate", "savedInstanceState", "Landroid/os/Bundle;", "onCreateView", "inflater", "Landroid/view/LayoutInflater;", "container", "Landroid/view/ViewGroup;", "onDetach", "onError", "error", "onUpdatePhoneNumber", "num", "onViewCreated", "sendEmailIntent", "OnFragmentInteractionListener", "app_release"}, k = 1, mv = {1, 1, 16})
+@Metadata(bv = {1, 0, 3}, d1 = {"\000^\n\002\030\002\n\002\030\002\n\002\b\002\n\002\020\016\n\002\b\002\n\002\030\002\n\000\n\002\030\002\n\002\b\003\n\002\020\002\n\000\n\002\030\002\n\002\b\003\n\002\030\002\n\002\b\004\n\002\030\002\n\002\b\004\n\002\030\002\n\002\b\002\n\002\030\002\n\000\n\002\030\002\n\002\b\t\n\002\020\b\n\002\b\002\030\0002\0020\001:\001-B\005¢\006\002\020\002J\b\020\f\032\0020\rH\026J \020\016\032\0020\0172\006\020\020\032\0020\0042\006\020\021\032\0020\0042\006\020\022\032\0020\023H\002J\020\020\024\032\0020\r2\006\020\025\032\0020\tH\026J\020\020\026\032\0020\r2\006\020\027\032\0020\030H\026J\020\020\031\032\0020\r2\006\020\032\032\0020\030H\026J\022\020\033\032\0020\r2\b\020\034\032\004\030\0010\035H\026J&\020\036\032\004\030\0010\0302\006\020\037\032\0020 2\b\020!\032\004\030\0010\"2\b\020\034\032\004\030\0010\035H\026J\b\020#\032\0020\rH\026J\020\020$\032\0020\r2\006\020%\032\0020\004H\026J\020\020&\032\0020\r2\006\020'\032\0020\004H\026J\032\020(\032\0020\r2\006\020\027\032\0020\0302\b\020\034\032\004\030\0010\035H\026J\b\020)\032\0020\rH\002J\020\020*\032\0020\r2\006\020+\032\0020,H\002R\016\020\003\032\0020\004XD¢\006\002\n\000R\016\020\005\032\0020\004X\016¢\006\002\n\000R\020\020\006\032\004\030\0010\007X\016¢\006\002\n\000R\016\020\b\032\0020\tX.¢\006\002\n\000R\020\020\n\032\004\030\0010\004X\016¢\006\002\n\000R\020\020\013\032\004\030\0010\004X\016¢\006\002\n\000¨\006."}, d2 = {"Lca/albertahealthservices/contacttracing/onboarding/TOUFragment;", "Lca/albertahealthservices/contacttracing/onboarding/OnboardingFragmentInterface;", "()V", "TAG", "", "helpEmail", "listener", "Lca/albertahealthservices/contacttracing/onboarding/TOUFragment$OnFragmentInteractionListener;", "mainContext", "Landroid/content/Context;", "param1", "param2", "becomesVisible", "", "createSpannableString", "Landroid/text/SpannableString;", "string", "span", "clickableSpan", "Landroid/text/style/ClickableSpan;", "onAttach", "context", "onBackButtonClick", "view", "Landroid/view/View;", "onButtonClick", "buttonView", "onCreate", "savedInstanceState", "Landroid/os/Bundle;", "onCreateView", "inflater", "Landroid/view/LayoutInflater;", "container", "Landroid/view/ViewGroup;", "onDetach", "onError", "error", "onUpdatePhoneNumber", "num", "onViewCreated", "sendEmailIntent", "startWebActivityIntent", "type", "", "OnFragmentInteractionListener", "app_release"}, k = 1, mv = {1, 1, 16})
 public final class TOUFragment extends OnboardingFragmentInterface {
   private final String TAG = "TOUFragment";
   
   private HashMap _$_findViewCache;
+  
+  private String helpEmail = "";
   
   private OnFragmentInteractionListener listener;
   
@@ -38,27 +39,36 @@ public final class TOUFragment extends OnboardingFragmentInterface {
   
   private String param2;
   
-  private TextView privacyTextView;
-  
   private final SpannableString createSpannableString(String paramString1, String paramString2, ClickableSpan paramClickableSpan) {
     CharSequence charSequence = paramString1;
     int i = StringsKt.indexOf$default(charSequence, "%s", 0, false, 6, null);
     SpannableString spannableString = new SpannableString((new Regex("\\%s\\b")).replaceFirst(charSequence, paramString2));
-    spannableString.setSpan(paramClickableSpan, i, paramString2.length() + i, 33);
+    if (i > 0)
+      spannableString.setSpan(paramClickableSpan, i, paramString2.length() + i, 33); 
     return spannableString;
   }
   
   private final void sendEmailIntent() {
+    String str = this.helpEmail;
     Intent intent = new Intent("android.intent.action.SENDTO");
     intent.setType("text/plain");
     intent.setData(Uri.parse("mailto:"));
-    intent.putExtra("android.intent.extra.EMAIL", new String[] { "HiaHelpDesk@gov.ab.ca" });
+    intent.putExtra("android.intent.extra.EMAIL", new String[] { str });
     Context context = getContext();
     if (context == null)
       Intrinsics.throwNpe(); 
     Intrinsics.checkExpressionValueIsNotNull(context, "context!!");
     if (intent.resolveActivity(context.getPackageManager()) != null)
       startActivity(intent); 
+  }
+  
+  private final void startWebActivityIntent(int paramInt) {
+    Context context = this.mainContext;
+    if (context == null)
+      Intrinsics.throwUninitializedPropertyAccessException("mainContext"); 
+    Intent intent = new Intent(context, WebViewActivity.class);
+    intent.putExtra("type", paramInt);
+    startActivity(intent);
   }
   
   public void _$_clearFindViewByIdCache() {
@@ -105,12 +115,12 @@ public final class TOUFragment extends OnboardingFragmentInterface {
   public void onButtonClick(View paramView) {
     Intrinsics.checkParameterIsNotNull(paramView, "buttonView");
     CentralLog.Companion.d(this.TAG, "OnButtonClick 4");
-    Context context = getContext();
-    if (context != null) {
-      ((OnboardingActivity)context).navigateToNextPage();
-      return;
+    OnboardingActivity onboardingActivity = (OnboardingActivity)getContext();
+    if (onboardingActivity != null) {
+      onboardingActivity.navigateToNextPage();
+    } else {
+      Utils.INSTANCE.restartAppWithNoContext(0, "TOUFragment not attached to OnboardingActivity");
     } 
-    throw new TypeCastException("null cannot be cast to non-null type ca.albertahealthservices.contacttracing.onboarding.OnboardingActivity");
   }
   
   public void onCreate(Bundle paramBundle) {
@@ -120,6 +130,9 @@ public final class TOUFragment extends OnboardingFragmentInterface {
       this.param1 = paramBundle.getString("param1");
       this.param2 = paramBundle.getString("param2");
     } 
+    String str = getString(2131820626);
+    Intrinsics.checkExpressionValueIsNotNull(str, "getString(R.string.help_desk_email)");
+    this.helpEmail = str;
   }
   
   public View onCreateView(LayoutInflater paramLayoutInflater, ViewGroup paramViewGroup, Bundle paramBundle) {
@@ -143,30 +156,61 @@ public final class TOUFragment extends OnboardingFragmentInterface {
   public void onViewCreated(View paramView, Bundle paramBundle) {
     Intrinsics.checkParameterIsNotNull(paramView, "view");
     super.onViewCreated(paramView, paramBundle);
-    ((Button)_$_findCachedViewById(R.id.privacy_button)).setOnClickListener(new TOUFragment$onViewCreated$1());
-    ((Button)_$_findCachedViewById(R.id.faq_button)).setOnClickListener(new TOUFragment$onViewCreated$2());
+    Button button = (Button)_$_findCachedViewById(R.id.privacy_button);
+    if (button != null)
+      button.setOnClickListener(new TOUFragment$onViewCreated$1()); 
+    button = (Button)_$_findCachedViewById(R.id.faq_button);
+    if (button != null)
+      button.setOnClickListener(new TOUFragment$onViewCreated$2()); 
     disableButton();
     TOUFragment$onViewCreated$privacyClickableSpan$1 tOUFragment$onViewCreated$privacyClickableSpan$1 = new TOUFragment$onViewCreated$privacyClickableSpan$1();
-    AppCompatTextView appCompatTextView3 = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc4);
-    Intrinsics.checkExpressionValueIsNotNull(appCompatTextView3, "privacy_desc4");
-    AppCompatTextView appCompatTextView1 = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc4);
-    Intrinsics.checkExpressionValueIsNotNull(appCompatTextView1, "privacy_desc4");
-    appCompatTextView3.setText((CharSequence)createSpannableString(appCompatTextView1.getText().toString(), "Privacy Statement", tOUFragment$onViewCreated$privacyClickableSpan$1));
+    TOUFragment$onViewCreated$faqClickableSpan$1 tOUFragment$onViewCreated$faqClickableSpan$1 = new TOUFragment$onViewCreated$faqClickableSpan$1();
+    AppCompatTextView appCompatTextView3 = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc6);
+    if (appCompatTextView3 != null) {
+      AppCompatTextView appCompatTextView = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc6);
+      Intrinsics.checkExpressionValueIsNotNull(appCompatTextView, "privacy_desc6");
+      String str2 = appCompatTextView.getText().toString();
+      String str1 = getString(2131820727);
+      Intrinsics.checkExpressionValueIsNotNull(str1, "getString(R.string.privacy_statement_label)");
+      appCompatTextView3.setText((CharSequence)createSpannableString(str2, str1, tOUFragment$onViewCreated$privacyClickableSpan$1));
+    } 
+    AppCompatTextView appCompatTextView2 = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc9);
+    if (appCompatTextView2 != null) {
+      appCompatTextView3 = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc9);
+      Intrinsics.checkExpressionValueIsNotNull(appCompatTextView3, "privacy_desc9");
+      String str2 = appCompatTextView3.getText().toString();
+      String str1 = getString(2131820618);
+      Intrinsics.checkExpressionValueIsNotNull(str1, "getString(R.string.faq_statement_label)");
+      appCompatTextView2.setText((CharSequence)createSpannableString(str2, str1, tOUFragment$onViewCreated$faqClickableSpan$1));
+    } 
     TOUFragment$onViewCreated$emailClickableSpan$1 tOUFragment$onViewCreated$emailClickableSpan$1 = new TOUFragment$onViewCreated$emailClickableSpan$1();
-    AppCompatTextView appCompatTextView2 = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc7);
-    Intrinsics.checkExpressionValueIsNotNull(appCompatTextView2, "privacy_desc7");
-    appCompatTextView3 = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc7);
-    Intrinsics.checkExpressionValueIsNotNull(appCompatTextView3, "privacy_desc7");
-    appCompatTextView2.setText((CharSequence)createSpannableString(appCompatTextView3.getText().toString(), "HiaHelpDesk@gov.ab.ca", tOUFragment$onViewCreated$emailClickableSpan$1));
-    appCompatTextView2 = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc8);
-    Intrinsics.checkExpressionValueIsNotNull(appCompatTextView2, "privacy_desc8");
-    appCompatTextView3 = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc8);
-    Intrinsics.checkExpressionValueIsNotNull(appCompatTextView3, "privacy_desc8");
-    appCompatTextView2.setText((CharSequence)createSpannableString(appCompatTextView3.getText().toString(), "HiaHelpDesk@gov.ab.ca", tOUFragment$onViewCreated$emailClickableSpan$1));
-    ((Switch)_$_findCachedViewById(R.id.checkbox_agreement)).setOnCheckedChangeListener(new TOUFragment$onViewCreated$3());
-    ((AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc4)).setMovementMethod(LinkMovementMethod.getInstance());
-    ((AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc7)).setMovementMethod(LinkMovementMethod.getInstance());
-    ((AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc8)).setMovementMethod(LinkMovementMethod.getInstance());
+    appCompatTextView3 = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc10);
+    if (appCompatTextView3 != null) {
+      appCompatTextView2 = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc10);
+      Intrinsics.checkExpressionValueIsNotNull(appCompatTextView2, "privacy_desc10");
+      appCompatTextView3.setText((CharSequence)createSpannableString(appCompatTextView2.getText().toString(), this.helpEmail, tOUFragment$onViewCreated$emailClickableSpan$1));
+    } 
+    appCompatTextView2 = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc12);
+    if (appCompatTextView2 != null) {
+      appCompatTextView3 = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc12);
+      Intrinsics.checkExpressionValueIsNotNull(appCompatTextView3, "privacy_desc12");
+      appCompatTextView2.setText((CharSequence)createSpannableString(appCompatTextView3.getText().toString(), this.helpEmail, tOUFragment$onViewCreated$emailClickableSpan$1));
+    } 
+    Switch switch_ = (Switch)_$_findCachedViewById(R.id.checkbox_agreement);
+    if (switch_ != null)
+      switch_.setOnCheckedChangeListener(new TOUFragment$onViewCreated$3()); 
+    AppCompatTextView appCompatTextView1 = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc6);
+    if (appCompatTextView1 != null)
+      appCompatTextView1.setMovementMethod(LinkMovementMethod.getInstance()); 
+    appCompatTextView1 = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc9);
+    if (appCompatTextView1 != null)
+      appCompatTextView1.setMovementMethod(LinkMovementMethod.getInstance()); 
+    appCompatTextView1 = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc10);
+    if (appCompatTextView1 != null)
+      appCompatTextView1.setMovementMethod(LinkMovementMethod.getInstance()); 
+    appCompatTextView1 = (AppCompatTextView)_$_findCachedViewById(R.id.privacy_desc12);
+    if (appCompatTextView1 != null)
+      appCompatTextView1.setMovementMethod(LinkMovementMethod.getInstance()); 
   }
   
   @Metadata(bv = {1, 0, 3}, d1 = {"\000\026\n\002\030\002\n\002\020\000\n\000\n\002\020\002\n\000\n\002\030\002\n\000\bf\030\0002\0020\001J\020\020\002\032\0020\0032\006\020\004\032\0020\005H&¨\006\006"}, d2 = {"Lca/albertahealthservices/contacttracing/onboarding/TOUFragment$OnFragmentInteractionListener;", "", "onFragmentInteraction", "", "uri", "Landroid/net/Uri;", "app_release"}, k = 1, mv = {1, 1, 16})
@@ -178,9 +222,7 @@ public final class TOUFragment extends OnboardingFragmentInterface {
   static final class TOUFragment$onViewCreated$1 implements View.OnClickListener {
     public final void onClick(View param1View) {
       CentralLog.Companion.d(TOUFragment.this.TAG, "clicked view privacy");
-      Intent intent = new Intent(TOUFragment.access$getMainContext$p(TOUFragment.this), WebViewActivity.class);
-      intent.putExtra("type", 0);
-      TOUFragment.this.startActivity(intent);
+      TOUFragment.this.startWebActivityIntent(0);
     }
   }
   
@@ -188,9 +230,7 @@ public final class TOUFragment extends OnboardingFragmentInterface {
   static final class TOUFragment$onViewCreated$2 implements View.OnClickListener {
     public final void onClick(View param1View) {
       CentralLog.Companion.d(TOUFragment.this.TAG, "clicked view faq");
-      Intent intent = new Intent(TOUFragment.access$getMainContext$p(TOUFragment.this), WebViewActivity.class);
-      intent.putExtra("type", 1);
-      TOUFragment.this.startActivity(intent);
+      TOUFragment.this.startWebActivityIntent(1);
     }
   }
   
@@ -216,13 +256,19 @@ public final class TOUFragment extends OnboardingFragmentInterface {
     }
   }
   
+  @Metadata(bv = {1, 0, 3}, d1 = {"\000\027\n\000\n\002\030\002\n\000\n\002\020\002\n\000\n\002\030\002\n\000*\001\000\b\n\030\0002\0020\001J\020\020\002\032\0020\0032\006\020\004\032\0020\005H\026¨\006\006"}, d2 = {"ca/albertahealthservices/contacttracing/onboarding/TOUFragment$onViewCreated$faqClickableSpan$1", "Landroid/text/style/ClickableSpan;", "onClick", "", "textView", "Landroid/view/View;", "app_release"}, k = 1, mv = {1, 1, 16})
+  public static final class TOUFragment$onViewCreated$faqClickableSpan$1 extends ClickableSpan {
+    public void onClick(View param1View) {
+      Intrinsics.checkParameterIsNotNull(param1View, "textView");
+      TOUFragment.this.startWebActivityIntent(1);
+    }
+  }
+  
   @Metadata(bv = {1, 0, 3}, d1 = {"\000\027\n\000\n\002\030\002\n\000\n\002\020\002\n\000\n\002\030\002\n\000*\001\000\b\n\030\0002\0020\001J\020\020\002\032\0020\0032\006\020\004\032\0020\005H\026¨\006\006"}, d2 = {"ca/albertahealthservices/contacttracing/onboarding/TOUFragment$onViewCreated$privacyClickableSpan$1", "Landroid/text/style/ClickableSpan;", "onClick", "", "textView", "Landroid/view/View;", "app_release"}, k = 1, mv = {1, 1, 16})
   public static final class TOUFragment$onViewCreated$privacyClickableSpan$1 extends ClickableSpan {
     public void onClick(View param1View) {
       Intrinsics.checkParameterIsNotNull(param1View, "textView");
-      Intent intent = new Intent(TOUFragment.access$getMainContext$p(TOUFragment.this), WebViewActivity.class);
-      intent.putExtra("type", 0);
-      TOUFragment.this.startActivity(intent);
+      TOUFragment.this.startWebActivityIntent(0);
     }
   }
 }

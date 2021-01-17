@@ -2,7 +2,6 @@ package ca.albertahealthservices.contacttracing;
 
 import android.app.Application;
 import android.content.Context;
-import android.os.Build;
 import ca.albertahealthservices.contacttracing.idmanager.TempIDManager;
 import ca.albertahealthservices.contacttracing.idmanager.TemporaryID;
 import ca.albertahealthservices.contacttracing.logging.CentralLog;
@@ -32,7 +31,7 @@ public final class TracerApp extends Application {
     Intrinsics.checkExpressionValueIsNotNull(context, "applicationContext");
     AppContext = context;
     WLClient.createInstance((Context)this);
-    WLClient.getInstance().pinTrustedCertificatePublicKey("mfpcertificate.cer");
+    WLClient.getInstance().pinTrustedCertificatePublicKey("customCertificate.cer");
     WLAnalytics.init(this);
     WLAnalytics.addDeviceEventListener(WLAnalytics.DeviceEvent.LIFECYCLE);
     Logger.setCapture(true);
@@ -46,15 +45,11 @@ public final class TracerApp extends Application {
     private Companion() {}
     
     public final CentralDevice asCentralDevice() {
-      String str = Build.MODEL;
-      Intrinsics.checkExpressionValueIsNotNull(str, "Build.MODEL");
-      return new CentralDevice(str, "SELF");
+      return new CentralDevice("Android", "SELF");
     }
     
     public final PeripheralDevice asPeripheralDevice() {
-      String str = Build.MODEL;
-      Intrinsics.checkExpressionValueIsNotNull(str, "Build.MODEL");
-      return new PeripheralDevice(str, "SELF");
+      return new PeripheralDevice("Android", "SELF");
     }
     
     public final Context getAppContext() {
@@ -70,16 +65,16 @@ public final class TracerApp extends Application {
     }
     
     public final String thisDeviceMsg() {
-      TemporaryID temporaryID = BluetoothMonitoringService.Companion.getBroadcastMessage();
-      if (temporaryID != null) {
+      TemporaryID temporaryID1 = BluetoothMonitoringService.Companion.getBroadcastMessage();
+      if (temporaryID1 != null) {
         CentralLog.Companion companion = CentralLog.Companion;
         String str = TracerApp.TAG;
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Retrieved BM for storage: ");
-        stringBuilder.append(temporaryID);
+        stringBuilder.append(temporaryID1);
         companion.i(str, stringBuilder.toString());
-        if (!temporaryID.isValidForCurrentTime()) {
-          temporaryID = TempIDManager.INSTANCE.retrieveTemporaryID(TracerApp.Companion.getAppContext());
+        if (!temporaryID1.isValidForCurrentTime()) {
+          TemporaryID temporaryID = TempIDManager.INSTANCE.retrieveTemporaryID(TracerApp.Companion.getAppContext());
           if (temporaryID != null) {
             CentralLog.Companion.i(TracerApp.TAG, "Grab New Temp ID");
             BluetoothMonitoringService.Companion.setBroadcastMessage(temporaryID);
@@ -88,9 +83,9 @@ public final class TracerApp extends Application {
             CentralLog.Companion.e(TracerApp.TAG, "Failed to grab new Temp ID"); 
         } 
       } 
-      temporaryID = BluetoothMonitoringService.Companion.getBroadcastMessage();
-      if (temporaryID != null) {
-        String str = temporaryID.getTempID();
+      TemporaryID temporaryID2 = BluetoothMonitoringService.Companion.getBroadcastMessage();
+      if (temporaryID2 != null) {
+        String str = temporaryID2.getTempID();
         if (str != null)
           return str; 
       } 

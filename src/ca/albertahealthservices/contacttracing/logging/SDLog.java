@@ -152,35 +152,35 @@ public final class SDLog {
       return; 
     if (paramArrayOfString == null)
       return; 
-    String str1 = timestampFormat.format(new Date());
-    String str2 = ArraysKt.joinToString$default((Object[])paramArrayOfString, " ", null, null, 0, null, null, 62, null);
+    String str2 = timestampFormat.format(new Date());
+    String str1 = ArraysKt.joinToString$default((Object[])paramArrayOfString, " ", null, null, 0, null, null, 62, null);
     StringBuffer stringBuffer = buffer;
     StringBuilder stringBuilder = new StringBuilder();
-    stringBuilder.append(str1);
+    stringBuilder.append(str2);
     stringBuilder.append(' ');
     stringBuilder.append(paramString);
     stringBuilder.append(' ');
-    stringBuilder.append(str2);
+    stringBuilder.append(str1);
     stringBuilder.append('\n');
     stringBuffer.append(stringBuilder.toString());
     try {
       BufferedWriter bufferedWriter = getFileWriter();
       bufferedWriter.write(buffer.toString());
-      stringBuffer = new StringBuffer();
+      StringBuffer stringBuffer1 = new StringBuffer();
       this();
-      buffer = stringBuffer;
+      buffer = stringBuffer1;
       if (System.currentTimeMillis() - lastWrite > 10000L) {
         bufferedWriter.flush();
         lastWrite = System.currentTimeMillis();
       } 
     } catch (IOException iOException) {
       StringBuffer stringBuffer1 = buffer;
-      stringBuilder = new StringBuilder();
-      stringBuilder.append(str1);
-      stringBuilder.append(" ERROR SDLog ??? IOException while writing to SDLog: ");
-      stringBuilder.append(iOException.getMessage());
-      stringBuilder.append('\n');
-      stringBuffer1.append(stringBuilder.toString());
+      StringBuilder stringBuilder1 = new StringBuilder();
+      stringBuilder1.append(str2);
+      stringBuilder1.append(" ERROR SDLog ??? IOException while writing to SDLog: ");
+      stringBuilder1.append(iOException.getMessage());
+      stringBuilder1.append('\n');
+      stringBuffer1.append(stringBuilder1.toString());
     } 
   }
   

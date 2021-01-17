@@ -19,9 +19,9 @@ public final class StartOnBootReceiver extends BroadcastReceiver {
         CentralLog.Companion.d("StartOnBootReceiver", "Attempting to start service");
         Utils.INSTANCE.scheduleStartMonitoringService(paramContext, 500L);
       } finally {
-        paramIntent = null;
+        Exception exception = null;
         CentralLog.Companion companion = CentralLog.Companion;
-        String str = paramIntent.getLocalizedMessage();
+        String str = exception.getLocalizedMessage();
         Intrinsics.checkExpressionValueIsNotNull(str, "e.localizedMessage");
         companion.e("StartOnBootReceiver", str);
       } 
