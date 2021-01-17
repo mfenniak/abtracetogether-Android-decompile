@@ -65,15 +65,15 @@ public final class RegisterNumberFragment extends OnboardingFragmentInterface {
               paramString = paramString.substring(6);
               Intrinsics.checkExpressionValueIsNotNull(paramString, "(this as java.lang.String).substring(startIndex)");
               stringBuilder.append(paramString);
-              String str1 = stringBuilder.toString();
-              editText = (EditText)_$_findCachedViewById(R.id.phone_number);
-              if (editText != null)
-                editText.setText(str1); 
+              paramString = stringBuilder.toString();
               EditText editText1 = (EditText)_$_findCachedViewById(R.id.phone_number);
-              if (editText1 != null) {
-                editText = (EditText)_$_findCachedViewById(R.id.phone_number);
-                Intrinsics.checkExpressionValueIsNotNull(editText, "phone_number");
-                editText1.setSelection(editText.getText().length() - this.selectionPointer);
+              if (editText1 != null)
+                editText1.setText(paramString); 
+              editText = (EditText)_$_findCachedViewById(R.id.phone_number);
+              if (editText != null) {
+                editText1 = (EditText)_$_findCachedViewById(R.id.phone_number);
+                Intrinsics.checkExpressionValueIsNotNull(editText1, "phone_number");
+                editText.setSelection(editText1.getText().length() - this.selectionPointer);
               } 
             } else {
               throw new TypeCastException("null cannot be cast to non-null type java.lang.String");
@@ -97,15 +97,15 @@ public final class RegisterNumberFragment extends OnboardingFragmentInterface {
             String str1 = editText.substring(3);
             Intrinsics.checkExpressionValueIsNotNull(str1, "(this as java.lang.String).substring(startIndex)");
             stringBuilder.append(str1);
-            String str2 = stringBuilder.toString();
-            EditText editText1 = (EditText)_$_findCachedViewById(R.id.phone_number);
-            if (editText1 != null)
-              editText1.setText(str2); 
+            str1 = stringBuilder.toString();
             EditText editText2 = (EditText)_$_findCachedViewById(R.id.phone_number);
-            if (editText2 != null) {
-              editText1 = (EditText)_$_findCachedViewById(R.id.phone_number);
-              Intrinsics.checkExpressionValueIsNotNull(editText1, "phone_number");
-              editText2.setSelection(editText1.getText().length() - this.selectionPointer);
+            if (editText2 != null)
+              editText2.setText(str1); 
+            EditText editText1 = (EditText)_$_findCachedViewById(R.id.phone_number);
+            if (editText1 != null) {
+              editText2 = (EditText)_$_findCachedViewById(R.id.phone_number);
+              Intrinsics.checkExpressionValueIsNotNull(editText2, "phone_number");
+              editText1.setSelection(editText2.getText().length() - this.selectionPointer);
             } 
           } else {
             throw new TypeCastException("null cannot be cast to non-null type java.lang.String");
@@ -300,7 +300,7 @@ public final class RegisterNumberFragment extends OnboardingFragmentInterface {
     if (appCompatTextView != null) {
       StringBuilder stringBuilder = new StringBuilder();
       stringBuilder.append(getString(2131820582));
-      stringBuilder.append("1.4.0");
+      stringBuilder.append("1.5.0");
       stringBuilder.append(str);
       appCompatTextView.setText(stringBuilder.toString());
     } 

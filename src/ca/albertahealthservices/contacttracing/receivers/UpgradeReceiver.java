@@ -30,11 +30,11 @@ public final class UpgradeReceiver extends BroadcastReceiver {
       } 
       return;
     } 
-    if ((Intrinsics.areEqual("android.intent.action.MY_PACKAGE_REPLACED", exception.getAction()) ^ true) != 0)
+    if ((Intrinsics.areEqual("android.intent.action.MY_PACKAGE_REPLACED", stringBuilder.getAction()) ^ true) != 0)
       return; 
-    if (stringBuilder != null) {
+    if (exception != null) {
       CentralLog.Companion.i("UpgradeReceiver", "Starting service from upgrade receiver");
-      Utils.INSTANCE.startBluetoothMonitoringService((Context)stringBuilder);
+      Utils.INSTANCE.startBluetoothMonitoringService((Context)exception);
     } 
   }
 }

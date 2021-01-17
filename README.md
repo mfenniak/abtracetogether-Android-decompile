@@ -9,7 +9,7 @@ Instructions for Decompiling
 rm -rf tmp
 mkdir tmp
 cd tmp
-unzip ../apk/ABTraceTogether_v1.4.0_apkpure.com.apk
+unzip ../apk/ABTraceTogether_v1.5.0_apkpure.com.apk
 ```
 
 3. Convert classes.dex to classes.jar, using the tool dex2jar from dex-tools.  The specific version tested is refered to here.
@@ -51,7 +51,7 @@ rm -rf android androidx com io
 ```
 cd ..
 git add apk src
-git commit -m"Decompiled ABTraceTogether 1.4.0"
-git tag -a v1.4.0 -m"Decompiled ABTraceTogether 1.4.0"
+git commit -m"Decompiled ABTraceTogether 1.5.0"
+git tag -a v1.5.0 -m"Decompiled ABTraceTogether 1.5.0"
 git push
 ```

@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.PowerManager;
 import android.text.TextUtils;
 import android.view.View;
 import androidx.fragment.app.Fragment;
@@ -27,6 +28,7 @@ import ca.albertahealthservices.contacttracing.R;
 import ca.albertahealthservices.contacttracing.Utils;
 import ca.albertahealthservices.contacttracing.api.ErrorCode;
 import ca.albertahealthservices.contacttracing.api.Request;
+import ca.albertahealthservices.contacttracing.api.Response;
 import ca.albertahealthservices.contacttracing.idmanager.TempIDManager;
 import ca.albertahealthservices.contacttracing.logging.CentralLog;
 import ca.albertahealthservices.contacttracing.services.BluetoothMonitoringService;
@@ -101,30 +103,29 @@ public final class OnboardingActivity extends FragmentActivity implements Corout
   }
   
   private final void enableFragmentbutton() {
-    OnboardingFragmentInterface onboardingFragmentInterface;
     ScreenSlidePagerAdapter screenSlidePagerAdapter = this.pagerAdapter;
     if (screenSlidePagerAdapter != null) {
       CustomViewPager customViewPager = (CustomViewPager)_$_findCachedViewById(R.id.pager);
       Intrinsics.checkExpressionValueIsNotNull(customViewPager, "pager");
-      onboardingFragmentInterface = screenSlidePagerAdapter.getItem(customViewPager.getCurrentItem());
+      OnboardingFragmentInterface onboardingFragmentInterface = screenSlidePagerAdapter.getItem(customViewPager.getCurrentItem());
     } else {
-      onboardingFragmentInterface = null;
+      screenSlidePagerAdapter = null;
     } 
-    if (onboardingFragmentInterface != null)
-      onboardingFragmentInterface.enableButton(); 
+    if (screenSlidePagerAdapter != null)
+      screenSlidePagerAdapter.enableButton(); 
   }
   
   private final void excludeFromBatteryOptimization() {
     CentralLog.Companion.d(this.TAG, "[excludeFromBatteryOptimization] ");
     Object object = getSystemService("power");
     if (object != null) {
-      object = object;
-      String str = getPackageName();
+      PowerManager powerManager = (PowerManager)object;
+      object = getPackageName();
       if (Build.VERSION.SDK_INT >= 23) {
         Utils utils = Utils.INSTANCE;
-        Intrinsics.checkExpressionValueIsNotNull(str, "packageName");
-        Intent intent = utils.getBatteryOptimizerExemptionIntent(str);
-        if (!object.isIgnoringBatteryOptimizations(str)) {
+        Intrinsics.checkExpressionValueIsNotNull(object, "packageName");
+        Intent intent = utils.getBatteryOptimizerExemptionIntent((String)object);
+        if (!powerManager.isIgnoringBatteryOptimizations((String)object)) {
           CentralLog.Companion.d(this.TAG, "Not on Battery Optimization whitelist");
           if (Utils.INSTANCE.canHandleIntent(intent, getPackageManager())) {
             startActivityForResult(intent, 789);
@@ -684,7 +685,8 @@ public final class OnboardingActivity extends FragmentActivity implements Corout
     }
     
     public final Object invokeSuspend(Object param1Object) {
-      Object object = IntrinsicsKt.getCOROUTINE_SUSPENDED();
+      Object object2;
+      Object object1 = IntrinsicsKt.getCOROUTINE_SUSPENDED();
       int i = this.label;
       boolean bool = false;
       if (i != 0) {
@@ -699,10 +701,10 @@ public final class OnboardingActivity extends FragmentActivity implements Corout
           i = this.I$0;
           CoroutineScope coroutineScope = (CoroutineScope)this.L$0;
           ResultKt.throwOnFailure(param1Object);
-          Object object1 = param1Object;
+          Object object = param1Object;
           param1Object = coroutineScope;
-          object1 = object1;
-          Integer integer = object1.getStatus();
+          Response response1 = (Response)object;
+          object = response1.getStatus();
         } 
       } else {
         ResultKt.throwOnFailure(param1Object);
@@ -717,59 +719,59 @@ public final class OnboardingActivity extends FragmentActivity implements Corout
           this.L$0 = param1Object;
           this.I$0 = 1;
           this.label = 1;
-          object1 = Request.runRequest$default(request, str, "POST", 0, null, null, null, (Continuation)this, 60, null);
-          if (object1 == object)
-            return object; 
+          object = Request.runRequest$default(request, str, "POST", 0, null, null, null, (Continuation)this, 60, null);
+          if (object == object1)
+            return object1; 
           i = 1;
         } else {
           i = 1;
           if (i != 0) {
             Request request = Request.INSTANCE;
-            object1 = new JSONObject();
+            object = new JSONObject();
             this.L$0 = param1Object;
             this.label = 2;
-            Object object2 = Request.runRequest$default(request, "/adapters/smsOtpService/phone/verifySmsOTP", "POST", 0, null, (JSONObject)object1, null, (Continuation)this, 44, null);
+            object2 = Request.runRequest$default(request, "/adapters/smsOtpService/phone/verifySmsOTP", "POST", 0, null, (JSONObject)object, null, (Continuation)this, 44, null);
             param1Object = object2;
-            if (object2 == object)
-              return object; 
+            if (object2 == object1)
+              return object1; 
           } else {
             return Unit.INSTANCE;
           } 
         } 
-        Object object1 = object1;
-        Integer integer = object1.getStatus();
+        Response response1 = (Response)object;
+        Object object = response1.getStatus();
       } 
-      param1Object = param1Object;
-      if (param1Object.isSuccess()) {
-        Integer integer = param1Object.getStatus();
-        if (integer == null || integer.intValue() != 200 || param1Object.getData() == null) {
-          if ((Intrinsics.areEqual(param1Object.getErrorCode(), ErrorCode.INSTANCE.getCHALLENGE_HANDLING_CANCELED()) ^ true) != 0) {
-            OnboardingActivity onboardingActivity = OnboardingActivity.this;
-            param1Object = onboardingActivity.getString(2131820637);
+      Response response = (Response)param1Object;
+      if (response.isSuccess()) {
+        param1Object = response.getStatus();
+        if (param1Object == null || param1Object.intValue() != 200 || response.getData() == null) {
+          if ((Intrinsics.areEqual(response.getErrorCode(), ErrorCode.INSTANCE.getCHALLENGE_HANDLING_CANCELED()) ^ true) != 0) {
+            object2 = OnboardingActivity.this;
+            param1Object = object2.getString(2131820637);
             Intrinsics.checkExpressionValueIsNotNull(param1Object, "getString(R.string.invalid_otp)");
-            onboardingActivity.updateOTPError((String)param1Object);
+            object2.updateOTPError((String)param1Object);
           } 
           OnboardingActivity.this.enableFragmentbutton();
           return Unit.INSTANCE;
         } 
         try {
-          Preference preference = Preference.INSTANCE;
+          param1Object = Preference.INSTANCE;
           Context context = OnboardingActivity.this.getApplicationContext();
           Intrinsics.checkExpressionValueIsNotNull(context, "applicationContext");
-          param1Object = param1Object.getData().getString("userId");
-          Intrinsics.checkExpressionValueIsNotNull(param1Object, "triggerSmsOTPResponse.data.getString(\"userId\")");
-          preference.putUUID(context, (String)param1Object);
+          object2 = object2.getData().getString("userId");
+          Intrinsics.checkExpressionValueIsNotNull(object2, "triggerSmsOTPResponse.data.getString(\"userId\")");
+          param1Object.putUUID(context, (String)object2);
         } catch (Exception exception) {
           exception.printStackTrace();
         } 
         OnboardingActivity.this.requestTempIdsIfNeeded();
         return Unit.INSTANCE;
       } 
-      if ((Intrinsics.areEqual(exception.getErrorCode(), ErrorCode.INSTANCE.getCHALLENGE_HANDLING_CANCELED()) ^ true) != 0) {
-        OnboardingActivity onboardingActivity = OnboardingActivity.this;
-        String str = onboardingActivity.getString(2131820637);
-        Intrinsics.checkExpressionValueIsNotNull(str, "getString(R.string.invalid_otp)");
-        onboardingActivity.updateOTPError(str);
+      if ((Intrinsics.areEqual(object2.getErrorCode(), ErrorCode.INSTANCE.getCHALLENGE_HANDLING_CANCELED()) ^ true) != 0) {
+        object2 = OnboardingActivity.this;
+        param1Object = object2.getString(2131820637);
+        Intrinsics.checkExpressionValueIsNotNull(param1Object, "getString(R.string.invalid_otp)");
+        object2.updateOTPError((String)param1Object);
       } 
       OnboardingActivity.this.enableFragmentbutton();
       return Unit.INSTANCE;

@@ -169,65 +169,65 @@ public final class EnterPinFragment extends Fragment implements CoroutineScope {
     LinearLayout linearLayout2 = (LinearLayout)_$_findCachedViewById(R.id.enterPinActionButton);
     if (linearLayout2 != null)
       linearLayout2.setEnabled(false); 
+    List<EditText> list5 = this.otpInputs;
+    EditText editText3 = (EditText)_$_findCachedViewById(R.id.otp_et1);
+    Intrinsics.checkExpressionValueIsNotNull(editText3, "otp_et1");
+    list5.add(editText3);
     List<EditText> list2 = this.otpInputs;
-    EditText editText2 = (EditText)_$_findCachedViewById(R.id.otp_et1);
-    Intrinsics.checkExpressionValueIsNotNull(editText2, "otp_et1");
-    list2.add(editText2);
+    EditText editText6 = (EditText)_$_findCachedViewById(R.id.otp_et2);
+    Intrinsics.checkExpressionValueIsNotNull(editText6, "otp_et2");
+    list2.add(editText6);
     list2 = this.otpInputs;
-    editText2 = (EditText)_$_findCachedViewById(R.id.otp_et2);
-    Intrinsics.checkExpressionValueIsNotNull(editText2, "otp_et2");
-    list2.add(editText2);
-    list2 = this.otpInputs;
-    editText2 = (EditText)_$_findCachedViewById(R.id.otp_et3);
-    Intrinsics.checkExpressionValueIsNotNull(editText2, "otp_et3");
-    list2.add(editText2);
+    editText6 = (EditText)_$_findCachedViewById(R.id.otp_et3);
+    Intrinsics.checkExpressionValueIsNotNull(editText6, "otp_et3");
+    list2.add(editText6);
+    List<EditText> list4 = this.otpInputs;
+    EditText editText2 = (EditText)_$_findCachedViewById(R.id.otp_et4);
+    Intrinsics.checkExpressionValueIsNotNull(editText2, "otp_et4");
+    list4.add(editText2);
     List<EditText> list1 = this.otpInputs;
-    EditText editText3 = (EditText)_$_findCachedViewById(R.id.otp_et4);
-    Intrinsics.checkExpressionValueIsNotNull(editText3, "otp_et4");
-    list1.add(editText3);
-    list1 = this.otpInputs;
-    editText3 = (EditText)_$_findCachedViewById(R.id.otp_et5);
-    Intrinsics.checkExpressionValueIsNotNull(editText3, "otp_et5");
-    list1.add(editText3);
-    list1 = this.otpInputs;
-    editText3 = (EditText)_$_findCachedViewById(R.id.otp_et6);
-    Intrinsics.checkExpressionValueIsNotNull(editText3, "otp_et6");
-    list1.add(editText3);
-    editText3 = (EditText)_$_findCachedViewById(R.id.otp_et1);
-    if (editText3 != null) {
-      EditText editText = (EditText)_$_findCachedViewById(R.id.otp_et1);
-      Intrinsics.checkExpressionValueIsNotNull(editText, "otp_et1");
-      editText3.addTextChangedListener(new OTPTextWatcher(editText));
-    } 
-    editText3 = (EditText)_$_findCachedViewById(R.id.otp_et2);
-    if (editText3 != null) {
-      EditText editText = (EditText)_$_findCachedViewById(R.id.otp_et2);
-      Intrinsics.checkExpressionValueIsNotNull(editText, "otp_et2");
-      editText3.addTextChangedListener(new OTPTextWatcher(editText));
-    } 
-    editText3 = (EditText)_$_findCachedViewById(R.id.otp_et3);
-    if (editText3 != null) {
-      EditText editText = (EditText)_$_findCachedViewById(R.id.otp_et3);
-      Intrinsics.checkExpressionValueIsNotNull(editText, "otp_et3");
-      editText3.addTextChangedListener(new OTPTextWatcher(editText));
-    } 
-    editText3 = (EditText)_$_findCachedViewById(R.id.otp_et4);
-    if (editText3 != null) {
-      EditText editText = (EditText)_$_findCachedViewById(R.id.otp_et4);
-      Intrinsics.checkExpressionValueIsNotNull(editText, "otp_et4");
-      editText3.addTextChangedListener(new OTPTextWatcher(editText));
-    } 
-    editText3 = (EditText)_$_findCachedViewById(R.id.otp_et5);
-    if (editText3 != null) {
-      EditText editText = (EditText)_$_findCachedViewById(R.id.otp_et5);
-      Intrinsics.checkExpressionValueIsNotNull(editText, "otp_et5");
-      editText3.addTextChangedListener(new OTPTextWatcher(editText));
-    } 
+    EditText editText5 = (EditText)_$_findCachedViewById(R.id.otp_et5);
+    Intrinsics.checkExpressionValueIsNotNull(editText5, "otp_et5");
+    list1.add(editText5);
+    List<EditText> list3 = this.otpInputs;
     EditText editText1 = (EditText)_$_findCachedViewById(R.id.otp_et6);
+    Intrinsics.checkExpressionValueIsNotNull(editText1, "otp_et6");
+    list3.add(editText1);
+    EditText editText4 = (EditText)_$_findCachedViewById(R.id.otp_et1);
+    if (editText4 != null) {
+      editText1 = (EditText)_$_findCachedViewById(R.id.otp_et1);
+      Intrinsics.checkExpressionValueIsNotNull(editText1, "otp_et1");
+      editText4.addTextChangedListener(new OTPTextWatcher(editText1));
+    } 
+    editText1 = (EditText)_$_findCachedViewById(R.id.otp_et2);
     if (editText1 != null) {
-      editText3 = (EditText)_$_findCachedViewById(R.id.otp_et6);
-      Intrinsics.checkExpressionValueIsNotNull(editText3, "otp_et6");
-      editText1.addTextChangedListener(new OTPTextWatcher(editText3));
+      editText4 = (EditText)_$_findCachedViewById(R.id.otp_et2);
+      Intrinsics.checkExpressionValueIsNotNull(editText4, "otp_et2");
+      editText1.addTextChangedListener(new OTPTextWatcher(editText4));
+    } 
+    editText4 = (EditText)_$_findCachedViewById(R.id.otp_et3);
+    if (editText4 != null) {
+      editText1 = (EditText)_$_findCachedViewById(R.id.otp_et3);
+      Intrinsics.checkExpressionValueIsNotNull(editText1, "otp_et3");
+      editText4.addTextChangedListener(new OTPTextWatcher(editText1));
+    } 
+    editText1 = (EditText)_$_findCachedViewById(R.id.otp_et4);
+    if (editText1 != null) {
+      editText4 = (EditText)_$_findCachedViewById(R.id.otp_et4);
+      Intrinsics.checkExpressionValueIsNotNull(editText4, "otp_et4");
+      editText1.addTextChangedListener(new OTPTextWatcher(editText4));
+    } 
+    editText1 = (EditText)_$_findCachedViewById(R.id.otp_et5);
+    if (editText1 != null) {
+      editText4 = (EditText)_$_findCachedViewById(R.id.otp_et5);
+      Intrinsics.checkExpressionValueIsNotNull(editText4, "otp_et5");
+      editText1.addTextChangedListener(new OTPTextWatcher(editText4));
+    } 
+    editText1 = (EditText)_$_findCachedViewById(R.id.otp_et6);
+    if (editText1 != null) {
+      editText4 = (EditText)_$_findCachedViewById(R.id.otp_et6);
+      Intrinsics.checkExpressionValueIsNotNull(editText4, "otp_et6");
+      editText1.addTextChangedListener(new OTPTextWatcher(editText4));
     } 
     if (this.uploadToken == null)
       getUploadToken(); 
@@ -738,10 +738,9 @@ public final class EnterPinFragment extends Fragment implements CoroutineScope {
           ResultKt.throwOnFailure(param1Object);
           Object object = param1Object;
           param1Object = uploadPageFragment;
-          JSONObject jSONObject = (JSONObject)object;
+          object = object;
         } 
       } else {
-        Object object;
         ResultKt.throwOnFailure(param1Object);
         object2 = this.p$;
         param1Object = EnterPinFragment.this.getParentFragment();
@@ -758,7 +757,7 @@ public final class EnterPinFragment extends Fragment implements CoroutineScope {
         } else {
           throw new TypeCastException("null cannot be cast to non-null type ca.albertahealthservices.contacttracing.fragment.UploadPageFragment");
         } 
-        JSONObject jSONObject = (JSONObject)object;
+        Object object = object;
       } 
       Object object2 = object2;
       param1Object.turnOffLoadingProgress();

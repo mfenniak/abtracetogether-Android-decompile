@@ -14,6 +14,7 @@ import android.os.Handler;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import ca.albertahealthservices.contacttracing.Utils;
 import ca.albertahealthservices.contacttracing.idmanager.TempIDManager;
+import ca.albertahealthservices.contacttracing.idmanager.TemporaryID;
 import ca.albertahealthservices.contacttracing.logging.CentralLog;
 import ca.albertahealthservices.contacttracing.protocol.BlueTrace;
 import ca.albertahealthservices.contacttracing.protocol.BlueTraceProtocol;
@@ -100,17 +101,17 @@ public final class StreetPassWorker {
     this.queueHandler = new Handler();
     this.blacklistHandler = new Handler();
     CentralLog.Companion companion = CentralLog.Companion;
-    String str = this.TAG;
-    StringBuilder stringBuilder = new StringBuilder();
-    stringBuilder.append("Service UUID ");
-    stringBuilder.append(this.serviceUUID);
-    companion.d(str, stringBuilder.toString());
+    String str2 = this.TAG;
+    StringBuilder stringBuilder1 = new StringBuilder();
+    stringBuilder1.append("Service UUID ");
+    stringBuilder1.append(this.serviceUUID);
+    companion.d(str2, stringBuilder1.toString());
     companion = CentralLog.Companion;
-    str = this.TAG;
-    stringBuilder = new StringBuilder();
-    stringBuilder.append("characteristicV2 ");
-    stringBuilder.append(this.characteristicV2);
-    companion.d(str, stringBuilder.toString());
+    String str1 = this.TAG;
+    StringBuilder stringBuilder2 = new StringBuilder();
+    stringBuilder2.append("characteristicV2 ");
+    stringBuilder2.append(this.characteristicV2);
+    companion.d(str1, stringBuilder2.toString());
   }
   
   public final boolean addWork(Work paramWork) {
@@ -152,192 +153,192 @@ public final class StreetPassWorker {
     //   72: ireturn
     //   73: getstatic ca/albertahealthservices/contacttracing/services/BluetoothMonitoringService.Companion : Lca/albertahealthservices/contacttracing/services/BluetoothMonitoringService$Companion;
     //   76: invokevirtual getUseBlacklist : ()Z
-    //   79: ifeq -> 227
+    //   79: ifeq -> 229
     //   82: aload_0
     //   83: getfield blacklist : Ljava/util/List;
     //   86: checkcast java/lang/Iterable
-    //   89: astore_3
-    //   90: new java/util/ArrayList
-    //   93: dup
-    //   94: invokespecial <init> : ()V
-    //   97: checkcast java/util/Collection
-    //   100: astore #4
-    //   102: aload_3
-    //   103: invokeinterface iterator : ()Ljava/util/Iterator;
-    //   108: astore_2
-    //   109: aload_2
-    //   110: invokeinterface hasNext : ()Z
-    //   115: ifeq -> 157
-    //   118: aload_2
-    //   119: invokeinterface next : ()Ljava/lang/Object;
-    //   124: astore_3
-    //   125: aload_3
-    //   126: checkcast ca/albertahealthservices/contacttracing/streetpass/BlacklistEntry
-    //   129: invokevirtual getUniqueIdentifier : ()Ljava/lang/String;
-    //   132: aload_1
-    //   133: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
-    //   136: invokevirtual getAddress : ()Ljava/lang/String;
-    //   139: invokestatic areEqual : (Ljava/lang/Object;Ljava/lang/Object;)Z
-    //   142: ifeq -> 109
-    //   145: aload #4
-    //   147: aload_3
-    //   148: invokeinterface add : (Ljava/lang/Object;)Z
-    //   153: pop
-    //   154: goto -> 109
-    //   157: aload #4
-    //   159: checkcast java/util/List
-    //   162: checkcast java/util/Collection
-    //   165: invokeinterface isEmpty : ()Z
-    //   170: iconst_1
-    //   171: ixor
-    //   172: ifeq -> 227
-    //   175: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-    //   178: astore_2
-    //   179: aload_0
-    //   180: getfield TAG : Ljava/lang/String;
-    //   183: astore_3
-    //   184: new java/lang/StringBuilder
-    //   187: dup
-    //   188: invokespecial <init> : ()V
-    //   191: astore #4
-    //   193: aload #4
-    //   195: aload_1
-    //   196: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
-    //   199: invokevirtual getAddress : ()Ljava/lang/String;
-    //   202: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   205: pop
-    //   206: aload #4
-    //   208: ldc_w ' is in blacklist, not adding to queue'
-    //   211: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   214: pop
-    //   215: aload_2
-    //   216: aload_3
-    //   217: aload #4
-    //   219: invokevirtual toString : ()Ljava/lang/String;
-    //   222: invokevirtual i : (Ljava/lang/String;Ljava/lang/String;)V
-    //   225: iconst_0
-    //   226: ireturn
-    //   227: aload_0
-    //   228: getfield workQueue : Ljava/util/concurrent/PriorityBlockingQueue;
-    //   231: checkcast java/lang/Iterable
-    //   234: astore_3
-    //   235: new java/util/ArrayList
-    //   238: dup
-    //   239: invokespecial <init> : ()V
-    //   242: checkcast java/util/Collection
-    //   245: astore #4
-    //   247: aload_3
-    //   248: invokeinterface iterator : ()Ljava/util/Iterator;
-    //   253: astore_2
-    //   254: aload_2
-    //   255: invokeinterface hasNext : ()Z
-    //   260: ifeq -> 305
-    //   263: aload_2
-    //   264: invokeinterface next : ()Ljava/lang/Object;
-    //   269: astore_3
-    //   270: aload_3
-    //   271: checkcast ca/albertahealthservices/contacttracing/streetpass/Work
-    //   274: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
-    //   277: invokevirtual getAddress : ()Ljava/lang/String;
-    //   280: aload_1
-    //   281: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
-    //   284: invokevirtual getAddress : ()Ljava/lang/String;
-    //   287: invokestatic areEqual : (Ljava/lang/Object;Ljava/lang/Object;)Z
-    //   290: ifeq -> 254
-    //   293: aload #4
-    //   295: aload_3
-    //   296: invokeinterface add : (Ljava/lang/Object;)Z
-    //   301: pop
-    //   302: goto -> 254
-    //   305: aload #4
-    //   307: checkcast java/util/List
-    //   310: invokeinterface isEmpty : ()Z
-    //   315: ifeq -> 420
-    //   318: aload_0
-    //   319: getfield workQueue : Ljava/util/concurrent/PriorityBlockingQueue;
-    //   322: aload_1
-    //   323: invokevirtual offer : (Ljava/lang/Object;)Z
-    //   326: pop
-    //   327: aload_0
-    //   328: getfield queueHandler : Landroid/os/Handler;
-    //   331: astore #4
-    //   333: aload #4
-    //   335: ifnonnull -> 344
-    //   338: ldc_w 'queueHandler'
-    //   341: invokestatic throwUninitializedPropertyAccessException : (Ljava/lang/String;)V
-    //   344: aload #4
-    //   346: new ca/albertahealthservices/contacttracing/streetpass/StreetPassWorker$addWork$3
-    //   349: dup
-    //   350: aload_0
-    //   351: aload_1
-    //   352: invokespecial <init> : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;Lca/albertahealthservices/contacttracing/streetpass/Work;)V
-    //   355: checkcast java/lang/Runnable
-    //   358: getstatic ca/albertahealthservices/contacttracing/services/BluetoothMonitoringService.Companion : Lca/albertahealthservices/contacttracing/services/BluetoothMonitoringService$Companion;
-    //   361: invokevirtual getMaxQueueTime : ()J
-    //   364: invokevirtual postDelayed : (Ljava/lang/Runnable;J)Z
-    //   367: pop
-    //   368: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-    //   371: astore_2
-    //   372: aload_0
-    //   373: getfield TAG : Ljava/lang/String;
-    //   376: astore_3
-    //   377: new java/lang/StringBuilder
-    //   380: dup
-    //   381: invokespecial <init> : ()V
-    //   384: astore #4
-    //   386: aload #4
+    //   89: astore #4
+    //   91: new java/util/ArrayList
+    //   94: dup
+    //   95: invokespecial <init> : ()V
+    //   98: checkcast java/util/Collection
+    //   101: astore_3
+    //   102: aload #4
+    //   104: invokeinterface iterator : ()Ljava/util/Iterator;
+    //   109: astore_2
+    //   110: aload_2
+    //   111: invokeinterface hasNext : ()Z
+    //   116: ifeq -> 160
+    //   119: aload_2
+    //   120: invokeinterface next : ()Ljava/lang/Object;
+    //   125: astore #4
+    //   127: aload #4
+    //   129: checkcast ca/albertahealthservices/contacttracing/streetpass/BlacklistEntry
+    //   132: invokevirtual getUniqueIdentifier : ()Ljava/lang/String;
+    //   135: aload_1
+    //   136: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
+    //   139: invokevirtual getAddress : ()Ljava/lang/String;
+    //   142: invokestatic areEqual : (Ljava/lang/Object;Ljava/lang/Object;)Z
+    //   145: ifeq -> 110
+    //   148: aload_3
+    //   149: aload #4
+    //   151: invokeinterface add : (Ljava/lang/Object;)Z
+    //   156: pop
+    //   157: goto -> 110
+    //   160: aload_3
+    //   161: checkcast java/util/List
+    //   164: checkcast java/util/Collection
+    //   167: invokeinterface isEmpty : ()Z
+    //   172: iconst_1
+    //   173: ixor
+    //   174: ifeq -> 229
+    //   177: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
+    //   180: astore_2
+    //   181: aload_0
+    //   182: getfield TAG : Ljava/lang/String;
+    //   185: astore_3
+    //   186: new java/lang/StringBuilder
+    //   189: dup
+    //   190: invokespecial <init> : ()V
+    //   193: astore #4
+    //   195: aload #4
+    //   197: aload_1
+    //   198: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
+    //   201: invokevirtual getAddress : ()Ljava/lang/String;
+    //   204: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   207: pop
+    //   208: aload #4
+    //   210: ldc_w ' is in blacklist, not adding to queue'
+    //   213: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   216: pop
+    //   217: aload_2
+    //   218: aload_3
+    //   219: aload #4
+    //   221: invokevirtual toString : ()Ljava/lang/String;
+    //   224: invokevirtual i : (Ljava/lang/String;Ljava/lang/String;)V
+    //   227: iconst_0
+    //   228: ireturn
+    //   229: aload_0
+    //   230: getfield workQueue : Ljava/util/concurrent/PriorityBlockingQueue;
+    //   233: checkcast java/lang/Iterable
+    //   236: astore #4
+    //   238: new java/util/ArrayList
+    //   241: dup
+    //   242: invokespecial <init> : ()V
+    //   245: checkcast java/util/Collection
+    //   248: astore_3
+    //   249: aload #4
+    //   251: invokeinterface iterator : ()Ljava/util/Iterator;
+    //   256: astore_2
+    //   257: aload_2
+    //   258: invokeinterface hasNext : ()Z
+    //   263: ifeq -> 310
+    //   266: aload_2
+    //   267: invokeinterface next : ()Ljava/lang/Object;
+    //   272: astore #4
+    //   274: aload #4
+    //   276: checkcast ca/albertahealthservices/contacttracing/streetpass/Work
+    //   279: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
+    //   282: invokevirtual getAddress : ()Ljava/lang/String;
+    //   285: aload_1
+    //   286: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
+    //   289: invokevirtual getAddress : ()Ljava/lang/String;
+    //   292: invokestatic areEqual : (Ljava/lang/Object;Ljava/lang/Object;)Z
+    //   295: ifeq -> 257
+    //   298: aload_3
+    //   299: aload #4
+    //   301: invokeinterface add : (Ljava/lang/Object;)Z
+    //   306: pop
+    //   307: goto -> 257
+    //   310: aload_3
+    //   311: checkcast java/util/List
+    //   314: invokeinterface isEmpty : ()Z
+    //   319: ifeq -> 419
+    //   322: aload_0
+    //   323: getfield workQueue : Ljava/util/concurrent/PriorityBlockingQueue;
+    //   326: aload_1
+    //   327: invokevirtual offer : (Ljava/lang/Object;)Z
+    //   330: pop
+    //   331: aload_0
+    //   332: getfield queueHandler : Landroid/os/Handler;
+    //   335: astore_3
+    //   336: aload_3
+    //   337: ifnonnull -> 346
+    //   340: ldc_w 'queueHandler'
+    //   343: invokestatic throwUninitializedPropertyAccessException : (Ljava/lang/String;)V
+    //   346: aload_3
+    //   347: new ca/albertahealthservices/contacttracing/streetpass/StreetPassWorker$addWork$3
+    //   350: dup
+    //   351: aload_0
+    //   352: aload_1
+    //   353: invokespecial <init> : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;Lca/albertahealthservices/contacttracing/streetpass/Work;)V
+    //   356: checkcast java/lang/Runnable
+    //   359: getstatic ca/albertahealthservices/contacttracing/services/BluetoothMonitoringService.Companion : Lca/albertahealthservices/contacttracing/services/BluetoothMonitoringService$Companion;
+    //   362: invokevirtual getMaxQueueTime : ()J
+    //   365: invokevirtual postDelayed : (Ljava/lang/Runnable;J)Z
+    //   368: pop
+    //   369: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
+    //   372: astore_3
+    //   373: aload_0
+    //   374: getfield TAG : Ljava/lang/String;
+    //   377: astore #4
+    //   379: new java/lang/StringBuilder
+    //   382: dup
+    //   383: invokespecial <init> : ()V
+    //   386: astore_2
+    //   387: aload_2
     //   388: ldc_w 'Added to work queue: '
     //   391: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
     //   394: pop
-    //   395: aload #4
-    //   397: aload_1
-    //   398: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
-    //   401: invokevirtual getAddress : ()Ljava/lang/String;
-    //   404: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   407: pop
-    //   408: aload_2
-    //   409: aload_3
-    //   410: aload #4
-    //   412: invokevirtual toString : ()Ljava/lang/String;
-    //   415: invokevirtual i : (Ljava/lang/String;Ljava/lang/String;)V
-    //   418: iconst_1
-    //   419: ireturn
-    //   420: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-    //   423: astore_3
+    //   395: aload_2
+    //   396: aload_1
+    //   397: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
+    //   400: invokevirtual getAddress : ()Ljava/lang/String;
+    //   403: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   406: pop
+    //   407: aload_3
+    //   408: aload #4
+    //   410: aload_2
+    //   411: invokevirtual toString : ()Ljava/lang/String;
+    //   414: invokevirtual i : (Ljava/lang/String;Ljava/lang/String;)V
+    //   417: iconst_1
+    //   418: ireturn
+    //   419: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
+    //   422: astore #4
     //   424: aload_0
     //   425: getfield TAG : Ljava/lang/String;
-    //   428: astore #4
-    //   430: new java/lang/StringBuilder
-    //   433: dup
-    //   434: invokespecial <init> : ()V
-    //   437: astore_2
-    //   438: aload_2
-    //   439: aload_1
-    //   440: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
-    //   443: invokevirtual getAddress : ()Ljava/lang/String;
-    //   446: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   449: pop
-    //   450: aload_2
-    //   451: ldc_w ' is already in work queue'
-    //   454: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   457: pop
-    //   458: aload_3
-    //   459: aload #4
-    //   461: aload_2
-    //   462: invokevirtual toString : ()Ljava/lang/String;
-    //   465: invokevirtual i : (Ljava/lang/String;Ljava/lang/String;)V
-    //   468: aload_0
-    //   469: getfield workQueue : Ljava/util/concurrent/PriorityBlockingQueue;
-    //   472: checkcast java/lang/Iterable
-    //   475: invokeinterface iterator : ()Ljava/util/Iterator;
-    //   480: astore_3
-    //   481: aload_3
-    //   482: invokeinterface hasNext : ()Z
-    //   487: ifeq -> 525
-    //   490: aload_3
-    //   491: invokeinterface next : ()Ljava/lang/Object;
-    //   496: astore #4
-    //   498: aload #4
+    //   428: astore_2
+    //   429: new java/lang/StringBuilder
+    //   432: dup
+    //   433: invokespecial <init> : ()V
+    //   436: astore_3
+    //   437: aload_3
+    //   438: aload_1
+    //   439: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
+    //   442: invokevirtual getAddress : ()Ljava/lang/String;
+    //   445: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   448: pop
+    //   449: aload_3
+    //   450: ldc_w ' is already in work queue'
+    //   453: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   456: pop
+    //   457: aload #4
+    //   459: aload_2
+    //   460: aload_3
+    //   461: invokevirtual toString : ()Ljava/lang/String;
+    //   464: invokevirtual i : (Ljava/lang/String;Ljava/lang/String;)V
+    //   467: aload_0
+    //   468: getfield workQueue : Ljava/util/concurrent/PriorityBlockingQueue;
+    //   471: checkcast java/lang/Iterable
+    //   474: invokeinterface iterator : ()Ljava/util/Iterator;
+    //   479: astore #4
+    //   481: aload #4
+    //   483: invokeinterface hasNext : ()Z
+    //   488: ifeq -> 525
+    //   491: aload #4
+    //   493: invokeinterface next : ()Ljava/lang/Object;
+    //   498: astore_3
+    //   499: aload_3
     //   500: checkcast ca/albertahealthservices/contacttracing/streetpass/Work
     //   503: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
     //   506: invokevirtual getAddress : ()Ljava/lang/String;
@@ -346,54 +347,54 @@ public final class StreetPassWorker {
     //   513: invokevirtual getAddress : ()Ljava/lang/String;
     //   516: invokestatic areEqual : (Ljava/lang/Object;Ljava/lang/Object;)Z
     //   519: ifeq -> 481
-    //   522: goto -> 528
+    //   522: goto -> 527
     //   525: aconst_null
-    //   526: astore #4
-    //   528: aload #4
-    //   530: checkcast ca/albertahealthservices/contacttracing/streetpass/Work
-    //   533: astore #4
-    //   535: aload_0
-    //   536: getfield workQueue : Ljava/util/concurrent/PriorityBlockingQueue;
-    //   539: aload #4
-    //   541: invokevirtual remove : (Ljava/lang/Object;)Z
-    //   544: istore #5
-    //   546: aload_0
-    //   547: getfield workQueue : Ljava/util/concurrent/PriorityBlockingQueue;
-    //   550: aload_1
-    //   551: invokevirtual offer : (Ljava/lang/Object;)Z
-    //   554: istore #6
-    //   556: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-    //   559: astore #4
-    //   561: aload_0
-    //   562: getfield TAG : Ljava/lang/String;
-    //   565: astore_1
-    //   566: new java/lang/StringBuilder
-    //   569: dup
-    //   570: invokespecial <init> : ()V
-    //   573: astore_3
-    //   574: aload_3
-    //   575: ldc_w 'Queue entry updated - removed: '
-    //   578: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   581: pop
-    //   582: aload_3
-    //   583: iload #5
-    //   585: invokevirtual append : (Z)Ljava/lang/StringBuilder;
-    //   588: pop
-    //   589: aload_3
-    //   590: ldc_w ', added: '
-    //   593: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   596: pop
-    //   597: aload_3
-    //   598: iload #6
-    //   600: invokevirtual append : (Z)Ljava/lang/StringBuilder;
-    //   603: pop
-    //   604: aload #4
-    //   606: aload_1
-    //   607: aload_3
-    //   608: invokevirtual toString : ()Ljava/lang/String;
-    //   611: invokevirtual i : (Ljava/lang/String;Ljava/lang/String;)V
-    //   614: iconst_0
-    //   615: ireturn
+    //   526: astore_3
+    //   527: aload_3
+    //   528: checkcast ca/albertahealthservices/contacttracing/streetpass/Work
+    //   531: astore_3
+    //   532: aload_0
+    //   533: getfield workQueue : Ljava/util/concurrent/PriorityBlockingQueue;
+    //   536: aload_3
+    //   537: invokevirtual remove : (Ljava/lang/Object;)Z
+    //   540: istore #5
+    //   542: aload_0
+    //   543: getfield workQueue : Ljava/util/concurrent/PriorityBlockingQueue;
+    //   546: aload_1
+    //   547: invokevirtual offer : (Ljava/lang/Object;)Z
+    //   550: istore #6
+    //   552: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
+    //   555: astore #4
+    //   557: aload_0
+    //   558: getfield TAG : Ljava/lang/String;
+    //   561: astore_3
+    //   562: new java/lang/StringBuilder
+    //   565: dup
+    //   566: invokespecial <init> : ()V
+    //   569: astore_1
+    //   570: aload_1
+    //   571: ldc_w 'Queue entry updated - removed: '
+    //   574: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   577: pop
+    //   578: aload_1
+    //   579: iload #5
+    //   581: invokevirtual append : (Z)Ljava/lang/StringBuilder;
+    //   584: pop
+    //   585: aload_1
+    //   586: ldc_w ', added: '
+    //   589: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   592: pop
+    //   593: aload_1
+    //   594: iload #6
+    //   596: invokevirtual append : (Z)Ljava/lang/StringBuilder;
+    //   599: pop
+    //   600: aload #4
+    //   602: aload_3
+    //   603: aload_1
+    //   604: invokevirtual toString : ()Ljava/lang/String;
+    //   607: invokevirtual i : (Ljava/lang/String;Ljava/lang/String;)V
+    //   610: iconst_0
+    //   611: ireturn
   }
   
   public final void doWork() {
@@ -481,15 +482,15 @@ public final class StreetPassWorker {
     //   150: iload_2
     //   151: ifeq -> 436
     //   154: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-    //   157: astore #5
+    //   157: astore #6
     //   159: aload_0
     //   160: getfield TAG : Ljava/lang/String;
-    //   163: astore #7
+    //   163: astore #5
     //   165: new java/lang/StringBuilder
     //   168: dup
     //   169: invokespecial <init> : ()V
-    //   172: astore #6
-    //   174: aload #6
+    //   172: astore #7
+    //   174: aload #7
     //   176: ldc_w 'Handling erroneous current work for '
     //   179: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
     //   182: pop
@@ -509,11 +510,11 @@ public final class StreetPassWorker {
     //   206: goto -> 211
     //   209: aconst_null
     //   210: astore_1
-    //   211: aload #6
+    //   211: aload #7
     //   213: aload_1
     //   214: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
     //   217: pop
-    //   218: aload #6
+    //   218: aload #7
     //   220: ldc_w ' : - finished: '
     //   223: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
     //   226: pop
@@ -525,21 +526,21 @@ public final class StreetPassWorker {
     //   236: aload_1
     //   237: invokevirtual getFinished : ()Z
     //   240: istore_3
-    //   241: aload #6
+    //   241: aload #7
     //   243: iload_3
     //   244: invokevirtual append : (Z)Ljava/lang/StringBuilder;
     //   247: pop
-    //   248: aload #6
+    //   248: aload #7
     //   250: ldc_w ', timedout: '
     //   253: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
     //   256: pop
-    //   257: aload #6
+    //   257: aload #7
     //   259: iload_2
     //   260: invokevirtual append : (Z)Ljava/lang/StringBuilder;
     //   263: pop
-    //   264: aload #5
-    //   266: aload #7
-    //   268: aload #6
+    //   264: aload #6
+    //   266: aload #5
+    //   268: aload #7
     //   270: invokevirtual toString : ()Ljava/lang/String;
     //   273: invokevirtual w : (Ljava/lang/String;Ljava/lang/String;)V
     //   276: aload_0
@@ -569,12 +570,12 @@ public final class StreetPassWorker {
     //   327: astore #7
     //   329: aload_0
     //   330: getfield TAG : Ljava/lang/String;
-    //   333: astore #5
+    //   333: astore #6
     //   335: new java/lang/StringBuilder
     //   338: dup
     //   339: invokespecial <init> : ()V
-    //   342: astore #6
-    //   344: aload #6
+    //   342: astore #5
+    //   344: aload #5
     //   346: ldc_w 'Disconnecting dangling connection to '
     //   349: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
     //   352: pop
@@ -595,13 +596,13 @@ public final class StreetPassWorker {
     //   382: aload #12
     //   384: invokevirtual getAddress : ()Ljava/lang/String;
     //   387: astore_1
-    //   388: aload #6
+    //   388: aload #5
     //   390: aload_1
     //   391: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
     //   394: pop
     //   395: aload #7
-    //   397: aload #5
-    //   399: aload #6
+    //   397: aload #6
+    //   399: aload #5
     //   401: invokevirtual toString : ()Ljava/lang/String;
     //   404: invokevirtual w : (Ljava/lang/String;Ljava/lang/String;)V
     //   407: aload_0
@@ -631,27 +632,27 @@ public final class StreetPassWorker {
     //   457: invokevirtual i : (Ljava/lang/String;Ljava/lang/String;)V
     //   460: return
     //   461: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-    //   464: astore #5
+    //   464: astore #4
     //   466: aload_0
     //   467: getfield TAG : Ljava/lang/String;
     //   470: astore_1
     //   471: new java/lang/StringBuilder
     //   474: dup
     //   475: invokespecial <init> : ()V
-    //   478: astore #4
-    //   480: aload #4
+    //   478: astore #5
+    //   480: aload #5
     //   482: ldc_w 'Queue size: '
     //   485: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
     //   488: pop
-    //   489: aload #4
+    //   489: aload #5
     //   491: aload_0
     //   492: getfield workQueue : Ljava/util/concurrent/PriorityBlockingQueue;
     //   495: invokevirtual size : ()I
     //   498: invokevirtual append : (I)Ljava/lang/StringBuilder;
     //   501: pop
-    //   502: aload #5
+    //   502: aload #4
     //   504: aload_1
-    //   505: aload #4
+    //   505: aload #5
     //   507: invokevirtual toString : ()Ljava/lang/String;
     //   510: invokevirtual i : (Ljava/lang/String;Ljava/lang/String;)V
     //   513: aconst_null
@@ -719,23 +720,23 @@ public final class StreetPassWorker {
     //   645: invokevirtual w : (Ljava/lang/String;Ljava/lang/String;)V
     //   648: goto -> 524
     //   651: aload_1
-    //   652: ifnull -> 1471
+    //   652: ifnull -> 1470
     //   655: aload_1
     //   656: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
     //   659: astore #5
     //   661: getstatic ca/albertahealthservices/contacttracing/services/BluetoothMonitoringService.Companion : Lca/albertahealthservices/contacttracing/services/BluetoothMonitoringService$Companion;
     //   664: invokevirtual getUseBlacklist : ()Z
-    //   667: ifeq -> 830
+    //   667: ifeq -> 833
     //   670: aload_0
     //   671: getfield blacklist : Ljava/util/List;
     //   674: checkcast java/lang/Iterable
-    //   677: astore #6
+    //   677: astore #7
     //   679: new java/util/ArrayList
     //   682: dup
     //   683: invokespecial <init> : ()V
     //   686: checkcast java/util/Collection
-    //   689: astore #7
-    //   691: aload #6
+    //   689: astore #6
+    //   691: aload #7
     //   693: invokeinterface iterator : ()Ljava/util/Iterator;
     //   698: astore #12
     //   700: aload #12
@@ -743,374 +744,374 @@ public final class StreetPassWorker {
     //   707: ifeq -> 751
     //   710: aload #12
     //   712: invokeinterface next : ()Ljava/lang/Object;
-    //   717: astore #6
-    //   719: aload #6
+    //   717: astore #7
+    //   719: aload #7
     //   721: checkcast ca/albertahealthservices/contacttracing/streetpass/BlacklistEntry
     //   724: invokevirtual getUniqueIdentifier : ()Ljava/lang/String;
     //   727: aload #5
     //   729: invokevirtual getAddress : ()Ljava/lang/String;
     //   732: invokestatic areEqual : (Ljava/lang/Object;Ljava/lang/Object;)Z
     //   735: ifeq -> 700
-    //   738: aload #7
-    //   740: aload #6
+    //   738: aload #6
+    //   740: aload #7
     //   742: invokeinterface add : (Ljava/lang/Object;)Z
     //   747: pop
     //   748: goto -> 700
-    //   751: aload #7
+    //   751: aload #6
     //   753: checkcast java/util/List
     //   756: checkcast java/util/Collection
     //   759: invokeinterface isEmpty : ()Z
     //   764: iconst_1
     //   765: ixor
-    //   766: ifeq -> 830
+    //   766: ifeq -> 833
     //   769: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-    //   772: astore #7
-    //   774: aload_0
-    //   775: getfield TAG : Ljava/lang/String;
-    //   778: astore #4
-    //   780: new java/lang/StringBuilder
-    //   783: dup
-    //   784: invokespecial <init> : ()V
-    //   787: astore_1
-    //   788: aload_1
-    //   789: ldc_w 'Already worked on '
-    //   792: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   795: pop
-    //   796: aload_1
-    //   797: aload #5
-    //   799: invokevirtual getAddress : ()Ljava/lang/String;
-    //   802: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   805: pop
-    //   806: aload_1
-    //   807: ldc_w '. Skip.'
-    //   810: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   813: pop
-    //   814: aload #7
-    //   816: aload #4
-    //   818: aload_1
-    //   819: invokevirtual toString : ()Ljava/lang/String;
-    //   822: invokevirtual w : (Ljava/lang/String;Ljava/lang/String;)V
-    //   825: aload_0
-    //   826: invokevirtual doWork : ()V
-    //   829: return
-    //   830: aload_0
-    //   831: aload #5
-    //   833: invokespecial getConnectionStatus : (Landroid/bluetooth/BluetoothDevice;)Z
-    //   836: istore_3
-    //   837: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-    //   840: astore #7
-    //   842: aload_0
-    //   843: getfield TAG : Ljava/lang/String;
-    //   846: astore #6
-    //   848: new java/lang/StringBuilder
-    //   851: dup
-    //   852: invokespecial <init> : ()V
-    //   855: astore #12
-    //   857: aload #12
-    //   859: ldc_w 'Already connected to '
-    //   862: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   865: pop
-    //   866: aload #12
-    //   868: aload #5
-    //   870: invokevirtual getAddress : ()Ljava/lang/String;
-    //   873: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   876: pop
-    //   877: aload #12
-    //   879: ldc_w ' : '
-    //   882: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   885: pop
-    //   886: aload #12
-    //   888: iload_3
-    //   889: invokevirtual append : (Z)Ljava/lang/StringBuilder;
-    //   892: pop
-    //   893: aload #7
-    //   895: aload #6
-    //   897: aload #12
-    //   899: invokevirtual toString : ()Ljava/lang/String;
-    //   902: invokevirtual i : (Ljava/lang/String;Ljava/lang/String;)V
-    //   905: iload_3
-    //   906: ifeq -> 941
-    //   909: aload_1
-    //   910: invokevirtual getChecklist : ()Lca/albertahealthservices/contacttracing/streetpass/Work$WorkCheckList;
-    //   913: invokevirtual getSkipped : ()Lca/albertahealthservices/contacttracing/streetpass/Work$Check;
-    //   916: iconst_1
-    //   917: invokevirtual setStatus : (Z)V
-    //   920: aload_1
-    //   921: invokevirtual getChecklist : ()Lca/albertahealthservices/contacttracing/streetpass/Work$WorkCheckList;
-    //   924: invokevirtual getSkipped : ()Lca/albertahealthservices/contacttracing/streetpass/Work$Check;
-    //   927: invokestatic currentTimeMillis : ()J
-    //   930: invokevirtual setTimePerformed : (J)V
-    //   933: aload_0
-    //   934: aload_1
-    //   935: invokevirtual finishWork : (Lca/albertahealthservices/contacttracing/streetpass/Work;)V
-    //   938: goto -> 1471
-    //   941: new ca/albertahealthservices/contacttracing/streetpass/StreetPassWorker$CentralGattCallback
-    //   944: dup
-    //   945: aload_0
-    //   946: aload_1
-    //   947: invokespecial <init> : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;Lca/albertahealthservices/contacttracing/streetpass/Work;)V
-    //   950: astore #7
-    //   952: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-    //   955: astore #6
-    //   957: aload_0
-    //   958: getfield TAG : Ljava/lang/String;
-    //   961: astore #12
-    //   963: new java/lang/StringBuilder
-    //   966: dup
-    //   967: invokespecial <init> : ()V
-    //   970: astore #13
-    //   972: aload #13
-    //   974: ldc_w 'Starting work - connecting to device: '
-    //   977: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   980: pop
-    //   981: aload #13
-    //   983: aload #5
-    //   985: invokevirtual getAddress : ()Ljava/lang/String;
-    //   988: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   991: pop
-    //   992: aload #13
-    //   994: ldc_w ' @ '
-    //   997: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   1000: pop
-    //   1001: aload #13
-    //   1003: aload_1
-    //   1004: invokevirtual getConnectable : ()Lca/albertahealthservices/contacttracing/streetpass/ConnectablePeripheral;
-    //   1007: invokevirtual getRssi : ()I
-    //   1010: invokevirtual append : (I)Ljava/lang/StringBuilder;
-    //   1013: pop
-    //   1014: aload #13
-    //   1016: bipush #32
-    //   1018: invokevirtual append : (C)Ljava/lang/StringBuilder;
-    //   1021: pop
-    //   1022: aload #13
-    //   1024: invokestatic currentTimeMillis : ()J
-    //   1027: aload_1
-    //   1028: invokevirtual getTimeStamp : ()J
-    //   1031: lsub
-    //   1032: invokevirtual append : (J)Ljava/lang/StringBuilder;
-    //   1035: pop
-    //   1036: aload #13
-    //   1038: ldc_w 'ms ago'
-    //   1041: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   1044: pop
-    //   1045: aload #6
-    //   1047: aload #12
-    //   1049: aload #13
-    //   1051: invokevirtual toString : ()Ljava/lang/String;
-    //   1054: invokevirtual i : (Ljava/lang/String;Ljava/lang/String;)V
-    //   1057: aload_0
-    //   1058: aload_1
-    //   1059: putfield currentWork : Lca/albertahealthservices/contacttracing/streetpass/Work;
-    //   1062: aload_1
-    //   1063: invokevirtual getChecklist : ()Lca/albertahealthservices/contacttracing/streetpass/Work$WorkCheckList;
-    //   1066: invokevirtual getStarted : ()Lca/albertahealthservices/contacttracing/streetpass/Work$Check;
-    //   1069: iconst_1
-    //   1070: invokevirtual setStatus : (Z)V
-    //   1073: aload_1
-    //   1074: invokevirtual getChecklist : ()Lca/albertahealthservices/contacttracing/streetpass/Work$WorkCheckList;
-    //   1077: invokevirtual getStarted : ()Lca/albertahealthservices/contacttracing/streetpass/Work$Check;
-    //   1080: invokestatic currentTimeMillis : ()J
-    //   1083: invokevirtual setTimePerformed : (J)V
-    //   1086: aload_1
-    //   1087: aload_0
-    //   1088: getfield context : Landroid/content/Context;
-    //   1091: aload #7
-    //   1093: invokevirtual startWork : (Landroid/content/Context;Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker$CentralGattCallback;)V
-    //   1096: aload_1
-    //   1097: invokevirtual getGatt : ()Landroid/bluetooth/BluetoothGatt;
-    //   1100: astore #7
-    //   1102: aload #7
-    //   1104: ifnull -> 1113
-    //   1107: aload #7
-    //   1109: invokevirtual connect : ()Z
-    //   1112: istore_2
-    //   1113: iload_2
-    //   1114: ifne -> 1207
-    //   1117: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-    //   1120: astore #6
-    //   1122: aload_0
-    //   1123: getfield TAG : Ljava/lang/String;
-    //   1126: astore #12
-    //   1128: new java/lang/StringBuilder
-    //   1131: astore #7
-    //   1133: aload #7
-    //   1135: invokespecial <init> : ()V
-    //   1138: aload #7
-    //   1140: ldc_w 'Alamak! not connecting to '
-    //   1143: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   1146: pop
-    //   1147: aload #7
-    //   1149: aload_1
-    //   1150: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
-    //   1153: invokevirtual getAddress : ()Ljava/lang/String;
-    //   1156: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   1159: pop
-    //   1160: aload #7
-    //   1162: ldc_w '??'
-    //   1165: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   1168: pop
-    //   1169: aload #6
-    //   1171: aload #12
-    //   1173: aload #7
-    //   1175: invokevirtual toString : ()Ljava/lang/String;
-    //   1178: invokevirtual e : (Ljava/lang/String;Ljava/lang/String;)V
-    //   1181: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-    //   1184: aload_0
-    //   1185: getfield TAG : Ljava/lang/String;
-    //   1188: ldc_w 'Moving on to next task'
-    //   1191: invokevirtual e : (Ljava/lang/String;Ljava/lang/String;)V
-    //   1194: aload_0
-    //   1195: aconst_null
-    //   1196: checkcast ca/albertahealthservices/contacttracing/streetpass/Work
-    //   1199: putfield currentWork : Lca/albertahealthservices/contacttracing/streetpass/Work;
-    //   1202: aload_0
-    //   1203: invokevirtual doWork : ()V
-    //   1206: return
-    //   1207: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-    //   1210: astore #12
-    //   1212: aload_0
-    //   1213: getfield TAG : Ljava/lang/String;
-    //   1216: astore #6
-    //   1218: new java/lang/StringBuilder
-    //   1221: astore #7
-    //   1223: aload #7
-    //   1225: invokespecial <init> : ()V
-    //   1228: aload #7
-    //   1230: ldc_w 'Connection to '
-    //   1233: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   1236: pop
-    //   1237: aload #7
-    //   1239: aload_1
-    //   1240: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
-    //   1243: invokevirtual getAddress : ()Ljava/lang/String;
-    //   1246: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   1249: pop
-    //   1250: aload #7
-    //   1252: ldc_w ' attempt in progress'
-    //   1255: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   1258: pop
-    //   1259: aload #12
-    //   1261: aload #6
-    //   1263: aload #7
-    //   1265: invokevirtual toString : ()Ljava/lang/String;
-    //   1268: invokevirtual i : (Ljava/lang/String;Ljava/lang/String;)V
-    //   1271: aload_0
-    //   1272: getfield timeoutHandler : Landroid/os/Handler;
-    //   1275: astore #7
-    //   1277: aload #7
-    //   1279: ifnonnull -> 1287
-    //   1282: ldc 'timeoutHandler'
-    //   1284: invokestatic throwUninitializedPropertyAccessException : (Ljava/lang/String;)V
-    //   1287: aload #7
-    //   1289: aload_1
-    //   1290: invokevirtual getTimeoutRunnable : ()Ljava/lang/Runnable;
-    //   1293: getstatic ca/albertahealthservices/contacttracing/services/BluetoothMonitoringService.Companion : Lca/albertahealthservices/contacttracing/services/BluetoothMonitoringService$Companion;
-    //   1296: invokevirtual getConnectionTimeout : ()J
-    //   1299: invokevirtual postDelayed : (Ljava/lang/Runnable;J)Z
-    //   1302: pop
-    //   1303: aload_1
-    //   1304: invokestatic currentTimeMillis : ()J
-    //   1307: getstatic ca/albertahealthservices/contacttracing/services/BluetoothMonitoringService.Companion : Lca/albertahealthservices/contacttracing/services/BluetoothMonitoringService$Companion;
-    //   1310: invokevirtual getConnectionTimeout : ()J
-    //   1313: ladd
-    //   1314: invokevirtual setTimeout : (J)V
-    //   1317: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-    //   1320: astore #7
-    //   1322: aload_0
-    //   1323: getfield TAG : Ljava/lang/String;
-    //   1326: astore #12
-    //   1328: new java/lang/StringBuilder
-    //   1331: astore #6
-    //   1333: aload #6
-    //   1335: invokespecial <init> : ()V
-    //   1338: aload #6
-    //   1340: ldc_w 'Timeout scheduled for '
-    //   1343: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   1346: pop
-    //   1347: aload #6
-    //   1349: aload_1
-    //   1350: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
-    //   1353: invokevirtual getAddress : ()Ljava/lang/String;
-    //   1356: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   1359: pop
-    //   1360: aload #7
-    //   1362: aload #12
-    //   1364: aload #6
-    //   1366: invokevirtual toString : ()Ljava/lang/String;
-    //   1369: invokevirtual i : (Ljava/lang/String;Ljava/lang/String;)V
-    //   1372: goto -> 1471
-    //   1375: astore_1
-    //   1376: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-    //   1379: astore #6
-    //   1381: aload_0
-    //   1382: getfield TAG : Ljava/lang/String;
-    //   1385: astore #12
-    //   1387: new java/lang/StringBuilder
-    //   1390: dup
-    //   1391: invokespecial <init> : ()V
-    //   1394: astore #7
-    //   1396: aload #7
-    //   1398: ldc_w 'Unexpected error while attempting to connect to '
-    //   1401: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   1404: pop
-    //   1405: aload #7
-    //   1407: aload #5
-    //   1409: invokevirtual getAddress : ()Ljava/lang/String;
-    //   1412: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-    //   1415: pop
-    //   1416: aload #7
+    //   772: astore_1
+    //   773: aload_0
+    //   774: getfield TAG : Ljava/lang/String;
+    //   777: astore #6
+    //   779: new java/lang/StringBuilder
+    //   782: dup
+    //   783: invokespecial <init> : ()V
+    //   786: astore #4
+    //   788: aload #4
+    //   790: ldc_w 'Already worked on '
+    //   793: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   796: pop
+    //   797: aload #4
+    //   799: aload #5
+    //   801: invokevirtual getAddress : ()Ljava/lang/String;
+    //   804: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   807: pop
+    //   808: aload #4
+    //   810: ldc_w '. Skip.'
+    //   813: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   816: pop
+    //   817: aload_1
+    //   818: aload #6
+    //   820: aload #4
+    //   822: invokevirtual toString : ()Ljava/lang/String;
+    //   825: invokevirtual w : (Ljava/lang/String;Ljava/lang/String;)V
+    //   828: aload_0
+    //   829: invokevirtual doWork : ()V
+    //   832: return
+    //   833: aload_0
+    //   834: aload #5
+    //   836: invokespecial getConnectionStatus : (Landroid/bluetooth/BluetoothDevice;)Z
+    //   839: istore_3
+    //   840: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
+    //   843: astore #6
+    //   845: aload_0
+    //   846: getfield TAG : Ljava/lang/String;
+    //   849: astore #7
+    //   851: new java/lang/StringBuilder
+    //   854: dup
+    //   855: invokespecial <init> : ()V
+    //   858: astore #12
+    //   860: aload #12
+    //   862: ldc_w 'Already connected to '
+    //   865: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   868: pop
+    //   869: aload #12
+    //   871: aload #5
+    //   873: invokevirtual getAddress : ()Ljava/lang/String;
+    //   876: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   879: pop
+    //   880: aload #12
+    //   882: ldc_w ' : '
+    //   885: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   888: pop
+    //   889: aload #12
+    //   891: iload_3
+    //   892: invokevirtual append : (Z)Ljava/lang/StringBuilder;
+    //   895: pop
+    //   896: aload #6
+    //   898: aload #7
+    //   900: aload #12
+    //   902: invokevirtual toString : ()Ljava/lang/String;
+    //   905: invokevirtual i : (Ljava/lang/String;Ljava/lang/String;)V
+    //   908: iload_3
+    //   909: ifeq -> 944
+    //   912: aload_1
+    //   913: invokevirtual getChecklist : ()Lca/albertahealthservices/contacttracing/streetpass/Work$WorkCheckList;
+    //   916: invokevirtual getSkipped : ()Lca/albertahealthservices/contacttracing/streetpass/Work$Check;
+    //   919: iconst_1
+    //   920: invokevirtual setStatus : (Z)V
+    //   923: aload_1
+    //   924: invokevirtual getChecklist : ()Lca/albertahealthservices/contacttracing/streetpass/Work$WorkCheckList;
+    //   927: invokevirtual getSkipped : ()Lca/albertahealthservices/contacttracing/streetpass/Work$Check;
+    //   930: invokestatic currentTimeMillis : ()J
+    //   933: invokevirtual setTimePerformed : (J)V
+    //   936: aload_0
+    //   937: aload_1
+    //   938: invokevirtual finishWork : (Lca/albertahealthservices/contacttracing/streetpass/Work;)V
+    //   941: goto -> 1470
+    //   944: new ca/albertahealthservices/contacttracing/streetpass/StreetPassWorker$CentralGattCallback
+    //   947: dup
+    //   948: aload_0
+    //   949: aload_1
+    //   950: invokespecial <init> : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;Lca/albertahealthservices/contacttracing/streetpass/Work;)V
+    //   953: astore #6
+    //   955: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
+    //   958: astore #7
+    //   960: aload_0
+    //   961: getfield TAG : Ljava/lang/String;
+    //   964: astore #13
+    //   966: new java/lang/StringBuilder
+    //   969: dup
+    //   970: invokespecial <init> : ()V
+    //   973: astore #12
+    //   975: aload #12
+    //   977: ldc_w 'Starting work - connecting to device: '
+    //   980: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   983: pop
+    //   984: aload #12
+    //   986: aload #5
+    //   988: invokevirtual getAddress : ()Ljava/lang/String;
+    //   991: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   994: pop
+    //   995: aload #12
+    //   997: ldc_w ' @ '
+    //   1000: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   1003: pop
+    //   1004: aload #12
+    //   1006: aload_1
+    //   1007: invokevirtual getConnectable : ()Lca/albertahealthservices/contacttracing/streetpass/ConnectablePeripheral;
+    //   1010: invokevirtual getRssi : ()I
+    //   1013: invokevirtual append : (I)Ljava/lang/StringBuilder;
+    //   1016: pop
+    //   1017: aload #12
+    //   1019: bipush #32
+    //   1021: invokevirtual append : (C)Ljava/lang/StringBuilder;
+    //   1024: pop
+    //   1025: aload #12
+    //   1027: invokestatic currentTimeMillis : ()J
+    //   1030: aload_1
+    //   1031: invokevirtual getTimeStamp : ()J
+    //   1034: lsub
+    //   1035: invokevirtual append : (J)Ljava/lang/StringBuilder;
+    //   1038: pop
+    //   1039: aload #12
+    //   1041: ldc_w 'ms ago'
+    //   1044: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   1047: pop
+    //   1048: aload #7
+    //   1050: aload #13
+    //   1052: aload #12
+    //   1054: invokevirtual toString : ()Ljava/lang/String;
+    //   1057: invokevirtual i : (Ljava/lang/String;Ljava/lang/String;)V
+    //   1060: aload_0
+    //   1061: aload_1
+    //   1062: putfield currentWork : Lca/albertahealthservices/contacttracing/streetpass/Work;
+    //   1065: aload_1
+    //   1066: invokevirtual getChecklist : ()Lca/albertahealthservices/contacttracing/streetpass/Work$WorkCheckList;
+    //   1069: invokevirtual getStarted : ()Lca/albertahealthservices/contacttracing/streetpass/Work$Check;
+    //   1072: iconst_1
+    //   1073: invokevirtual setStatus : (Z)V
+    //   1076: aload_1
+    //   1077: invokevirtual getChecklist : ()Lca/albertahealthservices/contacttracing/streetpass/Work$WorkCheckList;
+    //   1080: invokevirtual getStarted : ()Lca/albertahealthservices/contacttracing/streetpass/Work$Check;
+    //   1083: invokestatic currentTimeMillis : ()J
+    //   1086: invokevirtual setTimePerformed : (J)V
+    //   1089: aload_1
+    //   1090: aload_0
+    //   1091: getfield context : Landroid/content/Context;
+    //   1094: aload #6
+    //   1096: invokevirtual startWork : (Landroid/content/Context;Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker$CentralGattCallback;)V
+    //   1099: aload_1
+    //   1100: invokevirtual getGatt : ()Landroid/bluetooth/BluetoothGatt;
+    //   1103: astore #6
+    //   1105: aload #6
+    //   1107: ifnull -> 1116
+    //   1110: aload #6
+    //   1112: invokevirtual connect : ()Z
+    //   1115: istore_2
+    //   1116: iload_2
+    //   1117: ifne -> 1210
+    //   1120: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
+    //   1123: astore #7
+    //   1125: aload_0
+    //   1126: getfield TAG : Ljava/lang/String;
+    //   1129: astore #6
+    //   1131: new java/lang/StringBuilder
+    //   1134: astore #12
+    //   1136: aload #12
+    //   1138: invokespecial <init> : ()V
+    //   1141: aload #12
+    //   1143: ldc_w 'Alamak! not connecting to '
+    //   1146: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   1149: pop
+    //   1150: aload #12
+    //   1152: aload_1
+    //   1153: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
+    //   1156: invokevirtual getAddress : ()Ljava/lang/String;
+    //   1159: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   1162: pop
+    //   1163: aload #12
+    //   1165: ldc_w '??'
+    //   1168: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   1171: pop
+    //   1172: aload #7
+    //   1174: aload #6
+    //   1176: aload #12
+    //   1178: invokevirtual toString : ()Ljava/lang/String;
+    //   1181: invokevirtual e : (Ljava/lang/String;Ljava/lang/String;)V
+    //   1184: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
+    //   1187: aload_0
+    //   1188: getfield TAG : Ljava/lang/String;
+    //   1191: ldc_w 'Moving on to next task'
+    //   1194: invokevirtual e : (Ljava/lang/String;Ljava/lang/String;)V
+    //   1197: aload_0
+    //   1198: aconst_null
+    //   1199: checkcast ca/albertahealthservices/contacttracing/streetpass/Work
+    //   1202: putfield currentWork : Lca/albertahealthservices/contacttracing/streetpass/Work;
+    //   1205: aload_0
+    //   1206: invokevirtual doWork : ()V
+    //   1209: return
+    //   1210: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
+    //   1213: astore #12
+    //   1215: aload_0
+    //   1216: getfield TAG : Ljava/lang/String;
+    //   1219: astore #6
+    //   1221: new java/lang/StringBuilder
+    //   1224: astore #7
+    //   1226: aload #7
+    //   1228: invokespecial <init> : ()V
+    //   1231: aload #7
+    //   1233: ldc_w 'Connection to '
+    //   1236: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   1239: pop
+    //   1240: aload #7
+    //   1242: aload_1
+    //   1243: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
+    //   1246: invokevirtual getAddress : ()Ljava/lang/String;
+    //   1249: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   1252: pop
+    //   1253: aload #7
+    //   1255: ldc_w ' attempt in progress'
+    //   1258: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   1261: pop
+    //   1262: aload #12
+    //   1264: aload #6
+    //   1266: aload #7
+    //   1268: invokevirtual toString : ()Ljava/lang/String;
+    //   1271: invokevirtual i : (Ljava/lang/String;Ljava/lang/String;)V
+    //   1274: aload_0
+    //   1275: getfield timeoutHandler : Landroid/os/Handler;
+    //   1278: astore #6
+    //   1280: aload #6
+    //   1282: ifnonnull -> 1290
+    //   1285: ldc 'timeoutHandler'
+    //   1287: invokestatic throwUninitializedPropertyAccessException : (Ljava/lang/String;)V
+    //   1290: aload #6
+    //   1292: aload_1
+    //   1293: invokevirtual getTimeoutRunnable : ()Ljava/lang/Runnable;
+    //   1296: getstatic ca/albertahealthservices/contacttracing/services/BluetoothMonitoringService.Companion : Lca/albertahealthservices/contacttracing/services/BluetoothMonitoringService$Companion;
+    //   1299: invokevirtual getConnectionTimeout : ()J
+    //   1302: invokevirtual postDelayed : (Ljava/lang/Runnable;J)Z
+    //   1305: pop
+    //   1306: aload_1
+    //   1307: invokestatic currentTimeMillis : ()J
+    //   1310: getstatic ca/albertahealthservices/contacttracing/services/BluetoothMonitoringService.Companion : Lca/albertahealthservices/contacttracing/services/BluetoothMonitoringService$Companion;
+    //   1313: invokevirtual getConnectionTimeout : ()J
+    //   1316: ladd
+    //   1317: invokevirtual setTimeout : (J)V
+    //   1320: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
+    //   1323: astore #12
+    //   1325: aload_0
+    //   1326: getfield TAG : Ljava/lang/String;
+    //   1329: astore #6
+    //   1331: new java/lang/StringBuilder
+    //   1334: astore #7
+    //   1336: aload #7
+    //   1338: invokespecial <init> : ()V
+    //   1341: aload #7
+    //   1343: ldc_w 'Timeout scheduled for '
+    //   1346: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   1349: pop
+    //   1350: aload #7
+    //   1352: aload_1
+    //   1353: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
+    //   1356: invokevirtual getAddress : ()Ljava/lang/String;
+    //   1359: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   1362: pop
+    //   1363: aload #12
+    //   1365: aload #6
+    //   1367: aload #7
+    //   1369: invokevirtual toString : ()Ljava/lang/String;
+    //   1372: invokevirtual i : (Ljava/lang/String;Ljava/lang/String;)V
+    //   1375: goto -> 1470
+    //   1378: astore #7
+    //   1380: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
+    //   1383: astore #12
+    //   1385: aload_0
+    //   1386: getfield TAG : Ljava/lang/String;
+    //   1389: astore #6
+    //   1391: new java/lang/StringBuilder
+    //   1394: dup
+    //   1395: invokespecial <init> : ()V
+    //   1398: astore_1
+    //   1399: aload_1
+    //   1400: ldc_w 'Unexpected error while attempting to connect to '
+    //   1403: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   1406: pop
+    //   1407: aload_1
+    //   1408: aload #5
+    //   1410: invokevirtual getAddress : ()Ljava/lang/String;
+    //   1413: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   1416: pop
+    //   1417: aload_1
     //   1418: ldc_w ': '
     //   1421: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
     //   1424: pop
-    //   1425: aload #7
-    //   1427: aload_1
+    //   1425: aload_1
+    //   1426: aload #7
     //   1428: invokevirtual getLocalizedMessage : ()Ljava/lang/String;
     //   1431: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
     //   1434: pop
-    //   1435: aload #6
-    //   1437: aload #12
-    //   1439: aload #7
-    //   1441: invokevirtual toString : ()Ljava/lang/String;
-    //   1444: invokevirtual e : (Ljava/lang/String;Ljava/lang/String;)V
-    //   1447: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-    //   1450: aload_0
-    //   1451: getfield TAG : Ljava/lang/String;
-    //   1454: ldc_w 'Moving on to next task'
-    //   1457: invokevirtual e : (Ljava/lang/String;Ljava/lang/String;)V
-    //   1460: aload_0
-    //   1461: aload #4
-    //   1463: putfield currentWork : Lca/albertahealthservices/contacttracing/streetpass/Work;
-    //   1466: aload_0
-    //   1467: invokevirtual doWork : ()V
-    //   1470: return
-    //   1471: aload_1
-    //   1472: ifnonnull -> 1488
-    //   1475: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-    //   1478: aload_0
-    //   1479: getfield TAG : Ljava/lang/String;
-    //   1482: ldc_w 'No outstanding work'
-    //   1485: invokevirtual i : (Ljava/lang/String;Ljava/lang/String;)V
-    //   1488: return
+    //   1435: aload #12
+    //   1437: aload #6
+    //   1439: aload_1
+    //   1440: invokevirtual toString : ()Ljava/lang/String;
+    //   1443: invokevirtual e : (Ljava/lang/String;Ljava/lang/String;)V
+    //   1446: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
+    //   1449: aload_0
+    //   1450: getfield TAG : Ljava/lang/String;
+    //   1453: ldc_w 'Moving on to next task'
+    //   1456: invokevirtual e : (Ljava/lang/String;Ljava/lang/String;)V
+    //   1459: aload_0
+    //   1460: aload #4
+    //   1462: putfield currentWork : Lca/albertahealthservices/contacttracing/streetpass/Work;
+    //   1465: aload_0
+    //   1466: invokevirtual doWork : ()V
+    //   1469: return
+    //   1470: aload_1
+    //   1471: ifnonnull -> 1487
+    //   1474: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
+    //   1477: aload_0
+    //   1478: getfield TAG : Ljava/lang/String;
+    //   1481: ldc_w 'No outstanding work'
+    //   1484: invokevirtual i : (Ljava/lang/String;Ljava/lang/String;)V
+    //   1487: return
     // Exception table:
     //   from	to	target	type
-    //   1062	1102	1375	finally
-    //   1107	1113	1375	finally
-    //   1117	1206	1375	finally
-    //   1207	1277	1375	finally
-    //   1282	1287	1375	finally
-    //   1287	1372	1375	finally
+    //   1065	1105	1378	finally
+    //   1110	1116	1378	finally
+    //   1120	1209	1378	finally
+    //   1210	1280	1378	finally
+    //   1285	1290	1378	finally
+    //   1290	1375	1378	finally
   }
   
   public final void finishWork(Work paramWork) {
     Intrinsics.checkParameterIsNotNull(paramWork, "work");
     if (paramWork.getFinished()) {
-      CentralLog.Companion companion1 = CentralLog.Companion;
+      CentralLog.Companion companion = CentralLog.Companion;
       String str = this.TAG;
-      StringBuilder stringBuilder1 = new StringBuilder();
-      stringBuilder1.append("Work on ");
-      stringBuilder1.append(paramWork.getDevice().getAddress());
-      stringBuilder1.append(" already finished and closed");
-      companion1.i(str, stringBuilder1.toString());
+      StringBuilder stringBuilder = new StringBuilder();
+      stringBuilder.append("Work on ");
+      stringBuilder.append(paramWork.getDevice().getAddress());
+      stringBuilder.append(" already finished and closed");
+      companion.i(str, stringBuilder.toString());
       return;
     } 
     if (paramWork.isCriticalsCompleted()) {
@@ -1120,38 +1121,38 @@ public final class StreetPassWorker {
       Intrinsics.checkExpressionValueIsNotNull(str, "work.device.address");
       utils.broadcastDeviceProcessed(context, str);
     } 
-    CentralLog.Companion companion = CentralLog.Companion;
-    String str2 = this.TAG;
-    StringBuilder stringBuilder = new StringBuilder();
-    stringBuilder.append("Work on ");
-    stringBuilder.append(paramWork.getDevice().getAddress());
-    stringBuilder.append(" stopped in: ");
-    stringBuilder.append(paramWork.getChecklist().getDisconnected().getTimePerformed() - paramWork.getChecklist().getStarted().getTimePerformed());
-    companion.i(str2, stringBuilder.toString());
-    companion = CentralLog.Companion;
-    str2 = this.TAG;
-    stringBuilder = new StringBuilder();
-    stringBuilder.append("Work on ");
-    stringBuilder.append(paramWork.getDevice().getAddress());
-    stringBuilder.append(" completed?: ");
-    stringBuilder.append(paramWork.isCriticalsCompleted());
-    stringBuilder.append(". Connected in: ");
-    stringBuilder.append(paramWork.getChecklist().getConnected().getTimePerformed() - paramWork.getChecklist().getStarted().getTimePerformed());
-    stringBuilder.append(". connection lasted for: ");
-    stringBuilder.append(paramWork.getChecklist().getDisconnected().getTimePerformed() - paramWork.getChecklist().getConnected().getTimePerformed());
-    stringBuilder.append(". Status: ");
-    stringBuilder.append(paramWork.getChecklist());
-    companion.i(str2, stringBuilder.toString());
+    CentralLog.Companion companion2 = CentralLog.Companion;
+    String str3 = this.TAG;
+    StringBuilder stringBuilder1 = new StringBuilder();
+    stringBuilder1.append("Work on ");
+    stringBuilder1.append(paramWork.getDevice().getAddress());
+    stringBuilder1.append(" stopped in: ");
+    stringBuilder1.append(paramWork.getChecklist().getDisconnected().getTimePerformed() - paramWork.getChecklist().getStarted().getTimePerformed());
+    companion2.i(str3, stringBuilder1.toString());
+    CentralLog.Companion companion3 = CentralLog.Companion;
+    String str1 = this.TAG;
+    StringBuilder stringBuilder2 = new StringBuilder();
+    stringBuilder2.append("Work on ");
+    stringBuilder2.append(paramWork.getDevice().getAddress());
+    stringBuilder2.append(" completed?: ");
+    stringBuilder2.append(paramWork.isCriticalsCompleted());
+    stringBuilder2.append(". Connected in: ");
+    stringBuilder2.append(paramWork.getChecklist().getConnected().getTimePerformed() - paramWork.getChecklist().getStarted().getTimePerformed());
+    stringBuilder2.append(". connection lasted for: ");
+    stringBuilder2.append(paramWork.getChecklist().getDisconnected().getTimePerformed() - paramWork.getChecklist().getConnected().getTimePerformed());
+    stringBuilder2.append(". Status: ");
+    stringBuilder2.append(paramWork.getChecklist());
+    companion3.i(str1, stringBuilder2.toString());
     Handler handler = this.timeoutHandler;
     if (handler == null)
       Intrinsics.throwUninitializedPropertyAccessException("timeoutHandler"); 
     handler.removeCallbacks(paramWork.getTimeoutRunnable());
-    companion = CentralLog.Companion;
-    String str1 = this.TAG;
-    stringBuilder = new StringBuilder();
-    stringBuilder.append("Timeout removed for ");
-    stringBuilder.append(paramWork.getDevice().getAddress());
-    companion.i(str1, stringBuilder.toString());
+    CentralLog.Companion companion1 = CentralLog.Companion;
+    String str2 = this.TAG;
+    stringBuilder2 = new StringBuilder();
+    stringBuilder2.append("Timeout removed for ");
+    stringBuilder2.append(paramWork.getDevice().getAddress());
+    companion1.i(str2, stringBuilder2.toString());
     paramWork.setFinished(true);
     doWork();
   }
@@ -1226,15 +1227,15 @@ public final class StreetPassWorker {
       Intrinsics.checkParameterIsNotNull(param1Context, "context");
       Intrinsics.checkParameterIsNotNull(param1Intent, "intent");
       if (Intrinsics.areEqual("ca.albertahealthservices.contacttracing.ACTION_DEVICE_PROCESSED", param1Intent.getAction())) {
-        String str2 = param1Intent.getStringExtra("ca.albertahealthservices.contacttracing.DEVICE_ADDRESS");
+        String str1 = param1Intent.getStringExtra("ca.albertahealthservices.contacttracing.DEVICE_ADDRESS");
         CentralLog.Companion companion = CentralLog.Companion;
-        String str1 = StreetPassWorker.this.TAG;
+        String str2 = StreetPassWorker.this.TAG;
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Adding to blacklist: ");
-        stringBuilder.append(str2);
-        companion.d(str1, stringBuilder.toString());
-        Intrinsics.checkExpressionValueIsNotNull(str2, "deviceAddress");
-        BlacklistEntry blacklistEntry = new BlacklistEntry(str2, System.currentTimeMillis());
+        stringBuilder.append(str1);
+        companion.d(str2, stringBuilder.toString());
+        Intrinsics.checkExpressionValueIsNotNull(str1, "deviceAddress");
+        BlacklistEntry blacklistEntry = new BlacklistEntry(str1, System.currentTimeMillis());
         StreetPassWorker.this.blacklist.add(blacklistEntry);
         StreetPassWorker.access$getBlacklistHandler$p(StreetPassWorker.this).postDelayed(new StreetPassWorker$BlacklistReceiver$onReceive$1(blacklistEntry), BluetoothMonitoringService.Companion.getBlacklistDuration());
       } 
@@ -1300,29 +1301,29 @@ public final class StreetPassWorker {
     
     public void onCharacteristicRead(BluetoothGatt param1BluetoothGatt, BluetoothGattCharacteristic param1BluetoothGattCharacteristic, int param1Int) {
       BluetoothDevice bluetoothDevice;
-      String str1;
+      TemporaryID temporaryID;
       Intrinsics.checkParameterIsNotNull(param1BluetoothGatt, "gatt");
       Intrinsics.checkParameterIsNotNull(param1BluetoothGattCharacteristic, "characteristic");
       CentralLog.Companion companion = CentralLog.Companion;
-      String str2 = StreetPassWorker.this.TAG;
+      String str = StreetPassWorker.this.TAG;
       StringBuilder stringBuilder = new StringBuilder();
       stringBuilder.append("Read Status: ");
       stringBuilder.append(param1Int);
-      companion.i(str2, stringBuilder.toString());
+      companion.i(str, stringBuilder.toString());
       if (param1Int != 0) {
         CentralLog.Companion companion1 = CentralLog.Companion;
-        String str = StreetPassWorker.this.TAG;
-        StringBuilder stringBuilder1 = new StringBuilder();
-        stringBuilder1.append("Failed to read characteristics from ");
+        String str1 = StreetPassWorker.this.TAG;
+        stringBuilder = new StringBuilder();
+        stringBuilder.append("Failed to read characteristics from ");
         BluetoothDevice bluetoothDevice1 = param1BluetoothGatt.getDevice();
         Intrinsics.checkExpressionValueIsNotNull(bluetoothDevice1, "gatt.device");
-        stringBuilder1.append(bluetoothDevice1.getAddress());
-        stringBuilder1.append(": ");
-        stringBuilder1.append(param1Int);
-        companion1.w(str, stringBuilder1.toString());
+        stringBuilder.append(bluetoothDevice1.getAddress());
+        stringBuilder.append(": ");
+        stringBuilder.append(param1Int);
+        companion1.w(str1, stringBuilder.toString());
       } else {
         CentralLog.Companion companion2 = CentralLog.Companion;
-        str2 = StreetPassWorker.this.TAG;
+        String str1 = StreetPassWorker.this.TAG;
         StringBuilder stringBuilder1 = new StringBuilder();
         stringBuilder1.append("Characteristic read from ");
         BluetoothDevice bluetoothDevice1 = param1BluetoothGatt.getDevice();
@@ -1330,16 +1331,16 @@ public final class StreetPassWorker {
         stringBuilder1.append(bluetoothDevice1.getAddress());
         stringBuilder1.append(": ");
         stringBuilder1.append(param1BluetoothGattCharacteristic.getStringValue(0));
-        companion2.i(str2, stringBuilder1.toString());
+        companion2.i(str1, stringBuilder1.toString());
         CentralLog.Companion companion1 = CentralLog.Companion;
-        String str = StreetPassWorker.this.TAG;
+        str1 = StreetPassWorker.this.TAG;
         stringBuilder1 = new StringBuilder();
         stringBuilder1.append("onCharacteristicRead: ");
         stringBuilder1.append(this.work.getDevice().getAddress());
         stringBuilder1.append(" - [");
         stringBuilder1.append(this.work.getConnectable().getRssi());
         stringBuilder1.append(']');
-        companion1.i(str, stringBuilder1.toString());
+        companion1.i(str1, stringBuilder1.toString());
         if (BlueTrace.INSTANCE.supportsCharUUID(param1BluetoothGattCharacteristic.getUuid()))
           try {
             BlueTrace blueTrace = BlueTrace.INSTANCE;
@@ -1349,8 +1350,8 @@ public final class StreetPassWorker {
             byte[] arrayOfByte = param1BluetoothGattCharacteristic.getValue();
           } finally {
             companion1 = null;
-            CentralLog.Companion companion3 = CentralLog.Companion;
-            String str3 = StreetPassWorker.this.TAG;
+            companion2 = CentralLog.Companion;
+            String str2 = StreetPassWorker.this.TAG;
             StringBuilder stringBuilder2 = new StringBuilder();
             stringBuilder2.append("Failed to process read payload - ");
             stringBuilder2.append(companion1.getMessage());
@@ -1368,7 +1369,7 @@ public final class StreetPassWorker {
           boolean bool = param1BluetoothGatt.writeCharacteristic(param1BluetoothGattCharacteristic);
           PairingFix.INSTANCE.bypassAuthenticationRetry(param1BluetoothGatt);
           CentralLog.Companion companion1 = CentralLog.Companion;
-          String str = StreetPassWorker.this.TAG;
+          String str1 = StreetPassWorker.this.TAG;
           StringBuilder stringBuilder1 = new StringBuilder();
           stringBuilder1.append("Attempt to write characteristic to our service on ");
           bluetoothDevice = param1BluetoothGatt.getDevice();
@@ -1376,30 +1377,37 @@ public final class StreetPassWorker {
           stringBuilder1.append(bluetoothDevice.getAddress());
           stringBuilder1.append(": ");
           stringBuilder1.append(bool);
-          companion1.i(str, stringBuilder1.toString());
+          companion1.i(str1, stringBuilder1.toString());
         } else {
-          CentralLog.Companion companion1 = CentralLog.Companion;
-          str1 = StreetPassWorker.this.TAG;
+          companion = CentralLog.Companion;
+          String str1 = StreetPassWorker.this.TAG;
           StringBuilder stringBuilder1 = new StringBuilder();
           stringBuilder1.append("Expired BM. Skipping attempt to write characteristic to our service on ");
           BluetoothDevice bluetoothDevice1 = bluetoothDevice.getDevice();
           Intrinsics.checkExpressionValueIsNotNull(bluetoothDevice1, "gatt.device");
           stringBuilder1.append(bluetoothDevice1.getAddress());
-          companion1.i(str1, stringBuilder1.toString());
+          companion.i(str1, stringBuilder1.toString());
+          temporaryID = TempIDManager.INSTANCE.retrieveTemporaryID(StreetPassWorker.this.getContext());
+          if (temporaryID != null) {
+            CentralLog.Companion.i(StreetPassWorker.this.TAG, "Grab New Temp ID");
+            BluetoothMonitoringService.Companion.setBroadcastMessage(temporaryID);
+          } else {
+            CentralLog.Companion.e(StreetPassWorker.this.TAG, "Failed to grab new Temp ID");
+          } 
           endWorkConnection((BluetoothGatt)bluetoothDevice);
         } 
       } else {
         CentralLog.Companion companion1 = CentralLog.Companion;
-        String str = StreetPassWorker.this.TAG;
-        stringBuilder = new StringBuilder();
-        stringBuilder.append("Not writing to ");
+        str = StreetPassWorker.this.TAG;
+        StringBuilder stringBuilder1 = new StringBuilder();
+        stringBuilder1.append("Not writing to ");
         BluetoothDevice bluetoothDevice1 = bluetoothDevice.getDevice();
         Intrinsics.checkExpressionValueIsNotNull(bluetoothDevice1, "gatt.device");
-        stringBuilder.append(bluetoothDevice1.getAddress());
-        stringBuilder.append(". Characteristic ");
-        stringBuilder.append(str1.getUuid());
-        stringBuilder.append(" is not supported");
-        companion1.w(str, stringBuilder.toString());
+        stringBuilder1.append(bluetoothDevice1.getAddress());
+        stringBuilder1.append(". Characteristic ");
+        stringBuilder1.append(temporaryID.getUuid());
+        stringBuilder1.append(" is not supported");
+        companion1.w(str, stringBuilder1.toString());
         endWorkConnection((BluetoothGatt)bluetoothDevice);
       } 
     }
@@ -1474,33 +1482,33 @@ public final class StreetPassWorker {
       //   98: invokevirtual endWorkConnection : (Landroid/bluetooth/BluetoothGatt;)V
       //   101: goto -> 481
       //   104: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-      //   107: astore #7
+      //   107: astore #5
       //   109: aload_0
       //   110: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
       //   113: invokestatic access$getTAG$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;)Ljava/lang/String;
-      //   116: astore #6
+      //   116: astore #7
       //   118: new java/lang/StringBuilder
       //   121: dup
       //   122: invokespecial <init> : ()V
-      //   125: astore #5
-      //   127: aload #5
+      //   125: astore #4
+      //   127: aload #4
       //   129: ldc_w 'Connected to other GATT server - '
       //   132: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
       //   135: pop
       //   136: aload_1
       //   137: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
-      //   140: astore #4
-      //   142: aload #4
+      //   140: astore #6
+      //   142: aload #6
       //   144: ldc 'gatt.device'
       //   146: invokestatic checkExpressionValueIsNotNull : (Ljava/lang/Object;Ljava/lang/String;)V
-      //   149: aload #5
-      //   151: aload #4
+      //   149: aload #4
+      //   151: aload #6
       //   153: invokevirtual getAddress : ()Ljava/lang/String;
       //   156: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
       //   159: pop
-      //   160: aload #7
-      //   162: aload #6
-      //   164: aload #5
+      //   160: aload #5
+      //   162: aload #7
+      //   164: aload #4
       //   166: invokevirtual toString : ()Ljava/lang/String;
       //   169: invokevirtual i : (Ljava/lang/String;Ljava/lang/String;)V
       //   172: aload_1
@@ -1525,33 +1533,33 @@ public final class StreetPassWorker {
       //   213: invokevirtual setTimePerformed : (J)V
       //   216: goto -> 481
       //   219: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-      //   222: astore #5
+      //   222: astore #4
       //   224: aload_0
       //   225: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
       //   228: invokestatic access$getTAG$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;)Ljava/lang/String;
-      //   231: astore #6
+      //   231: astore #7
       //   233: new java/lang/StringBuilder
       //   236: dup
       //   237: invokespecial <init> : ()V
-      //   240: astore #7
-      //   242: aload #7
+      //   240: astore #5
+      //   242: aload #5
       //   244: ldc_w 'Disconnected from other GATT server - '
       //   247: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
       //   250: pop
       //   251: aload_1
       //   252: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
-      //   255: astore #4
-      //   257: aload #4
+      //   255: astore #6
+      //   257: aload #6
       //   259: ldc 'gatt.device'
       //   261: invokestatic checkExpressionValueIsNotNull : (Ljava/lang/Object;Ljava/lang/String;)V
-      //   264: aload #7
-      //   266: aload #4
+      //   264: aload #5
+      //   266: aload #6
       //   268: invokevirtual getAddress : ()Ljava/lang/String;
       //   271: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
       //   274: pop
-      //   275: aload #5
-      //   277: aload #6
-      //   279: aload #7
+      //   275: aload #4
+      //   277: aload #7
+      //   279: aload #5
       //   281: invokevirtual toString : ()Ljava/lang/String;
       //   284: invokevirtual i : (Ljava/lang/String;Ljava/lang/String;)V
       //   287: aload_0
@@ -1574,55 +1582,55 @@ public final class StreetPassWorker {
       //   328: invokevirtual getTimeoutRunnable : ()Ljava/lang/Runnable;
       //   331: invokevirtual removeCallbacks : (Ljava/lang/Runnable;)V
       //   334: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-      //   337: astore #7
+      //   337: astore #5
       //   339: aload_0
       //   340: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
       //   343: invokestatic access$getTAG$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;)Ljava/lang/String;
-      //   346: astore #5
+      //   346: astore #7
       //   348: new java/lang/StringBuilder
       //   351: dup
       //   352: invokespecial <init> : ()V
-      //   355: astore #6
-      //   357: aload #6
+      //   355: astore #4
+      //   357: aload #4
       //   359: ldc_w 'Timeout removed for '
       //   362: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
       //   365: pop
-      //   366: aload #6
+      //   366: aload #4
       //   368: aload_0
       //   369: getfield work : Lca/albertahealthservices/contacttracing/streetpass/Work;
       //   372: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
       //   375: invokevirtual getAddress : ()Ljava/lang/String;
       //   378: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
       //   381: pop
-      //   382: aload #7
-      //   384: aload #5
-      //   386: aload #6
+      //   382: aload #5
+      //   384: aload #7
+      //   386: aload #4
       //   388: invokevirtual toString : ()Ljava/lang/String;
       //   391: invokevirtual i : (Ljava/lang/String;Ljava/lang/String;)V
       //   394: aload_0
       //   395: getfield work : Lca/albertahealthservices/contacttracing/streetpass/Work;
       //   398: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
       //   401: invokevirtual getAddress : ()Ljava/lang/String;
-      //   404: astore #6
+      //   404: astore #4
       //   406: aload_0
       //   407: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
       //   410: invokestatic access$getCurrentWork$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;)Lca/albertahealthservices/contacttracing/streetpass/Work;
-      //   413: astore #7
-      //   415: aload #7
+      //   413: astore #5
+      //   415: aload #5
       //   417: ifnull -> 442
-      //   420: aload #7
+      //   420: aload #5
       //   422: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
-      //   425: astore #7
-      //   427: aload #7
+      //   425: astore #5
+      //   427: aload #5
       //   429: ifnull -> 442
-      //   432: aload #7
+      //   432: aload #5
       //   434: invokevirtual getAddress : ()Ljava/lang/String;
-      //   437: astore #7
+      //   437: astore #5
       //   439: goto -> 445
       //   442: aconst_null
-      //   443: astore #7
-      //   445: aload #6
-      //   447: aload #7
+      //   443: astore #5
+      //   445: aload #4
+      //   447: aload #5
       //   449: invokestatic areEqual : (Ljava/lang/Object;Ljava/lang/Object;)Z
       //   452: ifeq -> 466
       //   455: aload_0
@@ -1723,11 +1731,11 @@ public final class StreetPassWorker {
       //   172: invokevirtual discoverServices : ()Z
       //   175: istore #5
       //   177: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-      //   180: astore #8
+      //   180: astore #4
       //   182: aload_0
       //   183: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
       //   186: invokestatic access$getTAG$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;)Ljava/lang/String;
-      //   189: astore #4
+      //   189: astore #8
       //   191: new java/lang/StringBuilder
       //   194: dup
       //   195: invokespecial <init> : ()V
@@ -1755,8 +1763,8 @@ public final class StreetPassWorker {
       //   240: iload #5
       //   242: invokevirtual append : (Z)Ljava/lang/StringBuilder;
       //   245: pop
-      //   246: aload #8
-      //   248: aload #4
+      //   246: aload #4
+      //   248: aload #8
       //   250: aload #6
       //   252: invokevirtual toString : ()Ljava/lang/String;
       //   255: invokevirtual i : (Ljava/lang/String;Ljava/lang/String;)V
@@ -1792,7 +1800,7 @@ public final class StreetPassWorker {
           if (bluetoothGattCharacteristic != null) {
             PairingFix.INSTANCE.bypassAuthenticationRetry(param1BluetoothGatt);
             boolean bool = param1BluetoothGatt.readCharacteristic(bluetoothGattCharacteristic);
-            CentralLog.Companion companion1 = CentralLog.Companion;
+            companion = CentralLog.Companion;
             String str1 = StreetPassWorker.this.TAG;
             StringBuilder stringBuilder1 = new StringBuilder();
             stringBuilder1.append("Attempt to read characteristic of our service on ");
@@ -1801,30 +1809,30 @@ public final class StreetPassWorker {
             stringBuilder1.append(bluetoothDevice1.getAddress());
             stringBuilder1.append(": ");
             stringBuilder1.append(bool);
-            companion1.i(str1, stringBuilder1.toString());
+            companion.i(str1, stringBuilder1.toString());
           } else {
-            CentralLog.Companion companion1 = CentralLog.Companion;
+            companion = CentralLog.Companion;
             String str1 = StreetPassWorker.this.TAG;
-            stringBuilder = new StringBuilder();
-            stringBuilder.append("WTF? ");
+            StringBuilder stringBuilder1 = new StringBuilder();
+            stringBuilder1.append("WTF? ");
             BluetoothDevice bluetoothDevice1 = param1BluetoothGatt.getDevice();
             Intrinsics.checkExpressionValueIsNotNull(bluetoothDevice1, "gatt.device");
-            stringBuilder.append(bluetoothDevice1.getAddress());
-            stringBuilder.append(" does not have our characteristic");
-            companion1.e(str1, stringBuilder.toString());
+            stringBuilder1.append(bluetoothDevice1.getAddress());
+            stringBuilder1.append(" does not have our characteristic");
+            companion.e(str1, stringBuilder1.toString());
             endWorkConnection(param1BluetoothGatt);
           } 
         } 
         if (bluetoothGattService == null) {
           CentralLog.Companion companion1 = CentralLog.Companion;
-          String str1 = StreetPassWorker.this.TAG;
+          str = StreetPassWorker.this.TAG;
           StringBuilder stringBuilder1 = new StringBuilder();
           stringBuilder1.append("WTF? ");
           BluetoothDevice bluetoothDevice1 = param1BluetoothGatt.getDevice();
           Intrinsics.checkExpressionValueIsNotNull(bluetoothDevice1, "gatt.device");
           stringBuilder1.append(bluetoothDevice1.getAddress());
           stringBuilder1.append(" does not have our service");
-          companion1.e(str1, stringBuilder1.toString());
+          companion1.e(str, stringBuilder1.toString());
           endWorkConnection(param1BluetoothGatt);
         } 
       } 
@@ -1964,360 +1972,360 @@ public final class StreetPassWorker {
       //   142: invokevirtual toString : ()Ljava/lang/String;
       //   145: invokevirtual e : (Ljava/lang/String;Ljava/lang/String;)V
       //   148: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-      //   151: astore_2
+      //   151: astore_3
       //   152: aload_0
       //   153: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
       //   156: invokestatic access$getTAG$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;)Ljava/lang/String;
-      //   159: astore_3
-      //   160: new java/lang/StringBuilder
-      //   163: dup
-      //   164: invokespecial <init> : ()V
-      //   167: astore #4
-      //   169: aload #4
-      //   171: aload_1
-      //   172: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
-      //   175: invokevirtual getAddress : ()Ljava/lang/String;
-      //   178: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-      //   181: pop
-      //   182: aload #4
-      //   184: ldc ' work status: '
-      //   186: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-      //   189: pop
-      //   190: aload #4
-      //   192: aload_1
-      //   193: invokevirtual getChecklist : ()Lca/albertahealthservices/contacttracing/streetpass/Work$WorkCheckList;
-      //   196: invokevirtual append : (Ljava/lang/Object;)Ljava/lang/StringBuilder;
-      //   199: pop
-      //   200: aload #4
-      //   202: bipush #46
-      //   204: invokevirtual append : (C)Ljava/lang/StringBuilder;
-      //   207: pop
-      //   208: aload_2
-      //   209: aload_3
-      //   210: aload #4
-      //   212: invokevirtual toString : ()Ljava/lang/String;
-      //   215: invokevirtual e : (Ljava/lang/String;Ljava/lang/String;)V
-      //   218: aload_1
-      //   219: invokevirtual getChecklist : ()Lca/albertahealthservices/contacttracing/streetpass/Work$WorkCheckList;
-      //   222: invokevirtual getConnected : ()Lca/albertahealthservices/contacttracing/streetpass/Work$Check;
-      //   225: invokevirtual getStatus : ()Z
-      //   228: ifne -> 441
-      //   231: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-      //   234: astore #4
-      //   236: aload_0
-      //   237: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
-      //   240: invokestatic access$getTAG$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;)Ljava/lang/String;
-      //   243: astore_2
-      //   244: new java/lang/StringBuilder
-      //   247: dup
-      //   248: invokespecial <init> : ()V
-      //   251: astore_3
-      //   252: aload_3
-      //   253: ldc 'No connection formed for '
-      //   255: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-      //   258: pop
-      //   259: aload_3
-      //   260: aload_1
-      //   261: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
-      //   264: invokevirtual getAddress : ()Ljava/lang/String;
-      //   267: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-      //   270: pop
-      //   271: aload #4
-      //   273: aload_2
-      //   274: aload_3
-      //   275: invokevirtual toString : ()Ljava/lang/String;
-      //   278: invokevirtual e : (Ljava/lang/String;Ljava/lang/String;)V
-      //   281: aload_1
-      //   282: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
-      //   285: invokevirtual getAddress : ()Ljava/lang/String;
-      //   288: astore #4
-      //   290: aload_0
-      //   291: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
-      //   294: invokestatic access$getCurrentWork$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;)Lca/albertahealthservices/contacttracing/streetpass/Work;
-      //   297: astore_3
-      //   298: aload_3
-      //   299: ifnull -> 319
-      //   302: aload_3
-      //   303: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
-      //   306: astore_3
-      //   307: aload_3
-      //   308: ifnull -> 319
-      //   311: aload_3
-      //   312: invokevirtual getAddress : ()Ljava/lang/String;
-      //   315: astore_3
-      //   316: goto -> 321
-      //   319: aconst_null
-      //   320: astore_3
-      //   321: aload #4
-      //   323: aload_3
-      //   324: invokestatic areEqual : (Ljava/lang/Object;Ljava/lang/Object;)Z
-      //   327: ifeq -> 341
-      //   330: aload_0
-      //   331: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
-      //   334: aconst_null
-      //   335: checkcast ca/albertahealthservices/contacttracing/streetpass/Work
-      //   338: invokestatic access$setCurrentWork$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;Lca/albertahealthservices/contacttracing/streetpass/Work;)V
-      //   341: aload_1
-      //   342: invokevirtual getGatt : ()Landroid/bluetooth/BluetoothGatt;
-      //   345: astore_3
-      //   346: aload_3
-      //   347: ifnull -> 430
-      //   350: aload_3
-      //   351: invokevirtual close : ()V
-      //   354: goto -> 430
-      //   357: astore_2
-      //   358: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-      //   361: astore_3
-      //   362: aload_0
-      //   363: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
-      //   366: invokestatic access$getTAG$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;)Ljava/lang/String;
-      //   369: astore #5
-      //   371: new java/lang/StringBuilder
-      //   374: dup
-      //   375: invokespecial <init> : ()V
-      //   378: astore #4
-      //   380: aload #4
-      //   382: ldc 'Unexpected error while attempting to close clientIf to '
-      //   384: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-      //   387: pop
-      //   388: aload #4
-      //   390: aload_1
-      //   391: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
-      //   394: invokevirtual getAddress : ()Ljava/lang/String;
-      //   397: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-      //   400: pop
-      //   401: aload #4
-      //   403: ldc ': '
-      //   405: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-      //   408: pop
-      //   409: aload #4
-      //   411: aload_2
-      //   412: invokevirtual getLocalizedMessage : ()Ljava/lang/String;
-      //   415: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-      //   418: pop
-      //   419: aload_3
-      //   420: aload #5
-      //   422: aload #4
-      //   424: invokevirtual toString : ()Ljava/lang/String;
-      //   427: invokevirtual e : (Ljava/lang/String;Ljava/lang/String;)V
-      //   430: aload_0
-      //   431: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
-      //   434: aload_1
-      //   435: invokevirtual finishWork : (Lca/albertahealthservices/contacttracing/streetpass/Work;)V
-      //   438: goto -> 867
-      //   441: aload_1
-      //   442: invokevirtual getChecklist : ()Lca/albertahealthservices/contacttracing/streetpass/Work$WorkCheckList;
-      //   445: invokevirtual getConnected : ()Lca/albertahealthservices/contacttracing/streetpass/Work$Check;
-      //   448: invokevirtual getStatus : ()Z
-      //   451: ifeq -> 801
-      //   454: aload_1
-      //   455: invokevirtual getChecklist : ()Lca/albertahealthservices/contacttracing/streetpass/Work$WorkCheckList;
-      //   458: invokevirtual getDisconnected : ()Lca/albertahealthservices/contacttracing/streetpass/Work$Check;
-      //   461: invokevirtual getStatus : ()Z
-      //   464: ifne -> 801
-      //   467: aload_1
-      //   468: invokevirtual getChecklist : ()Lca/albertahealthservices/contacttracing/streetpass/Work$WorkCheckList;
-      //   471: invokevirtual getReadCharacteristic : ()Lca/albertahealthservices/contacttracing/streetpass/Work$Check;
-      //   474: invokevirtual getStatus : ()Z
-      //   477: ifne -> 654
-      //   480: aload_1
-      //   481: invokevirtual getChecklist : ()Lca/albertahealthservices/contacttracing/streetpass/Work$WorkCheckList;
-      //   484: invokevirtual getWriteCharacteristic : ()Lca/albertahealthservices/contacttracing/streetpass/Work$Check;
-      //   487: invokevirtual getStatus : ()Z
-      //   490: ifne -> 654
-      //   493: aload_1
-      //   494: invokevirtual getChecklist : ()Lca/albertahealthservices/contacttracing/streetpass/Work$WorkCheckList;
-      //   497: invokevirtual getSkipped : ()Lca/albertahealthservices/contacttracing/streetpass/Work$Check;
-      //   500: invokevirtual getStatus : ()Z
-      //   503: ifeq -> 509
-      //   506: goto -> 654
-      //   509: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-      //   512: astore_2
-      //   513: aload_0
-      //   514: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
-      //   517: invokestatic access$getTAG$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;)Ljava/lang/String;
-      //   520: astore #4
-      //   522: new java/lang/StringBuilder
-      //   525: dup
-      //   526: invokespecial <init> : ()V
-      //   529: astore_3
-      //   530: aload_3
-      //   531: ldc 'Connected but did nothing for '
-      //   533: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-      //   536: pop
-      //   537: aload_3
-      //   538: aload_1
-      //   539: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
-      //   542: invokevirtual getAddress : ()Ljava/lang/String;
-      //   545: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-      //   548: pop
-      //   549: aload_2
-      //   550: aload #4
-      //   552: aload_3
-      //   553: invokevirtual toString : ()Ljava/lang/String;
-      //   556: invokevirtual e : (Ljava/lang/String;Ljava/lang/String;)V
-      //   559: aload_1
-      //   560: invokevirtual getGatt : ()Landroid/bluetooth/BluetoothGatt;
-      //   563: astore_3
-      //   564: aload_3
-      //   565: ifnull -> 572
-      //   568: aload_3
-      //   569: invokevirtual disconnect : ()V
-      //   572: aload_1
-      //   573: invokevirtual getGatt : ()Landroid/bluetooth/BluetoothGatt;
-      //   576: ifnonnull -> 867
-      //   579: aload_0
-      //   580: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
-      //   583: aconst_null
-      //   584: checkcast ca/albertahealthservices/contacttracing/streetpass/Work
-      //   587: invokestatic access$setCurrentWork$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;Lca/albertahealthservices/contacttracing/streetpass/Work;)V
-      //   590: aload_0
-      //   591: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
-      //   594: aload_1
-      //   595: invokevirtual finishWork : (Lca/albertahealthservices/contacttracing/streetpass/Work;)V
-      //   598: goto -> 867
-      //   601: astore_1
-      //   602: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-      //   605: astore_3
-      //   606: aload_0
-      //   607: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
-      //   610: invokestatic access$getTAG$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;)Ljava/lang/String;
-      //   613: astore_2
-      //   614: new java/lang/StringBuilder
-      //   617: dup
-      //   618: invokespecial <init> : ()V
-      //   621: astore #4
-      //   623: aload #4
-      //   625: ldc 'Failed to clean up work, bluetooth state likely changed or other device's advertiser stopped: '
-      //   627: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-      //   630: pop
-      //   631: aload #4
-      //   633: aload_1
-      //   634: invokevirtual getLocalizedMessage : ()Ljava/lang/String;
-      //   637: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-      //   640: pop
-      //   641: aload_3
-      //   642: aload_2
-      //   643: aload #4
-      //   645: invokevirtual toString : ()Ljava/lang/String;
-      //   648: invokevirtual e : (Ljava/lang/String;Ljava/lang/String;)V
-      //   651: goto -> 867
-      //   654: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-      //   657: astore_2
-      //   658: aload_0
-      //   659: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
-      //   662: invokestatic access$getTAG$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;)Ljava/lang/String;
-      //   665: astore_3
-      //   666: new java/lang/StringBuilder
-      //   669: dup
-      //   670: invokespecial <init> : ()V
-      //   673: astore #4
-      //   675: aload #4
-      //   677: ldc 'Connected but did not disconnect in time for '
-      //   679: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-      //   682: pop
-      //   683: aload #4
-      //   685: aload_1
-      //   686: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
-      //   689: invokevirtual getAddress : ()Ljava/lang/String;
-      //   692: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-      //   695: pop
-      //   696: aload_2
-      //   697: aload_3
-      //   698: aload #4
-      //   700: invokevirtual toString : ()Ljava/lang/String;
-      //   703: invokevirtual e : (Ljava/lang/String;Ljava/lang/String;)V
-      //   706: aload_1
-      //   707: invokevirtual getGatt : ()Landroid/bluetooth/BluetoothGatt;
-      //   710: astore_3
-      //   711: aload_3
-      //   712: ifnull -> 719
-      //   715: aload_3
-      //   716: invokevirtual disconnect : ()V
-      //   719: aload_1
-      //   720: invokevirtual getGatt : ()Landroid/bluetooth/BluetoothGatt;
-      //   723: ifnonnull -> 867
-      //   726: aload_0
-      //   727: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
-      //   730: aconst_null
-      //   731: checkcast ca/albertahealthservices/contacttracing/streetpass/Work
-      //   734: invokestatic access$setCurrentWork$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;Lca/albertahealthservices/contacttracing/streetpass/Work;)V
-      //   737: aload_0
-      //   738: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
-      //   741: aload_1
-      //   742: invokevirtual finishWork : (Lca/albertahealthservices/contacttracing/streetpass/Work;)V
-      //   745: goto -> 867
-      //   748: astore_1
-      //   749: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-      //   752: astore_3
-      //   753: aload_0
-      //   754: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
-      //   757: invokestatic access$getTAG$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;)Ljava/lang/String;
-      //   760: astore_2
-      //   761: new java/lang/StringBuilder
-      //   764: dup
-      //   765: invokespecial <init> : ()V
-      //   768: astore #4
-      //   770: aload #4
-      //   772: ldc 'Failed to clean up work, bluetooth state likely changed or other device's advertiser stopped: '
-      //   774: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-      //   777: pop
-      //   778: aload #4
-      //   780: aload_1
-      //   781: invokevirtual getLocalizedMessage : ()Ljava/lang/String;
-      //   784: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-      //   787: pop
-      //   788: aload_3
-      //   789: aload_2
-      //   790: aload #4
-      //   792: invokevirtual toString : ()Ljava/lang/String;
-      //   795: invokevirtual e : (Ljava/lang/String;Ljava/lang/String;)V
-      //   798: goto -> 867
-      //   801: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
-      //   804: astore_2
-      //   805: aload_0
-      //   806: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
-      //   809: invokestatic access$getTAG$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;)Ljava/lang/String;
-      //   812: astore #4
-      //   814: new java/lang/StringBuilder
-      //   817: dup
-      //   818: invokespecial <init> : ()V
-      //   821: astore_3
-      //   822: aload_3
-      //   823: ldc 'Disconnected but callback not invoked in time. Waiting.: '
-      //   825: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-      //   828: pop
-      //   829: aload_3
-      //   830: aload_1
-      //   831: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
-      //   834: invokevirtual getAddress : ()Ljava/lang/String;
-      //   837: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-      //   840: pop
-      //   841: aload_3
-      //   842: ldc ': '
-      //   844: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
-      //   847: pop
-      //   848: aload_3
-      //   849: aload_1
-      //   850: invokevirtual getChecklist : ()Lca/albertahealthservices/contacttracing/streetpass/Work$WorkCheckList;
-      //   853: invokevirtual append : (Ljava/lang/Object;)Ljava/lang/StringBuilder;
-      //   856: pop
-      //   857: aload_2
-      //   858: aload #4
-      //   860: aload_3
-      //   861: invokevirtual toString : ()Ljava/lang/String;
-      //   864: invokevirtual e : (Ljava/lang/String;Ljava/lang/String;)V
-      //   867: return
+      //   159: astore #4
+      //   161: new java/lang/StringBuilder
+      //   164: dup
+      //   165: invokespecial <init> : ()V
+      //   168: astore_2
+      //   169: aload_2
+      //   170: aload_1
+      //   171: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
+      //   174: invokevirtual getAddress : ()Ljava/lang/String;
+      //   177: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+      //   180: pop
+      //   181: aload_2
+      //   182: ldc ' work status: '
+      //   184: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+      //   187: pop
+      //   188: aload_2
+      //   189: aload_1
+      //   190: invokevirtual getChecklist : ()Lca/albertahealthservices/contacttracing/streetpass/Work$WorkCheckList;
+      //   193: invokevirtual append : (Ljava/lang/Object;)Ljava/lang/StringBuilder;
+      //   196: pop
+      //   197: aload_2
+      //   198: bipush #46
+      //   200: invokevirtual append : (C)Ljava/lang/StringBuilder;
+      //   203: pop
+      //   204: aload_3
+      //   205: aload #4
+      //   207: aload_2
+      //   208: invokevirtual toString : ()Ljava/lang/String;
+      //   211: invokevirtual e : (Ljava/lang/String;Ljava/lang/String;)V
+      //   214: aload_1
+      //   215: invokevirtual getChecklist : ()Lca/albertahealthservices/contacttracing/streetpass/Work$WorkCheckList;
+      //   218: invokevirtual getConnected : ()Lca/albertahealthservices/contacttracing/streetpass/Work$Check;
+      //   221: invokevirtual getStatus : ()Z
+      //   224: ifne -> 443
+      //   227: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
+      //   230: astore #4
+      //   232: aload_0
+      //   233: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
+      //   236: invokestatic access$getTAG$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;)Ljava/lang/String;
+      //   239: astore_2
+      //   240: new java/lang/StringBuilder
+      //   243: dup
+      //   244: invokespecial <init> : ()V
+      //   247: astore_3
+      //   248: aload_3
+      //   249: ldc 'No connection formed for '
+      //   251: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+      //   254: pop
+      //   255: aload_3
+      //   256: aload_1
+      //   257: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
+      //   260: invokevirtual getAddress : ()Ljava/lang/String;
+      //   263: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+      //   266: pop
+      //   267: aload #4
+      //   269: aload_2
+      //   270: aload_3
+      //   271: invokevirtual toString : ()Ljava/lang/String;
+      //   274: invokevirtual e : (Ljava/lang/String;Ljava/lang/String;)V
+      //   277: aload_1
+      //   278: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
+      //   281: invokevirtual getAddress : ()Ljava/lang/String;
+      //   284: astore_2
+      //   285: aload_0
+      //   286: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
+      //   289: invokestatic access$getCurrentWork$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;)Lca/albertahealthservices/contacttracing/streetpass/Work;
+      //   292: astore #4
+      //   294: aload #4
+      //   296: ifnull -> 321
+      //   299: aload #4
+      //   301: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
+      //   304: astore #4
+      //   306: aload #4
+      //   308: ifnull -> 321
+      //   311: aload #4
+      //   313: invokevirtual getAddress : ()Ljava/lang/String;
+      //   316: astore #4
+      //   318: goto -> 324
+      //   321: aconst_null
+      //   322: astore #4
+      //   324: aload_2
+      //   325: aload #4
+      //   327: invokestatic areEqual : (Ljava/lang/Object;Ljava/lang/Object;)Z
+      //   330: ifeq -> 344
+      //   333: aload_0
+      //   334: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
+      //   337: aconst_null
+      //   338: checkcast ca/albertahealthservices/contacttracing/streetpass/Work
+      //   341: invokestatic access$setCurrentWork$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;Lca/albertahealthservices/contacttracing/streetpass/Work;)V
+      //   344: aload_1
+      //   345: invokevirtual getGatt : ()Landroid/bluetooth/BluetoothGatt;
+      //   348: astore #4
+      //   350: aload #4
+      //   352: ifnull -> 432
+      //   355: aload #4
+      //   357: invokevirtual close : ()V
+      //   360: goto -> 432
+      //   363: astore_2
+      //   364: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
+      //   367: astore #5
+      //   369: aload_0
+      //   370: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
+      //   373: invokestatic access$getTAG$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;)Ljava/lang/String;
+      //   376: astore #4
+      //   378: new java/lang/StringBuilder
+      //   381: dup
+      //   382: invokespecial <init> : ()V
+      //   385: astore_3
+      //   386: aload_3
+      //   387: ldc 'Unexpected error while attempting to close clientIf to '
+      //   389: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+      //   392: pop
+      //   393: aload_3
+      //   394: aload_1
+      //   395: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
+      //   398: invokevirtual getAddress : ()Ljava/lang/String;
+      //   401: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+      //   404: pop
+      //   405: aload_3
+      //   406: ldc ': '
+      //   408: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+      //   411: pop
+      //   412: aload_3
+      //   413: aload_2
+      //   414: invokevirtual getLocalizedMessage : ()Ljava/lang/String;
+      //   417: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+      //   420: pop
+      //   421: aload #5
+      //   423: aload #4
+      //   425: aload_3
+      //   426: invokevirtual toString : ()Ljava/lang/String;
+      //   429: invokevirtual e : (Ljava/lang/String;Ljava/lang/String;)V
+      //   432: aload_0
+      //   433: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
+      //   436: aload_1
+      //   437: invokevirtual finishWork : (Lca/albertahealthservices/contacttracing/streetpass/Work;)V
+      //   440: goto -> 871
+      //   443: aload_1
+      //   444: invokevirtual getChecklist : ()Lca/albertahealthservices/contacttracing/streetpass/Work$WorkCheckList;
+      //   447: invokevirtual getConnected : ()Lca/albertahealthservices/contacttracing/streetpass/Work$Check;
+      //   450: invokevirtual getStatus : ()Z
+      //   453: ifeq -> 805
+      //   456: aload_1
+      //   457: invokevirtual getChecklist : ()Lca/albertahealthservices/contacttracing/streetpass/Work$WorkCheckList;
+      //   460: invokevirtual getDisconnected : ()Lca/albertahealthservices/contacttracing/streetpass/Work$Check;
+      //   463: invokevirtual getStatus : ()Z
+      //   466: ifne -> 805
+      //   469: aload_1
+      //   470: invokevirtual getChecklist : ()Lca/albertahealthservices/contacttracing/streetpass/Work$WorkCheckList;
+      //   473: invokevirtual getReadCharacteristic : ()Lca/albertahealthservices/contacttracing/streetpass/Work$Check;
+      //   476: invokevirtual getStatus : ()Z
+      //   479: ifne -> 657
+      //   482: aload_1
+      //   483: invokevirtual getChecklist : ()Lca/albertahealthservices/contacttracing/streetpass/Work$WorkCheckList;
+      //   486: invokevirtual getWriteCharacteristic : ()Lca/albertahealthservices/contacttracing/streetpass/Work$Check;
+      //   489: invokevirtual getStatus : ()Z
+      //   492: ifne -> 657
+      //   495: aload_1
+      //   496: invokevirtual getChecklist : ()Lca/albertahealthservices/contacttracing/streetpass/Work$WorkCheckList;
+      //   499: invokevirtual getSkipped : ()Lca/albertahealthservices/contacttracing/streetpass/Work$Check;
+      //   502: invokevirtual getStatus : ()Z
+      //   505: ifeq -> 511
+      //   508: goto -> 657
+      //   511: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
+      //   514: astore_3
+      //   515: aload_0
+      //   516: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
+      //   519: invokestatic access$getTAG$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;)Ljava/lang/String;
+      //   522: astore #4
+      //   524: new java/lang/StringBuilder
+      //   527: dup
+      //   528: invokespecial <init> : ()V
+      //   531: astore_2
+      //   532: aload_2
+      //   533: ldc 'Connected but did nothing for '
+      //   535: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+      //   538: pop
+      //   539: aload_2
+      //   540: aload_1
+      //   541: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
+      //   544: invokevirtual getAddress : ()Ljava/lang/String;
+      //   547: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+      //   550: pop
+      //   551: aload_3
+      //   552: aload #4
+      //   554: aload_2
+      //   555: invokevirtual toString : ()Ljava/lang/String;
+      //   558: invokevirtual e : (Ljava/lang/String;Ljava/lang/String;)V
+      //   561: aload_1
+      //   562: invokevirtual getGatt : ()Landroid/bluetooth/BluetoothGatt;
+      //   565: astore #4
+      //   567: aload #4
+      //   569: ifnull -> 577
+      //   572: aload #4
+      //   574: invokevirtual disconnect : ()V
+      //   577: aload_1
+      //   578: invokevirtual getGatt : ()Landroid/bluetooth/BluetoothGatt;
+      //   581: ifnonnull -> 871
+      //   584: aload_0
+      //   585: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
+      //   588: aconst_null
+      //   589: checkcast ca/albertahealthservices/contacttracing/streetpass/Work
+      //   592: invokestatic access$setCurrentWork$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;Lca/albertahealthservices/contacttracing/streetpass/Work;)V
+      //   595: aload_0
+      //   596: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
+      //   599: aload_1
+      //   600: invokevirtual finishWork : (Lca/albertahealthservices/contacttracing/streetpass/Work;)V
+      //   603: goto -> 871
+      //   606: astore #4
+      //   608: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
+      //   611: astore_3
+      //   612: aload_0
+      //   613: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
+      //   616: invokestatic access$getTAG$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;)Ljava/lang/String;
+      //   619: astore_1
+      //   620: new java/lang/StringBuilder
+      //   623: dup
+      //   624: invokespecial <init> : ()V
+      //   627: astore_2
+      //   628: aload_2
+      //   629: ldc 'Failed to clean up work, bluetooth state likely changed or other device's advertiser stopped: '
+      //   631: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+      //   634: pop
+      //   635: aload_2
+      //   636: aload #4
+      //   638: invokevirtual getLocalizedMessage : ()Ljava/lang/String;
+      //   641: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+      //   644: pop
+      //   645: aload_3
+      //   646: aload_1
+      //   647: aload_2
+      //   648: invokevirtual toString : ()Ljava/lang/String;
+      //   651: invokevirtual e : (Ljava/lang/String;Ljava/lang/String;)V
+      //   654: goto -> 871
+      //   657: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
+      //   660: astore_2
+      //   661: aload_0
+      //   662: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
+      //   665: invokestatic access$getTAG$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;)Ljava/lang/String;
+      //   668: astore_3
+      //   669: new java/lang/StringBuilder
+      //   672: dup
+      //   673: invokespecial <init> : ()V
+      //   676: astore #4
+      //   678: aload #4
+      //   680: ldc 'Connected but did not disconnect in time for '
+      //   682: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+      //   685: pop
+      //   686: aload #4
+      //   688: aload_1
+      //   689: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
+      //   692: invokevirtual getAddress : ()Ljava/lang/String;
+      //   695: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+      //   698: pop
+      //   699: aload_2
+      //   700: aload_3
+      //   701: aload #4
+      //   703: invokevirtual toString : ()Ljava/lang/String;
+      //   706: invokevirtual e : (Ljava/lang/String;Ljava/lang/String;)V
+      //   709: aload_1
+      //   710: invokevirtual getGatt : ()Landroid/bluetooth/BluetoothGatt;
+      //   713: astore #4
+      //   715: aload #4
+      //   717: ifnull -> 725
+      //   720: aload #4
+      //   722: invokevirtual disconnect : ()V
+      //   725: aload_1
+      //   726: invokevirtual getGatt : ()Landroid/bluetooth/BluetoothGatt;
+      //   729: ifnonnull -> 871
+      //   732: aload_0
+      //   733: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
+      //   736: aconst_null
+      //   737: checkcast ca/albertahealthservices/contacttracing/streetpass/Work
+      //   740: invokestatic access$setCurrentWork$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;Lca/albertahealthservices/contacttracing/streetpass/Work;)V
+      //   743: aload_0
+      //   744: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
+      //   747: aload_1
+      //   748: invokevirtual finishWork : (Lca/albertahealthservices/contacttracing/streetpass/Work;)V
+      //   751: goto -> 871
+      //   754: astore_3
+      //   755: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
+      //   758: astore #4
+      //   760: aload_0
+      //   761: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
+      //   764: invokestatic access$getTAG$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;)Ljava/lang/String;
+      //   767: astore_2
+      //   768: new java/lang/StringBuilder
+      //   771: dup
+      //   772: invokespecial <init> : ()V
+      //   775: astore_1
+      //   776: aload_1
+      //   777: ldc 'Failed to clean up work, bluetooth state likely changed or other device's advertiser stopped: '
+      //   779: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+      //   782: pop
+      //   783: aload_1
+      //   784: aload_3
+      //   785: invokevirtual getLocalizedMessage : ()Ljava/lang/String;
+      //   788: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+      //   791: pop
+      //   792: aload #4
+      //   794: aload_2
+      //   795: aload_1
+      //   796: invokevirtual toString : ()Ljava/lang/String;
+      //   799: invokevirtual e : (Ljava/lang/String;Ljava/lang/String;)V
+      //   802: goto -> 871
+      //   805: getstatic ca/albertahealthservices/contacttracing/logging/CentralLog.Companion : Lca/albertahealthservices/contacttracing/logging/CentralLog$Companion;
+      //   808: astore #4
+      //   810: aload_0
+      //   811: getfield this$0 : Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;
+      //   814: invokestatic access$getTAG$p : (Lca/albertahealthservices/contacttracing/streetpass/StreetPassWorker;)Ljava/lang/String;
+      //   817: astore_2
+      //   818: new java/lang/StringBuilder
+      //   821: dup
+      //   822: invokespecial <init> : ()V
+      //   825: astore_3
+      //   826: aload_3
+      //   827: ldc 'Disconnected but callback not invoked in time. Waiting.: '
+      //   829: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+      //   832: pop
+      //   833: aload_3
+      //   834: aload_1
+      //   835: invokevirtual getDevice : ()Landroid/bluetooth/BluetoothDevice;
+      //   838: invokevirtual getAddress : ()Ljava/lang/String;
+      //   841: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+      //   844: pop
+      //   845: aload_3
+      //   846: ldc ': '
+      //   848: invokevirtual append : (Ljava/lang/String;)Ljava/lang/StringBuilder;
+      //   851: pop
+      //   852: aload_3
+      //   853: aload_1
+      //   854: invokevirtual getChecklist : ()Lca/albertahealthservices/contacttracing/streetpass/Work$WorkCheckList;
+      //   857: invokevirtual append : (Ljava/lang/Object;)Ljava/lang/StringBuilder;
+      //   860: pop
+      //   861: aload #4
+      //   863: aload_2
+      //   864: aload_3
+      //   865: invokevirtual toString : ()Ljava/lang/String;
+      //   868: invokevirtual e : (Ljava/lang/String;Ljava/lang/String;)V
+      //   871: return
       // Exception table:
       //   from	to	target	type
-      //   341	346	357	java/lang/Exception
-      //   350	354	357	java/lang/Exception
-      //   559	564	601	finally
-      //   568	572	601	finally
-      //   572	598	601	finally
-      //   706	711	748	finally
-      //   715	719	748	finally
-      //   719	745	748	finally
+      //   344	350	363	java/lang/Exception
+      //   355	360	363	java/lang/Exception
+      //   561	567	606	finally
+      //   572	577	606	finally
+      //   577	603	606	finally
+      //   709	715	754	finally
+      //   720	725	754	finally
+      //   725	751	754	finally
     }
   }
 }

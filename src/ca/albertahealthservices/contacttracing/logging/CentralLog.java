@@ -41,15 +41,15 @@ public final class CentralLog {
       Companion companion = this;
       if (!companion.shouldLog())
         return; 
-      StringBuilder stringBuilder = new StringBuilder();
-      stringBuilder.append(companion.getIdleStatus());
-      stringBuilder.append(param1String2);
-      Log.d(param1String1, stringBuilder.toString());
+      StringBuilder stringBuilder1 = new StringBuilder();
+      stringBuilder1.append(companion.getIdleStatus());
+      stringBuilder1.append(param1String2);
+      Log.d(param1String1, stringBuilder1.toString());
       SDLog sDLog = SDLog.INSTANCE;
-      stringBuilder = new StringBuilder();
-      stringBuilder.append(companion.getIdleStatus());
-      stringBuilder.append(param1String2);
-      sDLog.d(new String[] { param1String1, stringBuilder.toString() });
+      StringBuilder stringBuilder2 = new StringBuilder();
+      stringBuilder2.append(companion.getIdleStatus());
+      stringBuilder2.append(param1String2);
+      sDLog.d(new String[] { param1String1, stringBuilder2.toString() });
     }
     
     public final void d(String param1String1, String param1String2, Throwable param1Throwable) {
@@ -96,15 +96,15 @@ public final class CentralLog {
       Companion companion = this;
       if (!companion.shouldLog())
         return; 
-      StringBuilder stringBuilder1 = new StringBuilder();
-      stringBuilder1.append(companion.getIdleStatus());
-      stringBuilder1.append(param1String2);
-      Log.i(param1String1, stringBuilder1.toString());
+      StringBuilder stringBuilder = new StringBuilder();
+      stringBuilder.append(companion.getIdleStatus());
+      stringBuilder.append(param1String2);
+      Log.i(param1String1, stringBuilder.toString());
       SDLog sDLog = SDLog.INSTANCE;
-      StringBuilder stringBuilder2 = new StringBuilder();
-      stringBuilder2.append(companion.getIdleStatus());
-      stringBuilder2.append(param1String2);
-      sDLog.i(new String[] { param1String1, stringBuilder2.toString() });
+      stringBuilder = new StringBuilder();
+      stringBuilder.append(companion.getIdleStatus());
+      stringBuilder.append(param1String2);
+      sDLog.i(new String[] { param1String1, stringBuilder.toString() });
     }
     
     public final void setPm(PowerManager param1PowerManager) {
@@ -122,15 +122,15 @@ public final class CentralLog {
       Companion companion = this;
       if (!companion.shouldLog())
         return; 
-      StringBuilder stringBuilder = new StringBuilder();
-      stringBuilder.append(companion.getIdleStatus());
-      stringBuilder.append(param1String2);
-      Log.w(param1String1, stringBuilder.toString());
+      StringBuilder stringBuilder1 = new StringBuilder();
+      stringBuilder1.append(companion.getIdleStatus());
+      stringBuilder1.append(param1String2);
+      Log.w(param1String1, stringBuilder1.toString());
       SDLog sDLog = SDLog.INSTANCE;
-      stringBuilder = new StringBuilder();
-      stringBuilder.append(companion.getIdleStatus());
-      stringBuilder.append(param1String2);
-      sDLog.w(new String[] { param1String1, stringBuilder.toString() });
+      StringBuilder stringBuilder2 = new StringBuilder();
+      stringBuilder2.append(companion.getIdleStatus());
+      stringBuilder2.append(param1String2);
+      sDLog.w(new String[] { param1String1, stringBuilder2.toString() });
     }
   }
 }

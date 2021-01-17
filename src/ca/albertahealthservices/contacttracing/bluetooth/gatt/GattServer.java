@@ -8,9 +8,11 @@ import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import ca.albertahealthservices.contacttracing.Utils;
 import ca.albertahealthservices.contacttracing.idmanager.TempIDManager;
+import ca.albertahealthservices.contacttracing.idmanager.TemporaryID;
 import ca.albertahealthservices.contacttracing.logging.CentralLog;
 import ca.albertahealthservices.contacttracing.protocol.BlueTrace;
 import ca.albertahealthservices.contacttracing.protocol.BlueTraceProtocol;
+import ca.albertahealthservices.contacttracing.services.BluetoothMonitoringService;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -141,6 +143,7 @@ public final class GattServer {
       if (param1BluetoothDevice == null)
         CentralLog.Companion.w(GattServer.this.TAG, "No device"); 
       if (param1BluetoothDevice != null) {
+        TemporaryID temporaryID;
         CentralLog.Companion companion = CentralLog.Companion;
         String str = GattServer.this.TAG;
         StringBuilder stringBuilder = new StringBuilder();
@@ -151,68 +154,75 @@ public final class GattServer {
         if (param1BluetoothGattCharacteristic != null) {
           UUID uUID = param1BluetoothGattCharacteristic.getUuid();
         } else {
-          stringBuilder = null;
+          str = null;
         } 
-        if (blueTrace.supportsCharUUID((UUID)stringBuilder)) {
+        if (blueTrace.supportsCharUUID((UUID)str)) {
           if (param1BluetoothGattCharacteristic != null) {
             UUID uUID = param1BluetoothGattCharacteristic.getUuid();
             if (uUID != null) {
               BlueTraceProtocol blueTraceProtocol = BlueTrace.INSTANCE.getImplementation(uUID);
               if (TempIDManager.INSTANCE.bmValid(GattServer.this.getContext())) {
                 Map<String, byte[]> map = this.readPayloadMap;
-                String str1 = param1BluetoothDevice.getAddress();
-                Intrinsics.checkExpressionValueIsNotNull(str1, "device.address");
-                stringBuilder = (StringBuilder)map.get(str1);
-                StringBuilder stringBuilder1 = stringBuilder;
-                if (stringBuilder == null) {
+                String str3 = param1BluetoothDevice.getAddress();
+                Intrinsics.checkExpressionValueIsNotNull(str3, "device.address");
+                str = (String)map.get(str3);
+                String str1 = str;
+                if (str == null) {
                   arrayOfByte = blueTraceProtocol.getPeripheral().prepareReadRequestData(blueTraceProtocol.getVersionInt());
-                  map.put(str1, arrayOfByte);
+                  map.put(str3, arrayOfByte);
                 } 
                 byte[] arrayOfByte = arrayOfByte;
                 arrayOfByte = ArraysKt.copyOfRange(arrayOfByte, param1Int2, arrayOfByte.length);
                 CentralLog.Companion companion1 = CentralLog.Companion;
                 String str2 = GattServer.this.TAG;
-                StringBuilder stringBuilder2 = new StringBuilder();
-                stringBuilder2.append("onCharacteristicReadRequest from ");
-                stringBuilder2.append(param1BluetoothDevice.getAddress());
-                stringBuilder2.append(" - ");
-                stringBuilder2.append(param1Int1);
-                stringBuilder2.append("- ");
-                stringBuilder2.append(param1Int2);
-                stringBuilder2.append(" - ");
-                stringBuilder2.append(new String(arrayOfByte, Charsets.UTF_8));
-                companion1.i(str2, stringBuilder2.toString());
+                StringBuilder stringBuilder1 = new StringBuilder();
+                stringBuilder1.append("onCharacteristicReadRequest from ");
+                stringBuilder1.append(param1BluetoothDevice.getAddress());
+                stringBuilder1.append(" - ");
+                stringBuilder1.append(param1Int1);
+                stringBuilder1.append("- ");
+                stringBuilder1.append(param1Int2);
+                stringBuilder1.append(" - ");
+                stringBuilder1.append(new String(arrayOfByte, Charsets.UTF_8));
+                companion1.i(str2, stringBuilder1.toString());
                 BluetoothGattServer bluetoothGattServer = GattServer.this.getBluetoothGattServer();
                 if (bluetoothGattServer != null)
                   bluetoothGattServer.sendResponse(param1BluetoothDevice, param1Int1, 0, 0, arrayOfByte); 
               } else {
                 CentralLog.Companion companion1 = CentralLog.Companion;
                 String str1 = GattServer.this.TAG;
-                stringBuilder = new StringBuilder();
-                stringBuilder.append("onCharacteristicReadRequest from ");
-                stringBuilder.append(param1BluetoothDevice.getAddress());
-                stringBuilder.append(" - ");
-                stringBuilder.append(param1Int1);
-                stringBuilder.append("- ");
-                stringBuilder.append(param1Int2);
-                stringBuilder.append(" - BM Expired");
-                companion1.i(str1, stringBuilder.toString());
+                StringBuilder stringBuilder1 = new StringBuilder();
+                stringBuilder1.append("onCharacteristicReadRequest from ");
+                stringBuilder1.append(param1BluetoothDevice.getAddress());
+                stringBuilder1.append(" - ");
+                stringBuilder1.append(param1Int1);
+                stringBuilder1.append("- ");
+                stringBuilder1.append(param1Int2);
+                stringBuilder1.append(" - BM Expired");
+                companion1.i(str1, stringBuilder1.toString());
                 BluetoothGattServer bluetoothGattServer = GattServer.this.getBluetoothGattServer();
                 if (bluetoothGattServer != null)
                   bluetoothGattServer.sendResponse(param1BluetoothDevice, param1Int1, 257, 0, new byte[0]); 
+                temporaryID = TempIDManager.INSTANCE.retrieveTemporaryID(GattServer.this.getContext());
+                if (temporaryID != null) {
+                  CentralLog.Companion.i(GattServer.this.TAG, "Grab New Temp ID");
+                  BluetoothMonitoringService.Companion.setBroadcastMessage(temporaryID);
+                } else {
+                  CentralLog.Companion.e(GattServer.this.TAG, "Failed to grab new Temp ID");
+                } 
               } 
             } 
           } 
         } else {
           CentralLog.Companion companion1 = CentralLog.Companion;
-          String str1 = GattServer.this.TAG;
+          str = GattServer.this.TAG;
           StringBuilder stringBuilder1 = new StringBuilder();
           stringBuilder1.append("unsupported characteristic UUID from ");
-          stringBuilder1.append(param1BluetoothDevice.getAddress());
-          companion1.i(str1, stringBuilder1.toString());
+          stringBuilder1.append(temporaryID.getAddress());
+          companion1.i(str, stringBuilder1.toString());
           BluetoothGattServer bluetoothGattServer = GattServer.this.getBluetoothGattServer();
           if (bluetoothGattServer != null)
-            bluetoothGattServer.sendResponse(param1BluetoothDevice, param1Int1, 257, 0, null); 
+            bluetoothGattServer.sendResponse((BluetoothDevice)temporaryID, param1Int1, 257, 0, null); 
         } 
       } 
     }
@@ -222,45 +232,45 @@ public final class GattServer {
       if (param1BluetoothDevice == null)
         CentralLog.Companion.e(GattServer.this.TAG, "Write stopped - no device"); 
       if (param1BluetoothDevice != null) {
-        CentralLog.Companion companion1 = CentralLog.Companion;
-        String str1 = GattServer.this.TAG;
-        StringBuilder stringBuilder2 = new StringBuilder();
-        stringBuilder2.append("onCharacteristicWriteRequest - ");
-        stringBuilder2.append(param1BluetoothDevice.getAddress());
-        stringBuilder2.append(" - preparedWrite: ");
-        stringBuilder2.append(param1Boolean1);
-        companion1.i(str1, stringBuilder2.toString());
-        CentralLog.Companion companion2 = CentralLog.Companion;
-        String str2 = GattServer.this.TAG;
-        StringBuilder stringBuilder1 = new StringBuilder();
-        stringBuilder1.append("onCharacteristicWriteRequest from ");
-        stringBuilder1.append(param1BluetoothDevice.getAddress());
-        stringBuilder1.append(" - ");
-        stringBuilder1.append(param1Int1);
-        stringBuilder1.append(" - ");
-        stringBuilder1.append(param1Int2);
-        companion2.i(str2, stringBuilder1.toString());
+        CentralLog.Companion companion = CentralLog.Companion;
+        String str = GattServer.this.TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("onCharacteristicWriteRequest - ");
+        stringBuilder.append(param1BluetoothDevice.getAddress());
+        stringBuilder.append(" - preparedWrite: ");
+        stringBuilder.append(param1Boolean1);
+        companion.i(str, stringBuilder.toString());
+        companion = CentralLog.Companion;
+        str = GattServer.this.TAG;
+        stringBuilder = new StringBuilder();
+        stringBuilder.append("onCharacteristicWriteRequest from ");
+        stringBuilder.append(param1BluetoothDevice.getAddress());
+        stringBuilder.append(" - ");
+        stringBuilder.append(param1Int1);
+        stringBuilder.append(" - ");
+        stringBuilder.append(param1Int2);
+        companion.i(str, stringBuilder.toString());
         if (BlueTrace.INSTANCE.supportsCharUUID(param1BluetoothGattCharacteristic.getUuid())) {
-          String str3;
+          String str1;
           Map<String, UUID> map = this.deviceCharacteristicMap;
-          String str4 = param1BluetoothDevice.getAddress();
-          Intrinsics.checkExpressionValueIsNotNull(str4, "device.address");
+          String str2 = param1BluetoothDevice.getAddress();
+          Intrinsics.checkExpressionValueIsNotNull(str2, "device.address");
           UUID uUID = param1BluetoothGattCharacteristic.getUuid();
           Intrinsics.checkExpressionValueIsNotNull(uUID, "characteristic.uuid");
-          map.put(str4, uUID);
+          map.put(str2, uUID);
           if (param1ArrayOfbyte != null) {
-            str3 = new String(param1ArrayOfbyte, Charsets.UTF_8);
+            str1 = new String(param1ArrayOfbyte, Charsets.UTF_8);
           } else {
-            str3 = "";
+            str1 = "";
           } 
-          CentralLog.Companion companion = CentralLog.Companion;
-          String str5 = GattServer.this.TAG;
-          StringBuilder stringBuilder = new StringBuilder();
-          stringBuilder.append("onCharacteristicWriteRequest from ");
-          stringBuilder.append(param1BluetoothDevice.getAddress());
-          stringBuilder.append(" - ");
-          stringBuilder.append(str3);
-          companion.i(str5, stringBuilder.toString());
+          companion = CentralLog.Companion;
+          str2 = GattServer.this.TAG;
+          StringBuilder stringBuilder1 = new StringBuilder();
+          stringBuilder1.append("onCharacteristicWriteRequest from ");
+          stringBuilder1.append(param1BluetoothDevice.getAddress());
+          stringBuilder1.append(" - ");
+          stringBuilder1.append(str1);
+          companion.i(str2, stringBuilder1.toString());
           if (param1ArrayOfbyte != null) {
             byte[] arrayOfByte2 = this.writeDataPayload.get(param1BluetoothDevice.getAddress());
             byte[] arrayOfByte1 = arrayOfByte2;
@@ -268,35 +278,35 @@ public final class GattServer {
               arrayOfByte1 = new byte[0]; 
             arrayOfByte1 = ArraysKt.plus(arrayOfByte1, param1ArrayOfbyte);
             Map<String, byte[]> map1 = this.writeDataPayload;
-            String str = param1BluetoothDevice.getAddress();
-            Intrinsics.checkExpressionValueIsNotNull(str, "device.address");
-            map1.put(str, arrayOfByte1);
-            CentralLog.Companion companion3 = CentralLog.Companion;
-            str = GattServer.this.TAG;
-            StringBuilder stringBuilder3 = new StringBuilder();
-            stringBuilder3.append("Accumulated characteristic: ");
-            stringBuilder3.append(new String(arrayOfByte1, Charsets.UTF_8));
-            companion3.i(str, stringBuilder3.toString());
+            String str3 = param1BluetoothDevice.getAddress();
+            Intrinsics.checkExpressionValueIsNotNull(str3, "device.address");
+            map1.put(str3, arrayOfByte1);
+            companion = CentralLog.Companion;
+            String str4 = GattServer.this.TAG;
+            StringBuilder stringBuilder2 = new StringBuilder();
+            stringBuilder2.append("Accumulated characteristic: ");
+            stringBuilder2.append(new String(arrayOfByte1, Charsets.UTF_8));
+            companion.i(str4, stringBuilder2.toString());
             if (param1Boolean1 && param1Boolean2) {
-              companion3 = CentralLog.Companion;
-              String str6 = GattServer.this.TAG;
-              StringBuilder stringBuilder4 = new StringBuilder();
-              stringBuilder4.append("Sending response offset: ");
-              stringBuilder4.append(arrayOfByte1.length);
-              companion3.i(str6, stringBuilder4.toString());
+              CentralLog.Companion companion1 = CentralLog.Companion;
+              String str5 = GattServer.this.TAG;
+              StringBuilder stringBuilder3 = new StringBuilder();
+              stringBuilder3.append("Sending response offset: ");
+              stringBuilder3.append(arrayOfByte1.length);
+              companion1.i(str5, stringBuilder3.toString());
               BluetoothGattServer bluetoothGattServer = GattServer.this.getBluetoothGattServer();
               if (bluetoothGattServer != null)
                 bluetoothGattServer.sendResponse(param1BluetoothDevice, param1Int1, 0, arrayOfByte1.length, param1ArrayOfbyte); 
             } 
             if (!param1Boolean1) {
-              CentralLog.Companion companion4 = CentralLog.Companion;
-              String str6 = GattServer.this.TAG;
-              stringBuilder3 = new StringBuilder();
+              CentralLog.Companion companion1 = CentralLog.Companion;
+              String str5 = GattServer.this.TAG;
+              StringBuilder stringBuilder3 = new StringBuilder();
               stringBuilder3.append("onCharacteristicWriteRequest - ");
               stringBuilder3.append(param1BluetoothDevice.getAddress());
               stringBuilder3.append(" - preparedWrite: ");
               stringBuilder3.append(param1Boolean1);
-              companion4.i(str6, stringBuilder3.toString());
+              companion1.i(str5, stringBuilder3.toString());
               saveDataReceived(param1BluetoothDevice);
               if (param1Boolean2) {
                 BluetoothGattServer bluetoothGattServer = GattServer.this.getBluetoothGattServer();
@@ -306,12 +316,12 @@ public final class GattServer {
             } 
           } 
         } else {
-          CentralLog.Companion companion = CentralLog.Companion;
-          String str = GattServer.this.TAG;
-          StringBuilder stringBuilder = new StringBuilder();
-          stringBuilder.append("unsupported characteristic UUID from ");
-          stringBuilder.append(param1BluetoothDevice.getAddress());
-          companion.i(str, stringBuilder.toString());
+          CentralLog.Companion companion1 = CentralLog.Companion;
+          str = GattServer.this.TAG;
+          StringBuilder stringBuilder1 = new StringBuilder();
+          stringBuilder1.append("unsupported characteristic UUID from ");
+          stringBuilder1.append(param1BluetoothDevice.getAddress());
+          companion1.i(str, stringBuilder1.toString());
           if (param1Boolean2) {
             BluetoothGattServer bluetoothGattServer = GattServer.this.getBluetoothGattServer();
             if (bluetoothGattServer != null)
@@ -322,52 +332,52 @@ public final class GattServer {
     }
     
     public void onConnectionStateChange(BluetoothDevice param1BluetoothDevice, int param1Int1, int param1Int2) {
-      String str1;
-      StringBuilder stringBuilder = null;
+      StringBuilder stringBuilder;
+      String str1 = null;
       CentralLog.Companion companion = null;
       String str2 = null;
       if (param1Int2 != 0) {
         if (param1Int2 != 2) {
           companion = CentralLog.Companion;
+          str1 = GattServer.this.TAG;
+          StringBuilder stringBuilder1 = new StringBuilder();
+          stringBuilder1.append("Connection status: ");
+          stringBuilder1.append(param1Int2);
+          stringBuilder1.append(" - ");
+          if (param1BluetoothDevice != null)
+            str2 = param1BluetoothDevice.getAddress(); 
+          stringBuilder1.append(str2);
+          companion.i(str1, stringBuilder1.toString());
+        } else {
+          CentralLog.Companion companion1 = CentralLog.Companion;
           String str = GattServer.this.TAG;
           stringBuilder = new StringBuilder();
-          stringBuilder.append("Connection status: ");
-          stringBuilder.append(param1Int2);
-          stringBuilder.append(" - ");
+          str2 = str1;
           if (param1BluetoothDevice != null)
             str2 = param1BluetoothDevice.getAddress(); 
           stringBuilder.append(str2);
-          companion.i(str, stringBuilder.toString());
-        } else {
-          String str;
-          CentralLog.Companion companion1 = CentralLog.Companion;
-          str1 = GattServer.this.TAG;
-          StringBuilder stringBuilder2 = new StringBuilder();
-          StringBuilder stringBuilder1 = stringBuilder;
-          if (param1BluetoothDevice != null)
-            str = param1BluetoothDevice.getAddress(); 
-          stringBuilder2.append(str);
-          stringBuilder2.append(" Connected to local GATT server");
-          companion1.i(str1, stringBuilder2.toString());
+          stringBuilder.append(" Connected to local GATT server");
+          companion1.i(str, stringBuilder.toString());
         } 
       } else {
+        String str3;
         CentralLog.Companion companion1 = CentralLog.Companion;
-        String str = GattServer.this.TAG;
-        stringBuilder = new StringBuilder();
+        String str4 = GattServer.this.TAG;
+        StringBuilder stringBuilder1 = new StringBuilder();
         if (param1BluetoothDevice != null) {
           str2 = param1BluetoothDevice.getAddress();
         } else {
           str2 = null;
         } 
-        stringBuilder.append(str2);
-        stringBuilder.append(" Disconnected from local GATT server.");
-        companion1.i(str, stringBuilder.toString());
+        stringBuilder1.append(str2);
+        stringBuilder1.append(" Disconnected from local GATT server.");
+        companion1.i(str4, stringBuilder1.toString());
         Map<String, byte[]> map = this.readPayloadMap;
-        str2 = str1;
+        StringBuilder stringBuilder2 = stringBuilder;
         if (param1BluetoothDevice != null)
-          str2 = param1BluetoothDevice.getAddress(); 
+          str3 = param1BluetoothDevice.getAddress(); 
         if (map != null) {
-          TypeIntrinsics.asMutableMap(map).remove(str2);
+          TypeIntrinsics.asMutableMap(map).remove(str3);
           return;
         } 
         throw new TypeCastException("null cannot be cast to non-null type kotlin.collections.MutableMap<K, V>");
@@ -408,12 +418,12 @@ public final class GattServer {
         try {
         
         } finally {
-          Exception exception = null;
+          arrayOfByte = null;
           CentralLog.Companion companion = CentralLog.Companion;
           String str1 = GattServer.this.TAG;
           StringBuilder stringBuilder = new StringBuilder();
           stringBuilder.append("Failed to process write payload - ");
-          stringBuilder.append(exception.getMessage());
+          stringBuilder.append(arrayOfByte.getMessage());
         } 
         Utils utils = Utils.INSTANCE;
         Context context = GattServer.this.getContext();

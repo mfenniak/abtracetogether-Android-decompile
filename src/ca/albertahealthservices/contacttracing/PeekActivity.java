@@ -45,16 +45,16 @@ public final class PeekActivity extends AppCompatActivity {
     setContentView(2131492899);
     Context context = (Context)this;
     RecordListAdapter recordListAdapter = new RecordListAdapter(context);
-    RecyclerView recyclerView2 = (RecyclerView)_$_findCachedViewById(R.id.recyclerview);
-    Intrinsics.checkExpressionValueIsNotNull(recyclerView2, "recyclerview");
-    recyclerView2.setAdapter(recordListAdapter);
+    RecyclerView recyclerView = (RecyclerView)_$_findCachedViewById(R.id.recyclerview);
+    Intrinsics.checkExpressionValueIsNotNull(recyclerView, "recyclerview");
+    recyclerView.setAdapter(recordListAdapter);
     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
-    RecyclerView recyclerView1 = (RecyclerView)_$_findCachedViewById(R.id.recyclerview);
-    Intrinsics.checkExpressionValueIsNotNull(recyclerView1, "recyclerview");
-    recyclerView1.setLayoutManager((RecyclerView.LayoutManager)linearLayoutManager);
-    recyclerView1 = (RecyclerView)_$_findCachedViewById(R.id.recyclerview);
-    Intrinsics.checkExpressionValueIsNotNull(recyclerView1, "recyclerview");
-    DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView1.getContext(), linearLayoutManager.getOrientation());
+    recyclerView = (RecyclerView)_$_findCachedViewById(R.id.recyclerview);
+    Intrinsics.checkExpressionValueIsNotNull(recyclerView, "recyclerview");
+    recyclerView.setLayoutManager((RecyclerView.LayoutManager)linearLayoutManager);
+    recyclerView = (RecyclerView)_$_findCachedViewById(R.id.recyclerview);
+    Intrinsics.checkExpressionValueIsNotNull(recyclerView, "recyclerview");
+    DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), linearLayoutManager.getOrientation());
     ((RecyclerView)_$_findCachedViewById(R.id.recyclerview)).addItemDecoration((RecyclerView.ItemDecoration)dividerItemDecoration);
     ViewModel viewModel = (new ViewModelProvider((ViewModelStoreOwner)this)).get(RecordViewModel.class);
     Intrinsics.checkExpressionValueIsNotNull(viewModel, "ViewModelProvider(this).…ordViewModel::class.java)");
@@ -63,12 +63,12 @@ public final class PeekActivity extends AppCompatActivity {
     if (recordViewModel == null)
       Intrinsics.throwUninitializedPropertyAccessException("viewModel"); 
     recordViewModel.getAllRecords().observe((LifecycleOwner)this, new PeekActivity$newPeek$1(recordListAdapter));
-    FloatingActionButton floatingActionButton3 = (FloatingActionButton)_$_findCachedViewById(R.id.expand);
-    if (floatingActionButton3 != null)
-      floatingActionButton3.setOnClickListener(new PeekActivity$newPeek$2(recordListAdapter)); 
-    floatingActionButton3 = (FloatingActionButton)_$_findCachedViewById(R.id.collapse);
-    if (floatingActionButton3 != null)
-      floatingActionButton3.setOnClickListener(new PeekActivity$newPeek$3(recordListAdapter)); 
+    FloatingActionButton floatingActionButton1 = (FloatingActionButton)_$_findCachedViewById(R.id.expand);
+    if (floatingActionButton1 != null)
+      floatingActionButton1.setOnClickListener(new PeekActivity$newPeek$2(recordListAdapter)); 
+    floatingActionButton1 = (FloatingActionButton)_$_findCachedViewById(R.id.collapse);
+    if (floatingActionButton1 != null)
+      floatingActionButton1.setOnClickListener(new PeekActivity$newPeek$3(recordListAdapter)); 
     FloatingActionButton floatingActionButton2 = (FloatingActionButton)_$_findCachedViewById(R.id.start);
     if (floatingActionButton2 != null)
       floatingActionButton2.setOnClickListener(new PeekActivity$newPeek$4()); 
@@ -100,15 +100,15 @@ public final class PeekActivity extends AppCompatActivity {
         throw new TypeCastException("null cannot be cast to non-null type java.lang.String");
       } 
     } 
-    FloatingActionButton floatingActionButton1 = (FloatingActionButton)_$_findCachedViewById(R.id.start);
-    if (floatingActionButton1 != null)
-      floatingActionButton1.setVisibility(8); 
-    floatingActionButton1 = (FloatingActionButton)_$_findCachedViewById(R.id.stop);
-    if (floatingActionButton1 != null)
-      floatingActionButton1.setVisibility(8); 
-    floatingActionButton1 = (FloatingActionButton)_$_findCachedViewById(R.id.delete);
-    if (floatingActionButton1 != null)
-      floatingActionButton1.setVisibility(8); 
+    floatingActionButton2 = (FloatingActionButton)_$_findCachedViewById(R.id.start);
+    if (floatingActionButton2 != null)
+      floatingActionButton2.setVisibility(8); 
+    floatingActionButton2 = (FloatingActionButton)_$_findCachedViewById(R.id.stop);
+    if (floatingActionButton2 != null)
+      floatingActionButton2.setVisibility(8); 
+    floatingActionButton2 = (FloatingActionButton)_$_findCachedViewById(R.id.delete);
+    if (floatingActionButton2 != null)
+      floatingActionButton2.setVisibility(8); 
   }
   
   private final int nextTimePeriod() {

@@ -24,13 +24,13 @@ public final class V2Peripheral implements PeripheralInterface {
       CentralDevice centralDevice;
       return new ConnectionRecord(i, str1, str2, peripheralDevice, centralDevice, v2WriteRequestPayload.getRs(), null);
     } finally {
-      paramArrayOfbyte = null;
+      Exception exception = null;
       CentralLog.Companion companion = CentralLog.Companion;
-      String str = this.TAG;
+      paramString = this.TAG;
       StringBuilder stringBuilder = new StringBuilder();
       stringBuilder.append("Failed to deserialize write payload ");
-      stringBuilder.append(paramArrayOfbyte.getMessage());
-      companion.e(str, stringBuilder.toString());
+      stringBuilder.append(exception.getMessage());
+      companion.e(paramString, stringBuilder.toString());
     } 
   }
 }
